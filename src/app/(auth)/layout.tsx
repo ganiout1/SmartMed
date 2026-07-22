@@ -14,9 +14,9 @@ export default function AuthLayout({
         <Image 
           src="/logo.png" 
           alt="SmartMED" 
-          width={240} 
-          height={72} 
-          className="object-contain h-14 w-auto" 
+          width={600} 
+          height={180} 
+          className="object-contain h-32 md:h-36 w-auto" 
         />
       </Link>
       
