@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   History,
   User,
+  Trophy,
 } from "lucide-react";
 
 import {
@@ -31,6 +32,11 @@ const studentMenu = [
     title: "Riwayat Kuis",
     url: "/dashboard/student/history",
     icon: History,
+  },
+  {
+    title: "Ranking",
+    url: "/dashboard/student/ranking",
+    icon: Trophy,
   },
   {
     title: "Profile",

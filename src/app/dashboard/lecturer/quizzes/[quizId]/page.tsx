@@ -55,7 +55,8 @@ export default async function QuizDetailPage({
       profiles:student_id (full_name)
     `)
     .eq("quiz_id", quizId)
-    .order("started_at", { ascending: false });
+    .order("score", { ascending: false })
+    .order("completed_at", { ascending: true });
 
   // Transform data
   const transformedQuestions = questions || [];
