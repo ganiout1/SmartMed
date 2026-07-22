@@ -32,7 +32,7 @@ export default async function QuizLeaderboardPage({
     .select("id")
     .eq("quiz_id", quizId)
     .eq("student_id", user.id)
-    .eq("status", "completed")
+    .not("completed_at", "is", null)
     .limit(1)
     .single();
 
@@ -71,7 +71,7 @@ export default async function QuizLeaderboardPage({
       profiles:student_id (full_name)
     `)
     .eq("quiz_id", quizId)
-    .eq("status", "completed")
+    .not("completed_at", "is", null)
     .order("score", { ascending: false })
     .order("completed_at", { ascending: true }); // Faster completion breaks ties
 

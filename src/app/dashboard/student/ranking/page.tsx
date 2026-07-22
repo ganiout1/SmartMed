@@ -24,7 +24,7 @@ export default async function StudentRankingIndexPage() {
       )
     `)
     .eq("student_id", user.id)
-    .eq("status", "completed");
+    .not("completed_at", "is", null);
 
   if (error) {
     console.error("Error fetching attempts for ranking:", error);

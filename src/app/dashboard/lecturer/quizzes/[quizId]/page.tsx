@@ -52,24 +52,35 @@ export default async function QuizDetailPage({
       score,
       started_at,
       completed_at,
-      profiles:student_id (full_name)
+      profiles:student_id (full_name, id)
     `)
     .eq("quiz_id", quizId)
+    .not("completed_at", "is", null)
     .order("score", { ascending: false })
     .order("completed_at", { ascending: true });
 
-  // Transform data
+  // Transform data and group by student_id for highest score
   const transformedQuestions = questions || [];
   
-  const transformedAttempts = (attempts || []).map((a: any) => ({
-    id: a.id,
-    student_name: a.profiles?.full_name || "Unknown Student",
-    score: a.score,
-    passing_score: quiz.passing_score,
-    started_at: a.started_at,
-    completed_at: a.completed_at,
-    duration_minutes: quiz.duration_minutes,
-  }));
+  const bestAttemptsMap = new Map();
+  if (attempts) {
+    attempts.forEach((a: any) => {
+      const studentId = a.profiles?.id || a.student_id;
+      if (!bestAttemptsMap.has(studentId)) {
+        bestAttemptsMap.set(studentId, {
+          id: a.id,
+          student_name: a.profiles?.full_name || "Unknown Student",
+          score: a.score,
+          passing_score: quiz.passing_score,
+          started_at: a.started_at,
+          completed_at: a.completed_at,
+          duration_minutes: quiz.duration_minutes,
+        });
+      }
+    });
+  }
+  
+  const transformedAttempts = Array.from(bestAttemptsMap.values());
 
   const quizSettings = {
     id: quiz.id,
