@@ -30,7 +30,6 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Program", href: "#program" },
   { label: "Keunggulan", href: "#keunggulan" },
   { label: "Testimoni", href: "#testimoni" },
-  { label: "FAQ", href: "#faq" },
   { label: "Kontak", href: "#kontak" },
 ];
 
@@ -63,9 +62,9 @@ export interface Feature {
 export const ABOUT_FEATURES: Feature[] = [
   {
     icon: Stethoscope,
-    title: "Pengajar Dokter & Profesional",
+    title: "Pengajar terbaik & berpengalaman",
     description:
-      "Tim pengajar kami terdiri dari dokter praktisi dan profesional medis berpengalaman yang memahami kurikulum kedokteran secara mendalam.",
+      "Tim pengajar terbaik, ramah, dan pastinya berpengalaman sesuai bidang keahlian",
   },
   {
     icon: BookOpen,
@@ -94,32 +93,32 @@ export interface Program {
 
 export const PROGRAMS: Program[] = [
   {
+    icon: UserCheck,
+    title: "Kelas Privat",
+    description:
+      "Bimbingan tatap muka satu-satu dengan tutor berpengalaman. Materi dan jadwal disesuaikan sepenuhnya dengan kebutuhan mahasiswa.",
+    tags: ["Jadwal Fleksibel", "Latihan soal rutin", "SMART Access", "Personal"],
+  },
+  {
     icon: GraduationCap,
-    title: "Kelas Reguler",
+    title: "Paket Platinum",
     description:
       "Bimbingan belajar rutin per blok dengan jadwal terstruktur. Cocok untuk mahasiswa yang ingin mempersiapkan diri secara konsisten sepanjang semester.",
-    tags: ["Per Blok", "Grup Kecil", "Terstruktur"],
+    tags: ["Per Blok", "Grup kecil", "Diskusi aktif"],
   },
   {
     icon: Target,
-    title: "Kelas Intensif",
+    title: "Paket Gold",
     description:
-      "Program persiapan intensif menghadapi ujian blok dan OSCE. Fokus pada latihan soal, simulasi ujian, dan review materi secara menyeluruh.",
-    tags: ["Persiapan Ujian", "Intensif", "Simulasi"],
-  },
-  {
-    icon: UserCheck,
-    title: "Bimbingan Privat",
-    description:
-      "Bimbingan tatap muka satu-satu dengan tutor berpengalaman. Materi dan jadwal disesuaikan sepenuhnya dengan kebutuhan mahasiswa.",
-    tags: ["1-on-1", "Fleksibel", "Personal"],
+      "Program intensif persiapan ujian yang berfokus pada diskusi 2 arah antara pengajar dan siswa",
+    tags: ["DST 1x/minggu", "Grup kecil", "Diskusi aktif", "Drill soal"],
   },
   {
     icon: ClipboardCheck,
-    title: "Try Out CBT",
+    title: "Akses SMART-Med",
     description:
-      "Simulasi ujian online berbasis Computer Based Test dengan soal-soal berkualitas, timer, dan penilaian otomatis untuk mengukur kesiapan Anda.",
-    tags: ["Online", "Auto Grading", "Realistis"],
+      "Simulasi Medis Akademik Realistis Terstandar merupakan pengembangan Try Out CBT dengan soal-soal berkualitas, timer, beserta pembahasan untuk persiapan real CBT.",
+    tags: ["Online", "Auto Grading", "Sesuai kurikulum", "Free pembahasan"],
   },
 ];
 
@@ -138,44 +137,58 @@ export const ADVANTAGES: Advantage[] = [
   {
     number: "01",
     icon: Stethoscope,
-    title: "Pengajar Dokter & Profesional",
+    title: "Pengajar terbaik & berpengalaman",
     description:
-      "Dibimbing langsung oleh dokter dan tenaga medis profesional yang aktif berpraktik di dunia kesehatan.",
+      "Tim pengajar terbaik, ramah, dan pastinya berpengalaman sesuai bidang keahlian",
   },
   {
     number: "02",
     icon: BookOpen,
-    title: "Materi Sesuai Kurikulum",
+    title: "Bentuk Fondasi Belajar",
     description:
-      "Seluruh materi disusun berdasarkan kurikulum kedokteran terkini yang digunakan oleh fakultas kedokteran di Indonesia.",
+      "Memastikan mahasiswa baru memiliki fondasi belajar dengan memberikan Tips & Strategi belajar ala anak FK",
   },
   {
     number: "03",
     icon: Users,
-    title: "Kelas Kecil & Personal",
+    title: "Kelas kecil & personal",
     description:
-      "Maksimal 10 peserta per kelas memungkinkan interaksi yang lebih intens dan pemahaman yang lebih mendalam.",
+      "Maksimal 8-15 peserta per kelas memungkinkan interaksi yang lebih intens dan pemahaman yang lebih mendalam.",
   },
   {
     number: "04",
     icon: Brain,
     title: "Simulasi CBT Realistis",
     description:
-      "Latihan dengan sistem Computer Based Test yang dirancang menyerupai ujian asli untuk membangun kesiapan mental dan teknis.",
+      "Latihan dengan SMART-Med yang dirancang menyerupai UI ujian CBT asli untuk membangun kesiapan mental dan teknis.",
   },
   {
     number: "05",
+    icon: Target,
+    title: "Discussion Service Time",
+    description:
+      "Fasilitas bimbingan belajar tambahan atau layanan konsultasi di luar jam kelas regular 1x/minggu. Di DST, siswa dapat membahas tutorial, perkuliahan, OSCE, DLL.",
+  },
+  {
+    number: "06",
     icon: CalendarDays,
     title: "Jadwal Fleksibel",
     description:
       "Pilih jadwal belajar yang sesuai dengan kesibukan Anda. Tersedia kelas pagi, siang, dan malam serta opsi bimbingan online.",
   },
   {
-    number: "06",
+    number: "07",
     icon: TrendingUp,
-    title: "Rekam Jejak Kelulusan Tinggi",
+    title: "Modul Sesuai Kurikulum",
     description:
-      "Lebih dari 95% alumni SmartMed berhasil melewati ujian blok dan OSCE dengan hasil memuaskan di berbagai universitas.",
+      "Fakultas kedokteran sesuai universitas masing-masing",
+  },
+  {
+    number: "08",
+    icon: MapPin,
+    title: "Pilih Lokasi les",
+    description:
+      "Bisa les online, offline di rumah, atau di kafe sesuai kebutuhan",
   },
 ];
 
@@ -237,48 +250,7 @@ export interface FAQItem {
   answer: string;
 }
 
-export const FAQ_ITEMS: FAQItem[] = [
-  {
-    question: "Apa itu SmartMed?",
-    answer:
-      "SmartMed adalah lembaga bimbingan belajar kedokteran preklinik yang menyediakan program belajar terstruktur untuk mahasiswa kedokteran. Kami menawarkan kelas reguler, intensif, privat, dan simulasi ujian CBT online.",
-  },
-  {
-    question: "Siapa yang mengajar di SmartMed?",
-    answer:
-      "Seluruh pengajar SmartMed adalah dokter dan tenaga medis profesional yang berpengalaman di bidangnya. Mereka memahami kurikulum kedokteran terkini dan mampu menjelaskan materi dengan cara yang mudah dipahami.",
-  },
-  {
-    question: "Bagaimana format simulasi CBT di SmartMed?",
-    answer:
-      "Simulasi CBT kami menggunakan sistem online dengan format soal pilihan ganda, timer otomatis, dan penilaian instan. Soal-soal disusun menyerupai ujian asli untuk membangun kesiapan Anda secara optimal.",
-  },
-  {
-    question: "Apakah tersedia kelas online?",
-    answer:
-      "Ya, SmartMed menyediakan opsi belajar online maupun offline. Kelas online dilaksanakan melalui platform video conference dengan materi dan rekaman yang dapat diakses kembali.",
-  },
-  {
-    question: "Berapa jumlah peserta per kelas?",
-    answer:
-      "Kami membatasi maksimal 10 peserta per kelas untuk memastikan setiap mahasiswa mendapat perhatian dan bimbingan yang optimal dari pengajar.",
-  },
-  {
-    question: "Bagaimana cara mendaftar?",
-    answer:
-      "Anda dapat mendaftar dengan menghubungi kami melalui WhatsApp atau mengisi formulir kontak di website ini. Tim kami akan membantu Anda memilih program yang paling sesuai dengan kebutuhan Anda.",
-  },
-  {
-    question: "Apakah ada program untuk persiapan OSCE?",
-    answer:
-      "Ya, kami memiliki program Kelas Intensif yang khusus dirancang untuk persiapan ujian blok dan OSCE. Program ini mencakup latihan keterampilan klinis dengan bimbingan langsung dari dokter praktisi.",
-  },
-  {
-    question: "Apakah materi yang diajarkan sesuai dengan kurikulum kampus saya?",
-    answer:
-      "Materi SmartMed disusun berdasarkan kurikulum kedokteran standar nasional. Kami juga dapat menyesuaikan materi dengan kurikulum spesifik universitas Anda, terutama untuk program bimbingan privat.",
-  },
-];
+export const FAQ_ITEMS: FAQItem[] = [];
 
 // ──────────────────────────────────────────
 // Contact Info
@@ -295,25 +267,25 @@ export const CONTACT_INFO: ContactInfo[] = [
   {
     icon: Phone,
     label: "WhatsApp",
-    value: "+62 812-3456-7890",
-    href: "https://wa.me/6281234567890",
+    value: "+62 878-6714-1403",
+    href: "https://wa.me/6287867141403",
   },
   {
     icon: Mail,
     label: "Email",
-    value: "info@smartmed.id",
-    href: "mailto:info@smartmed.id",
+    value: "smartmededu30@gmail.com",
+    href: "mailto:smartmededu30@gmail.com",
   },
   {
     icon: Camera,
     label: "Instagram",
-    value: "@smartmed.id",
-    href: "https://instagram.com/smartmed.id",
+    value: "@smartmed_edu",
+    href: "https://instagram.com/smartmed_edu",
   },
   {
     icon: MapPin,
     label: "Alamat",
-    value: "Jakarta, Indonesia",
+    value: "Mataram, Nusa Tenggara Barat, Indonesia",
     href: "#",
   },
 ];
@@ -335,16 +307,15 @@ export const FOOTER_LINKS: FooterLinkGroup[] = [
       { label: "Program", href: "#program" },
       { label: "Keunggulan", href: "#keunggulan" },
       { label: "Testimoni", href: "#testimoni" },
-      { label: "FAQ", href: "#faq" },
     ],
   },
   {
     title: "Program",
     links: [
-      { label: "Kelas Reguler", href: "#program" },
-      { label: "Kelas Intensif", href: "#program" },
-      { label: "Bimbingan Privat", href: "#program" },
-      { label: "Try Out CBT", href: "#program" },
+      { label: "Kelas Privat", href: "#program" },
+      { label: "Paket Platinum", href: "#program" },
+      { label: "Paket Gold", href: "#program" },
+      { label: "Akses SMART-Med", href: "#program" },
     ],
   },
 ];
