@@ -36,6 +36,7 @@ type QuizData = {
   status: string;
   question_count: number;
   attempt_count: number;
+  max_attempts?: number | null;
 };
 
 interface QuizManagementProps {
@@ -166,7 +167,7 @@ export function QuizManagement({ courseId, quizzes }: QuizManagementProps) {
                     >
                       <Edit2 className="h-4 w-4" />
                     </Button>
-                    <Button render={
+                    <Button nativeButton={false} render={
                       <Link href={`/dashboard/lecturer/quizzes/${quiz.id}`}>
                         Kelola
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -217,6 +218,10 @@ export function QuizManagement({ courseId, quizzes }: QuizManagementProps) {
                 <Input id="passingScore" name="passingScore" type="number" min={0} max={100} defaultValue={75} />
               </div>
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="maxAttempts">Batas Percobaan</Label>
+              <Input id="maxAttempts" name="maxAttempts" type="number" min={1} placeholder="Kosongkan jika tak terbatas" />
+            </div>
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setIsAddOpen(false)} disabled={loading}>
                 Batal
@@ -254,6 +259,10 @@ export function QuizManagement({ courseId, quizzes }: QuizManagementProps) {
                 <Label htmlFor="edit-passingScore">Nilai Kelulusan (0-100)</Label>
                 <Input id="edit-passingScore" name="passingScore" type="number" min={0} max={100} defaultValue={selectedQuiz?.passing_score} />
               </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-maxAttempts">Batas Percobaan</Label>
+              <Input id="edit-maxAttempts" name="maxAttempts" type="number" min={1} placeholder="Kosongkan jika tak terbatas" defaultValue={selectedQuiz?.max_attempts || ""} />
             </div>
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setIsEditOpen(false)} disabled={loading}>

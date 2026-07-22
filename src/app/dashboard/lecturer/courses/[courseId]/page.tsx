@@ -6,8 +6,9 @@ import { QuizManagement } from "@/components/lecturer/quiz-management";
 export default async function CourseDetailPage({
   params,
 }: {
-  params: { courseId: string };
+  params: Promise<{ courseId: string }>;
 }) {
+  const { courseId } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -17,7 +18,7 @@ export default async function CourseDetailPage({
   const { data: assignment } = await supabase
     .from("course_lecturers")
     .select("course_id")
-    .eq("course_id", params.courseId)
+    .eq("course_id", courseId)
     .eq("lecturer_id", user.id)
     .single();
 
@@ -29,7 +30,7 @@ export default async function CourseDetailPage({
   const { data: course } = await supabase
     .from("courses")
     .select("*")
-    .eq("id", params.courseId)
+    .eq("id", courseId)
     .single();
 
   if (!course) return notFound();
@@ -44,10 +45,11 @@ export default async function CourseDetailPage({
       duration_minutes,
       passing_score,
       status,
+      max_attempts,
       questions (count),
       quiz_attempts (count)
     `)
-    .eq("course_id", params.courseId)
+    .eq("course_id", courseId)
     .order("created_at", { ascending: false });
 
   // Transform quizzes data
@@ -60,6 +62,7 @@ export default async function CourseDetailPage({
     status: q.status || "draft",
     question_count: q.questions[0]?.count || 0,
     attempt_count: q.quiz_attempts[0]?.count || 0,
+    max_attempts: q.max_attempts,
   }));
 
   return (
@@ -70,7 +73,7 @@ export default async function CourseDetailPage({
         align="left"
       />
 
-      <QuizManagement courseId={params.courseId} quizzes={transformedQuizzes} />
+      <QuizManagement courseId={courseId} quizzes={transformedQuizzes} />
     </div>
   );
 }

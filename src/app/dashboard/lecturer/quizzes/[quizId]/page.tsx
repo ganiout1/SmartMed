@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { createClient as createAdminClient } from "@supabase/supabase-js";
 import { notFound, redirect } from "next/navigation";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -9,8 +10,9 @@ import { StudentResults } from "@/components/lecturer/student-results";
 export default async function QuizDetailPage({
   params,
 }: {
-  params: { quizId: string };
+  params: Promise<{ quizId: string }>;
 }) {
+  const { quizId } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -23,7 +25,7 @@ export default async function QuizDetailPage({
       *,
       courses (title)
     `)
-    .eq("id", params.quizId)
+    .eq("id", quizId)
     .single();
 
   if (quizError || !quiz) {
@@ -34,11 +36,16 @@ export default async function QuizDetailPage({
   const { data: questions } = await supabase
     .from("questions")
     .select("*")
-    .eq("quiz_id", params.quizId)
+    .eq("quiz_id", quizId)
     .order("created_at", { ascending: true }); // By default order by creation
 
-  // 3. Fetch results (attempts)
-  const { data: attempts } = await supabase
+  // 3. Fetch results (attempts) using Admin Client to bypass RLS on `profiles`
+  const supabaseAdmin = createAdminClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+
+  const { data: attempts } = await supabaseAdmin
     .from("quiz_attempts")
     .select(`
       id,
@@ -47,7 +54,7 @@ export default async function QuizDetailPage({
       completed_at,
       profiles:student_id (full_name)
     `)
-    .eq("quiz_id", params.quizId)
+    .eq("quiz_id", quizId)
     .order("started_at", { ascending: false });
 
   // Transform data

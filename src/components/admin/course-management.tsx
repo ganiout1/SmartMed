@@ -180,6 +180,10 @@ export function CourseManagement({ courses }: { courses: CourseData[] }) {
               <Label htmlFor="description">Deskripsi (Opsional)</Label>
               <Input id="description" name="description" placeholder="Deskripsi singkat..." />
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="banner">Gambar Banner (Opsional, Persegi 1:1)</Label>
+              <Input id="banner" name="banner" type="file" accept="image/*" />
+            </div>
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setIsAddOpen(false)} disabled={loading}>
                 Batal
@@ -207,6 +211,10 @@ export function CourseManagement({ courses }: { courses: CourseData[] }) {
             <div className="space-y-2">
               <Label htmlFor="edit-description">Deskripsi</Label>
               <Input id="edit-description" name="description" defaultValue={selectedCourse?.description || ""} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-banner">Gambar Banner Baru (Opsional, membiarkan kosong tidak akan menghapus banner lama)</Label>
+              <Input id="edit-banner" name="banner" type="file" accept="image/*" />
             </div>
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setIsEditOpen(false)} disabled={loading}>

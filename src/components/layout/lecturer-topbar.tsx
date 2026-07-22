@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import { User, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
 import {
   Breadcrumb,
@@ -18,6 +20,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuGroup,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -74,7 +77,7 @@ export function LecturerTopbar() {
         </Breadcrumb>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <DropdownMenu>
           <DropdownMenuTrigger render={
             <Button variant="ghost" size="icon" className="rounded-full">
@@ -83,7 +86,9 @@ export function LecturerTopbar() {
             </Button>
           } />
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Akun Dosen</DropdownMenuLabel>
+            <DropdownMenuGroup>
+              <DropdownMenuLabel>Akun Dosen</DropdownMenuLabel>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:text-red-600 cursor-pointer">
               <LogOut className="mr-2 h-4 w-4" />

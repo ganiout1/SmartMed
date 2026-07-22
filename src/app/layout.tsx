@@ -12,34 +12,23 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "SmartMed — Bimbingan Kedokteran Preklinik Terpercaya",
-    template: "%s | SmartMed",
+    template: "%s | SmartMED",
+    default: "SmartMED - Platform Ujian Berbasis Komputer Modern",
   },
-  description:
-    "SmartMed adalah lembaga bimbingan belajar kedokteran preklinik terpercaya. Persiapkan ujian blok, OSCE, dan CBT bersama pengajar dokter profesional.",
-  keywords: [
-    "bimbingan kedokteran",
-    "kedokteran preklinik",
-    "ujian blok",
-    "OSCE",
-    "CBT kedokteran",
-    "bimbel kedokteran",
-    "SmartMed",
-  ],
-  authors: [{ name: "SmartMed" }],
+  description: "Sistem ujian berbasis komputer cerdas untuk institusi pendidikan.",
+  keywords: ["CBT", "Ujian Online", "Kedokteran", "SmartMed", "Computer Based Test"],
   openGraph: {
-    type: "website",
+    title: "SmartMED - Platform Ujian Berbasis Komputer Modern",
+    description: "Sistem ujian berbasis komputer cerdas untuk institusi pendidikan.",
+    url: "https://smartmed.com",
+    siteName: "SmartMED",
     locale: "id_ID",
-    siteName: "SmartMed",
-    title: "SmartMed — Bimbingan Kedokteran Preklinik Terpercaya",
-    description:
-      "Persiapkan ujian blok, OSCE, dan CBT bersama pengajar dokter profesional. Tingkatkan prestasi akademik Anda bersama SmartMed.",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SmartMed — Bimbingan Kedokteran Preklinik Terpercaya",
-    description:
-      "Persiapkan ujian blok, OSCE, dan CBT bersama pengajar dokter profesional.",
+    title: "SmartMED",
+    description: "Platform Ujian Berbasis Komputer Modern",
   },
 };
 

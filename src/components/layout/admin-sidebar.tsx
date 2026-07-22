@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -67,12 +68,9 @@ export function AdminSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader className="border-b p-4">
-        <Link href="/dashboard/admin" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-            <BookOpen className="h-4 w-4 text-primary-foreground" />
-          </div>
-          <span className="text-lg font-bold">SmartMed CBT</span>
+      <SidebarHeader className="border-b p-2">
+        <Link href="/dashboard/admin" className="flex items-center justify-center">
+          <Image src="/logo.png" alt="SmartMED" width={150} height={45} className="object-contain w-32 h-auto" />
         </Link>
       </SidebarHeader>
       <SidebarContent>

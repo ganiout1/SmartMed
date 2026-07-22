@@ -37,6 +37,7 @@ type QuestionData = {
   correct_option: string;
   explanation_text: string | null;
   explanation_image_url: string | null;
+  question_image_url: string | null;
 };
 
 interface QuestionManagementProps {
@@ -54,6 +55,10 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [removeExistingImage, setRemoveExistingImage] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const [questionPreviewImage, setQuestionPreviewImage] = useState<string | null>(null);
+  const [removeExistingQuestionImage, setRemoveExistingQuestionImage] = useState(false);
+  const questionFileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -78,6 +83,29 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
+  const handleQuestionImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        toast.error("Ukuran gambar maksimal 2MB");
+        if (questionFileInputRef.current) questionFileInputRef.current.value = "";
+        return;
+      }
+      setRemoveExistingQuestionImage(false);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setQuestionPreviewImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const clearQuestionImage = () => {
+    setQuestionPreviewImage(null);
+    setRemoveExistingQuestionImage(true);
+    if (questionFileInputRef.current) questionFileInputRef.current.value = "";
+  };
+
   const handleAddSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -90,6 +118,7 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
       toast.success("Soal berhasil ditambahkan");
       setIsAddOpen(false);
       setPreviewImage(null);
+      setQuestionPreviewImage(null);
     }
     setLoading(false);
   };
@@ -104,6 +133,11 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
     }
     formData.append("existingImageUrl", selectedQuestion.explanation_image_url || "");
     
+    if (removeExistingQuestionImage) {
+      formData.append("removeQuestionImage", "true");
+    }
+    formData.append("existingQuestionImageUrl", selectedQuestion.question_image_url || "");
+    
     const result = await updateQuestion(quizId, selectedQuestion.id, formData);
 
     if (result.error) {
@@ -112,6 +146,7 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
       toast.success("Soal berhasil diubah");
       setIsEditOpen(false);
       setPreviewImage(null);
+      setQuestionPreviewImage(null);
     }
     setLoading(false);
   };
@@ -132,6 +167,7 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
 
   const openAdd = () => {
     setPreviewImage(null);
+    setQuestionPreviewImage(null);
     setIsAddOpen(true);
   };
 
@@ -139,6 +175,8 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
     setSelectedQuestion(q);
     setPreviewImage(q.explanation_image_url);
     setRemoveExistingImage(false);
+    setQuestionPreviewImage(q.question_image_url);
+    setRemoveExistingQuestionImage(false);
     setIsEditOpen(true);
   };
 
@@ -167,6 +205,17 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
                       <span className="font-bold">{index + 1}.</span>
                       <p className="whitespace-pre-wrap">{q.question_text}</p>
                     </div>
+
+                    {q.question_image_url && (
+                      <div className="relative h-48 w-full max-w-sm mt-2">
+                        <Image 
+                          src={q.question_image_url} 
+                          alt="Gambar Soal" 
+                          fill 
+                          className="object-contain"
+                        />
+                      </div>
+                    )}
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pl-6">
                       <div className={`p-2 rounded border ${q.correct_option === 'A' ? 'bg-green-50/50 border-green-200' : ''}`}>
@@ -233,6 +282,30 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
             <div className="space-y-2">
               <Label>Pertanyaan</Label>
               <Textarea name="questionText" required rows={4} placeholder="Tuliskan soal di sini..." />
+            </div>
+
+            <div className="space-y-2">
+              <Label>Gambar Soal (Opsional)</Label>
+              <div className="flex items-center gap-4">
+                <Input 
+                  ref={questionFileInputRef}
+                  name="questionImage" 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleQuestionImageChange}
+                  className="flex-1"
+                />
+                {questionPreviewImage && (
+                  <Button type="button" variant="outline" size="icon" onClick={clearQuestionImage}>
+                    <X className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
+              {questionPreviewImage && (
+                <div className="relative h-32 w-48 mt-2 border rounded overflow-hidden">
+                  <Image src={questionPreviewImage} alt="Preview" fill className="object-contain" />
+                </div>
+              )}
             </div>
             
             <div className="grid grid-cols-2 gap-4">
@@ -323,6 +396,30 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
             <div className="space-y-2">
               <Label>Pertanyaan</Label>
               <Textarea name="questionText" required rows={4} defaultValue={selectedQuestion?.question_text} />
+            </div>
+
+            <div className="space-y-2">
+              <Label>Gambar Soal (Opsional)</Label>
+              <div className="flex items-center gap-4">
+                <Input 
+                  ref={questionFileInputRef}
+                  name="questionImage" 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleQuestionImageChange}
+                  className="flex-1"
+                />
+                {questionPreviewImage && (
+                  <Button type="button" variant="outline" size="icon" onClick={clearQuestionImage}>
+                    <X className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
+              {questionPreviewImage && (
+                <div className="relative h-32 w-48 mt-2 border rounded overflow-hidden">
+                  <Image src={questionPreviewImage} alt="Preview" fill className="object-contain" />
+                </div>
+              )}
             </div>
             
             <div className="grid grid-cols-2 gap-4">

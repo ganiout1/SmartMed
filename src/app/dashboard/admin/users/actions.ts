@@ -96,3 +96,46 @@ export async function updateUserProfile(
 
   return { success: true };
 }
+
+export async function updateUserTier(userId: string, currentTier: string, role: string) {
+  const supabaseAdmin = createAdminClient();
+  const newTier = currentTier === "regular" ? "pro" : "regular";
+
+  const { error } = await supabaseAdmin
+    .from("profiles")
+    .update({ tier: newTier })
+    .eq("id", userId);
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  if (role === "lecturer") {
+    revalidatePath("/dashboard/admin/lecturers");
+  } else {
+    revalidatePath("/dashboard/admin/students");
+  }
+
+  return { success: true };
+}
+
+export async function updateUserBan(userId: string, isBanned: boolean, role: string) {
+  const supabaseAdmin = createAdminClient();
+  
+  const { error } = await supabaseAdmin
+    .from("profiles")
+    .update({ is_banned: !isBanned })
+    .eq("id", userId);
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  if (role === "lecturer") {
+    revalidatePath("/dashboard/admin/lecturers");
+  } else {
+    revalidatePath("/dashboard/admin/students");
+  }
+
+  return { success: true };
+}

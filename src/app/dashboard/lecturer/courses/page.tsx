@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
+import Image from "next/image";
 import { SectionHeader } from "@/components/ui/section-header";
 import {
   Card,
@@ -25,6 +26,7 @@ export default async function LecturerCoursesPage() {
       id,
       title,
       description,
+      banner_url,
       course_members (count),
       quizzes (count)
     `)
@@ -34,6 +36,7 @@ export default async function LecturerCoursesPage() {
     id: c.id,
     title: c.title,
     description: c.description,
+    banner_url: c.banner_url,
     student_count: c.course_members[0]?.count || 0,
     quiz_count: c.quizzes[0]?.count || 0,
   }));
@@ -54,7 +57,15 @@ export default async function LecturerCoursesPage() {
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {transformedCourses.map((course) => (
-            <Card key={course.id} className="flex flex-col">
+            <Card key={course.id} className="flex flex-col overflow-hidden">
+              <div className="relative w-full aspect-square bg-muted">
+                <Image
+                  src={course.banner_url || "/default-banner.png"}
+                  alt={course.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <CardHeader>
                 <CardTitle>{course.title}</CardTitle>
                 <CardDescription className="line-clamp-2">
@@ -74,7 +85,7 @@ export default async function LecturerCoursesPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button render={
+                <Button nativeButton={false} render={
                   <Link href={`/dashboard/lecturer/courses/${course.id}`}>
                     Kelola Kursus
                     <ArrowRight className="ml-2 h-4 w-4" />

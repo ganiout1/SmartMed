@@ -12,6 +12,7 @@ export async function createQuestion(quizId: string, formData: FormData) {
   const correctOption = formData.get("correctOption") as string;
   const explanationText = formData.get("explanationText") as string;
   const explanationImage = formData.get("explanationImage") as File | null;
+  const questionImage = formData.get("questionImage") as File | null;
 
   if (!questionText || !optionA || !optionB || !optionC || !optionD || !correctOption) {
     return { error: "Semua isian wajib (kecuali pembahasan) harus diisi" };
@@ -19,6 +20,28 @@ export async function createQuestion(quizId: string, formData: FormData) {
 
   const supabase = await createClient();
   let explanationImageUrl = null;
+  let questionImageUrl = null;
+
+  // Handle Question Image Upload
+  if (questionImage && questionImage.size > 0) {
+    const fileExt = questionImage.name.split(".").pop();
+    const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
+    const filePath = `questions/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("question_images")
+      .upload(filePath, questionImage);
+
+    if (uploadError) {
+      return { error: `Gagal mengunggah gambar soal: ${uploadError.message}` };
+    }
+
+    const { data: { publicUrl } } = supabase.storage
+      .from("question_images")
+      .getPublicUrl(filePath);
+
+    questionImageUrl = publicUrl;
+  }
 
   // Handle Image Upload if exists
   if (explanationImage && explanationImage.size > 0) {
@@ -51,6 +74,7 @@ export async function createQuestion(quizId: string, formData: FormData) {
     correct_option: correctOption,
     explanation_text: explanationText || null,
     explanation_image_url: explanationImageUrl,
+    question_image_url: questionImageUrl,
   });
 
   if (error) {
@@ -72,6 +96,9 @@ export async function updateQuestion(quizId: string, questionId: string, formDat
   const explanationImage = formData.get("explanationImage") as File | null;
   const removeImage = formData.get("removeImage") === "true";
   const existingImageUrl = formData.get("existingImageUrl") as string;
+  const questionImage = formData.get("questionImage") as File | null;
+  const removeQuestionImage = formData.get("removeQuestionImage") === "true";
+  const existingQuestionImageUrl = formData.get("existingQuestionImageUrl") as string;
 
   if (!questionText || !optionA || !optionB || !optionC || !optionD || !correctOption) {
     return { error: "Semua isian wajib (kecuali pembahasan) harus diisi" };
@@ -79,6 +106,29 @@ export async function updateQuestion(quizId: string, questionId: string, formDat
 
   const supabase = await createClient();
   let explanationImageUrl = existingImageUrl;
+  let questionImageUrl = existingQuestionImageUrl;
+
+  if (removeQuestionImage) {
+    questionImageUrl = "";
+  } else if (questionImage && questionImage.size > 0) {
+    const fileExt = questionImage.name.split(".").pop();
+    const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
+    const filePath = `questions/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("question_images")
+      .upload(filePath, questionImage);
+
+    if (uploadError) {
+      return { error: `Gagal mengunggah gambar soal: ${uploadError.message}` };
+    }
+
+    const { data: { publicUrl } } = supabase.storage
+      .from("question_images")
+      .getPublicUrl(filePath);
+
+    questionImageUrl = publicUrl;
+  }
 
   if (removeImage) {
     explanationImageUrl = "";
@@ -113,6 +163,7 @@ export async function updateQuestion(quizId: string, questionId: string, formDat
       correct_option: correctOption,
       explanation_text: explanationText || null,
       explanation_image_url: explanationImageUrl || null,
+      question_image_url: questionImageUrl || null,
       updated_at: new Date().toISOString()
     })
     .eq("id", questionId);

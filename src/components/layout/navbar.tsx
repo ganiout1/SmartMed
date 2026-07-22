@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, LogIn } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
@@ -40,13 +41,10 @@ export function Navbar() {
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 md:h-20">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary font-bold text-text-primary text-lg transition-transform group-hover:scale-105">
-            S
+        <Link href="/" className="flex items-center group -ml-12 md:-ml-28">
+          <div className="flex items-center overflow-hidden transition-transform group-hover:scale-105">
+            <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-36 md:w-48 h-auto" />
           </div>
-          <span className="text-lg font-bold tracking-tight text-text-primary">
-            Smart<span className="text-accent">Med</span>
-          </span>
         </Link>
 
         {/* Desktop Navigation */}

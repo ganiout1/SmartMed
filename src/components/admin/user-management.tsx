@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Search, Edit2, Trash2 } from "lucide-react";
+import { Plus, Search, Edit2, Trash2, Shield, ShieldOff, Ban, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
-import { createUser, deleteUser, updateUserProfile } from "@/app/dashboard/admin/users/actions";
+import { createUser, deleteUser, updateUserProfile, updateUserTier, updateUserBan } from "@/app/dashboard/admin/users/actions";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,6 +29,8 @@ type UserData = {
   id: string;
   full_name: string;
   email: string;
+  tier?: string;
+  is_banned?: boolean;
   course_count: number;
 };
 
@@ -101,6 +103,28 @@ export function UserManagement({ title, role, users }: UserManagementProps) {
     setLoading(false);
   };
 
+  const handleToggleTier = async (user: UserData) => {
+    setLoading(true);
+    const result = await updateUserTier(user.id, user.tier || "regular", role);
+    if (result.error) {
+      toast.error(result.error);
+    } else {
+      toast.success(`Status langganan ${user.full_name} berhasil diubah`);
+    }
+    setLoading(false);
+  };
+
+  const handleToggleBan = async (user: UserData) => {
+    setLoading(true);
+    const result = await updateUserBan(user.id, user.is_banned || false, role);
+    if (result.error) {
+      toast.error(result.error);
+    } else {
+      toast.success(`Status akses ${user.full_name} berhasil diubah`);
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="space-y-4 bg-background p-6 rounded-lg border">
       <div className="flex flex-col sm:flex-row justify-between gap-4">
@@ -125,6 +149,8 @@ export function UserManagement({ title, role, users }: UserManagementProps) {
             <TableRow>
               <TableHead>Nama Lengkap</TableHead>
               <TableHead>Email</TableHead>
+              {role === "student" && <TableHead className="text-center">Status</TableHead>}
+              {role === "student" && <TableHead className="text-center">Akses</TableHead>}
               <TableHead className="text-center">
                 {role === "lecturer" ? "Jumlah Kursus (Diampu)" : "Jumlah Kursus (Diikuti)"}
               </TableHead>
@@ -143,11 +169,48 @@ export function UserManagement({ title, role, users }: UserManagementProps) {
                 <TableRow key={user.id}>
                   <TableCell className="font-medium">{user.full_name}</TableCell>
                   <TableCell>{user.email}</TableCell>
+                  {role === "student" && (
+                    <TableCell className="text-center">
+                      <span className={`px-2 py-1 rounded-full text-xs font-semibold ${user.tier === 'pro' ? 'bg-primary/20 text-primary-hover' : 'bg-muted text-muted-foreground'}`}>
+                        {user.tier === 'pro' ? 'PRO' : 'BIASA'}
+                      </span>
+                    </TableCell>
+                  )}
+                  {role === "student" && (
+                    <TableCell className="text-center">
+                      <span className={`px-2 py-1 rounded-full text-xs font-semibold ${user.is_banned ? 'bg-error/20 text-error' : 'bg-success/20 text-success-hover'}`}>
+                        {user.is_banned ? 'BANNED' : 'AKTIF'}
+                      </span>
+                    </TableCell>
+                  )}
                   <TableCell className="text-center">{user.course_count}</TableCell>
                   <TableCell className="text-right space-x-2">
+                    {role === "student" && (
+                      <>
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          title={user.tier === 'pro' ? 'Jadikan Biasa' : 'Jadikan PRO'}
+                          onClick={() => handleToggleTier(user)}
+                          disabled={loading}
+                        >
+                          {user.tier === 'pro' ? <ShieldOff className="h-4 w-4" /> : <Shield className="h-4 w-4" />}
+                        </Button>
+                        <Button
+                          variant={user.is_banned ? "outline" : "destructive"}
+                          size="icon"
+                          title={user.is_banned ? 'Pulihkan Akun' : 'Ban Akun'}
+                          onClick={() => handleToggleBan(user)}
+                          disabled={loading}
+                        >
+                          {user.is_banned ? <CheckCircle className="h-4 w-4" /> : <Ban className="h-4 w-4" />}
+                        </Button>
+                      </>
+                    )}
                     <Button
                       variant="outline"
                       size="icon"
+                      title="Edit"
                       onClick={() => {
                         setSelectedUser(user);
                         setIsEditOpen(true);

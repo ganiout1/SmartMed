@@ -29,6 +29,18 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
+  // Helper: create a redirect that preserves session cookies
+  function redirectWithCookies(pathname: string) {
+    const url = request.nextUrl.clone();
+    url.pathname = pathname;
+    const redirectResponse = NextResponse.redirect(url);
+    // Copy all cookies from supabaseResponse (which has refreshed session tokens)
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
+    });
+    return redirectResponse;
+  }
+
   // Refresh session if expired - required for Server Components
   const {
     data: { user },
@@ -36,34 +48,39 @@ export async function updateSession(request: NextRequest) {
 
   const isAuthRoute =
     request.nextUrl.pathname.startsWith("/login") ||
+    request.nextUrl.pathname.startsWith("/register") ||
     request.nextUrl.pathname.startsWith("/forgot-password") ||
     request.nextUrl.pathname.startsWith("/update-password");
     
   const isDashboardRoute = request.nextUrl.pathname.startsWith("/dashboard");
 
   if (!user && isDashboardRoute) {
-    // No user, trying to access dashboard -> redirect to login
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
+    return redirectWithCookies("/login");
   }
 
   if (user) {
-    // User is logged in, check role from profiles table
-    // Fetch profile role since role is not automatically in standard user metadata
     const { data: profile } = await supabase
       .from("profiles")
-      .select("role")
+      .select("role, is_banned")
       .eq("id", user.id)
       .single();
 
     const role = profile?.role || "student";
     
+    // Redirect banned users to banned page
+    const isBannedRoute = request.nextUrl.pathname.startsWith("/banned");
+    
+    if (profile?.is_banned && !isBannedRoute) {
+      return redirectWithCookies("/banned");
+    }
+    
+    if (!profile?.is_banned && isBannedRoute) {
+      return redirectWithCookies(`/dashboard/${role}`);
+    }
+
     // Redirect logged-in users away from auth pages to their dashboard
     if (isAuthRoute) {
-      const url = request.nextUrl.clone();
-      url.pathname = `/dashboard/${role}`;
-      return NextResponse.redirect(url);
+      return redirectWithCookies(`/dashboard/${role}`);
     }
     
     // Enforce RBAC for dashboard routes
@@ -71,21 +88,16 @@ export async function updateSession(request: NextRequest) {
       const pathSegments = request.nextUrl.pathname.split('/');
       const requestedRole = pathSegments[2]; // /dashboard/[role]
       
-      // If trying to access /dashboard directly, redirect to correct role dashboard
       if (!requestedRole) {
-        const url = request.nextUrl.clone();
-        url.pathname = `/dashboard/${role}`;
-        return NextResponse.redirect(url);
+        return redirectWithCookies(`/dashboard/${role}`);
       }
       
-      // If trying to access another role's dashboard, redirect to own dashboard
       if (requestedRole !== role) {
-        const url = request.nextUrl.clone();
-        url.pathname = `/dashboard/${role}`;
-        return NextResponse.redirect(url);
+        return redirectWithCookies(`/dashboard/${role}`);
       }
     }
   }
 
   return supabaseResponse;
 }
+

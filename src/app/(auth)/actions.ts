@@ -19,8 +19,39 @@ export async function login(formData: FormData) {
   }
 
   // User logged in successfully, middleware will handle the redirection to the correct dashboard.
-  revalidatePath("/", "layout");
-  redirect("/");
+  return { success: true };
+}
+
+export async function register(formData: FormData) {
+  const supabase = await createClient();
+
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+  const fullName = formData.get("full_name") as string;
+
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name: fullName,
+        role: "student", // default role
+      },
+    },
+  });
+
+  if (error) {
+    console.error("Signup error:", error);
+    const errorMessage = typeof error.message === 'string' && error.message.trim() !== '' 
+      ? error.message 
+      : (typeof error === 'string' ? error : JSON.stringify(error));
+    return { error: errorMessage !== "{}" ? errorMessage : "Gagal mendaftar. Silakan coba lagi." };
+  }
+
+  // Registration successful, usually they need to confirm email if it's turned on in Supabase,
+  // but if disabled, they can login immediately or are logged in automatically.
+  // We'll return success and redirect to login or dashboard.
+  return { success: "Pendaftaran berhasil! Silakan periksa email Anda atau langsung masuk." };
 }
 
 export async function resetPassword(formData: FormData) {

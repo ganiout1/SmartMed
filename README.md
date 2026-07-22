@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SmartMed CBT
 
-## Getting Started
+Sistem Ujian Berbasis Komputer (CBT) interaktif dan modern yang dirancang khusus untuk Fakultas Kedokteran. Platform ini mencakup manajemen kelas, bank soal bergambar, pengerjaan ujian secara *real-time*, dan penilaian otomatis.
 
-First, run the development server:
+## Fitur Utama
+- **Autentikasi Aman:** SSO & Email login melalui Supabase Auth dengan perlindungan Role-Based Access Control (Admin, Dosen, Mahasiswa).
+- **Dashboard Multi-Role:** Panel terpisah dan terisolasi untuk masing-masing peran.
+- **Engine CBT Real-time:** Pengaturan waktu (*timer*), penyimpanan jawaban otomatis di latar belakang (*autosave*), dan *auto-submit* saat durasi habis.
+- **Manajemen Gambar:** Mendukung unggahan gambar pada penjelasan (pembahasan) soal ke Supabase Storage.
+- **Keamanan Kuat:** Row Level Security (RLS) di lapisan basis data mencegah akses dan manipulasi data secara tidak sah.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Teknologi yang Digunakan
+- **Frontend:** Next.js 14+ (App Router), React, Tailwind CSS, Shadcn UI
+- **Backend & Database:** Supabase (PostgreSQL), Supabase Auth, Supabase Storage
+- **Bahasa:** TypeScript
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Prasyarat
+1. Node.js (v18 atau lebih baru)
+2. Akun Supabase
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Setup Lingkungan (Development)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Kloning repositori ini.
+2. Salin `.env.example` ke `.env.local` dan isi dengan kredensial proyek Supabase Anda.
+   ```bash
+   cp .env.example .env.local
+   ```
+3. Install semua dependensi:
+   ```bash
+   npm install
+   ```
+4. Jalankan migrasi basis data. Temukan file SQL di dalam folder `supabase/migrations/` dan jalankan berurutan di dalam SQL Editor Supabase Anda.
+5. Jalankan server pengembangan:
+   ```bash
+   npm run dev
+   ```
 
-## Learn More
+## Panduan Deployment (Vercel)
 
-To learn more about Next.js, take a look at the following resources:
+Aplikasi ini siap dan sangat dioptimalkan untuk di-deploy ke Vercel:
+1. Hubungkan repositori GitHub Anda ke Vercel.
+2. Tambahkan **Environment Variables** (yang ada di `.env.example`) ke dalam konfigurasi _Environment_ di _Dashboard_ Vercel.
+3. Vercel akan otomatis mengenali kerangka kerja Next.js dan membangun (_build_) aplikasi Anda.
+4. Kunjungi tautan produksi Anda. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Dibuat untuk ekosistem SmartMed.*

@@ -26,7 +26,7 @@ export function WhySection() {
             >
               <div className="flex items-start gap-4">
                 {/* Number */}
-                <span className="text-3xl font-bold leading-none text-primary/60 transition-colors group-hover:text-primary">
+                <span className="text-3xl font-bold leading-none text-text-primary/60 transition-colors group-hover:text-text-primary">
                   {advantage.number}
                 </span>
 

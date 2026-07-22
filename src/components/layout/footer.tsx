@@ -1,23 +1,30 @@
 import Link from "next/link";
+import {
+  Instagram,
+  Twitter,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
+import Image from "next/image";
+
 import { FOOTER_LINKS, CONTACT_INFO } from "@/lib/constants";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-surface">
+    <footer className="border-t border-border bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Main Footer Grid */}
         <div className="grid gap-10 py-12 md:py-16 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary font-bold text-text-primary text-lg">
-                S
+            <Link href="/" className="inline-flex items-center -ml-12 md:-ml-28">
+              <div className="flex items-center overflow-hidden">
+                <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-36 md:w-48 h-auto" />
               </div>
-              <span className="text-lg font-bold tracking-tight text-text-primary">
-                Smart<span className="text-accent">Med</span>
-              </span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-text-secondary max-w-xs">
               Lembaga bimbingan belajar kedokteran preklinik terpercaya yang

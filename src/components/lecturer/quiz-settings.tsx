@@ -87,7 +87,7 @@ export function QuizSettings({ quiz }: QuizSettingsProps) {
 
           <div className="space-y-2">
             <Label htmlFor="status">Status Kuis</Label>
-            <Select name="status" defaultValue={quiz.status}>
+            <Select key={quiz.status} name="status" defaultValue={quiz.status}>
               <SelectTrigger>
                 <SelectValue placeholder="Pilih status kuis" />
               </SelectTrigger>

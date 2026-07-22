@@ -12,6 +12,8 @@ export default async function StudentsPage() {
       id,
       full_name,
       email,
+      tier,
+      is_banned,
       course_members (count)
     `)
     .eq("role", "student")
@@ -22,14 +24,16 @@ export default async function StudentsPage() {
     id: s.id,
     full_name: s.full_name,
     email: s.email,
+    tier: s.tier,
+    is_banned: s.is_banned,
     course_count: s.course_members[0]?.count || 0,
   }));
 
   return (
-    <div className="space-y-6 max-w-6xl mx-auto">
+    <div className="space-y-6 max-w-7xl mx-auto">
       <SectionHeader
-        title="Manajemen Mahasiswa"
-        subtitle="Kelola akun mahasiswa, tambahkan mahasiswa baru, atau edit profil mahasiswa."
+        title="Manajemen Pengguna"
+        subtitle="Kelola akun pengguna, atur status langganan (Pro/Biasa), dan tangguhkan akun jika diperlukan."
       />
 
       <UserManagement title="Mahasiswa" role="student" users={users} />

@@ -11,7 +11,6 @@ ADD COLUMN IF NOT EXISTS randomize_answers BOOLEAN DEFAULT false;
 ALTER TABLE public.quizzes
 ADD CONSTRAINT valid_quiz_status CHECK (status IN ('draft', 'published'));
 
-
 -- ============================================================================
 -- 2. SUPABASE STORAGE FOR EXPLANATION IMAGES
 -- ============================================================================

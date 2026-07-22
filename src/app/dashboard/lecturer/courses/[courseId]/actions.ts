@@ -18,6 +18,8 @@ export async function createQuiz(courseId: string, formData: FormData) {
 
   const duration = durationStr ? parseInt(durationStr) : 0;
   const passingScore = passingScoreStr ? parseInt(passingScoreStr) : 0;
+  const maxAttemptsStr = formData.get("maxAttempts") as string;
+  const maxAttempts = maxAttemptsStr ? parseInt(maxAttemptsStr) : null;
 
   const supabase = await createClient();
 
@@ -30,6 +32,7 @@ export async function createQuiz(courseId: string, formData: FormData) {
     status,
     randomize_questions: randomizeQuestions,
     randomize_answers: randomizeAnswers,
+    max_attempts: maxAttempts,
   });
 
   if (error) {
@@ -55,6 +58,8 @@ export async function updateQuiz(courseId: string, quizId: string, formData: For
 
   const duration = durationStr ? parseInt(durationStr) : 0;
   const passingScore = passingScoreStr ? parseInt(passingScoreStr) : 0;
+  const maxAttemptsStr = formData.get("maxAttempts") as string;
+  const maxAttempts = maxAttemptsStr ? parseInt(maxAttemptsStr) : null;
 
   const supabase = await createClient();
 
@@ -68,6 +73,7 @@ export async function updateQuiz(courseId: string, quizId: string, formData: For
       status,
       randomize_questions: randomizeQuestions,
       randomize_answers: randomizeAnswers,
+      max_attempts: maxAttempts,
       updated_at: new Date().toISOString()
     })
     .eq("id", quizId);
