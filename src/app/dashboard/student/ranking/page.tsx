@@ -98,15 +98,15 @@ export default async function StudentRankingIndexPage() {
         align="left"
       />
 
-      <Tabs defaultValue="global" className="w-full">
+      <Tabs defaultValue="score" className="w-full">
         <TabsList className="mb-4">
-          <TabsTrigger value="global" className="flex items-center gap-2">
-            <BookOpen className="w-4 h-4" />
-            Berdasarkan Jumlah Kuis
-          </TabsTrigger>
           <TabsTrigger value="score" className="flex items-center gap-2">
             <Trophy className="w-4 h-4" />
             Berdasarkan Nilai Kuis
+          </TabsTrigger>
+          <TabsTrigger value="global" className="flex items-center gap-2">
+            <BookOpen className="w-4 h-4" />
+            Berdasarkan Jumlah Kuis
           </TabsTrigger>
         </TabsList>
 
