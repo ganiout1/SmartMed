@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Star, CheckCircle, Smartphone } from "lucide-react";
 
-export function ProUpgradeModal({ trigger }: { trigger: React.ReactNode }) {
+export function ProUpgradeModal({ trigger }: { trigger: React.ReactElement }) {
   const [open, setOpen] = useState(false);
 
   const handleUpgradeClick = () => {
