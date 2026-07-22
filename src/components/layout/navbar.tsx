@@ -43,7 +43,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center group">
           <div className="flex items-center transition-transform group-hover:scale-105">
-            <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-32 md:w-44 h-auto" />
+            <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-28 md:w-40 h-auto" />
           </div>
         </Link>
 

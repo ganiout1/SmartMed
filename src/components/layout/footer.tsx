@@ -20,7 +20,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-flex items-center">
               <div className="flex items-center">
-                <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-32 md:w-44 h-auto" />
+                <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-28 md:w-40 h-auto" />
               </div>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-text-secondary max-w-xs">
