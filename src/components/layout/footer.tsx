@@ -18,9 +18,9 @@ export function Footer() {
         <div className="grid gap-10 py-12 md:py-16 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-flex items-center -ml-12 md:-ml-28">
-              <div className="flex items-center overflow-hidden">
-                <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-36 md:w-48 h-auto" />
+            <Link href="/" className="inline-flex items-center">
+              <div className="flex items-center">
+                <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-32 md:w-44 h-auto" />
               </div>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-text-secondary max-w-xs">

@@ -41,9 +41,9 @@ export function Navbar() {
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 md:h-20">
         {/* Logo */}
-        <Link href="/" className="flex items-center group -ml-12 md:-ml-28">
-          <div className="flex items-center overflow-hidden transition-transform group-hover:scale-105">
-            <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-36 md:w-48 h-auto" />
+        <Link href="/" className="flex items-center group">
+          <div className="flex items-center transition-transform group-hover:scale-105">
+            <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-32 md:w-44 h-auto" />
           </div>
         </Link>
 
