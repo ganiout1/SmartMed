@@ -75,6 +75,12 @@ export default async function StudentDashboardPage({
     averageScore = Math.round(totalScore / attempts.length);
   }
 
+  let avgColor = "";
+  if (averageScore < 75) avgColor = "text-red-500";
+  else if (averageScore < 80) avgColor = "text-pink-500";
+  else if (averageScore < 85) avgColor = "text-yellow-500";
+  else avgColor = "text-green-500";
+
   const summaryCards = [
     {
       title: "Kursus Diikuti",
@@ -105,6 +111,8 @@ export default async function StudentDashboardPage({
       value: averageScore,
       icon: TrendingUp,
       description: "Dari semua hasil kuis Anda",
+      valueClassName: avgColor,
+      note: "Pertahankan nilai di atas KKM (80)",
     },
   ];
 
@@ -142,10 +150,15 @@ export default async function StudentDashboardPage({
                 <card.icon className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{card.value}</div>
+                <div className={`text-2xl font-bold ${(card as any).valueClassName || ""}`}>{card.value}</div>
                 <p className="text-xs text-muted-foreground mt-1">
                   {card.description}
                 </p>
+                {(card as any).note && (
+                  <p className="text-[10px] mt-2 font-medium italic text-muted-foreground">
+                    * {(card as any).note}
+                  </p>
+                )}
               </CardContent>
             </Card>
           ))}
