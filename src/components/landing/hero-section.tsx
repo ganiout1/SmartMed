@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight, Sparkles } from "lucide-react";
-import { HERO_STATS } from "@/lib/constants";
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -96,20 +96,7 @@ export function HeroSection() {
             </Link>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            variants={itemVariants}
-            className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4 md:mt-20"
-          >
-            {HERO_STATS.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-2xl font-bold text-text-primary sm:text-3xl">
-                  {stat.value}
-                </p>
-                <p className="mt-1 text-sm text-text-secondary">{stat.label}</p>
-              </div>
-            ))}
-          </motion.div>
+
         </motion.div>
       </div>
     </section>
