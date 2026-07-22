@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import Image from "next/image";
 export default function AuthLayout({
   children,
 }: {
@@ -9,14 +9,15 @@ export default function AuthLayout({
     <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4 sm:p-8">
       <Link
         href="/"
-        className="mb-8 flex items-center gap-2 transition-transform hover:scale-105"
+        className="mb-8 transition-transform hover:scale-105"
       >
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary font-bold text-text-primary text-xl">
-          S
-        </div>
-        <span className="text-2xl font-bold tracking-tight text-text-primary">
-          Smart<span className="text-accent">Med</span>
-        </span>
+        <Image 
+          src="/logo.png" 
+          alt="SmartMED" 
+          width={240} 
+          height={72} 
+          className="object-contain h-14 w-auto" 
+        />
       </Link>
       
       <main className="w-full max-w-md">
