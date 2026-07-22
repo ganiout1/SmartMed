@@ -94,11 +94,11 @@ export default async function QuizLeaderboardPage({
   return (
     <div className="space-y-6 max-w-5xl mx-auto pb-10">
       <div className="flex items-center gap-4">
-        <Button variant="outline" size="icon" asChild>
-          <Link href="/dashboard/student/ranking">
+        <Link href="/dashboard/student/ranking">
+          <Button variant="outline" size="icon">
             <ArrowLeft className="h-4 w-4" />
-          </Link>
-        </Button>
+          </Button>
+        </Link>
         <SectionHeader
           title={`Leaderboard: ${quiz.title}`}
           subtitle={quiz.courses?.title || 'Unknown Course'}

@@ -73,12 +73,12 @@ export default async function StudentRankingIndexPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <Button asChild className="w-full" variant="outline">
-                  <Link href={`/dashboard/student/ranking/${quiz.id}`}>
+                <Link href={`/dashboard/student/ranking/${quiz.id}`}>
+                  <Button className="w-full" variant="outline">
                     <Trophy className="mr-2 h-4 w-4" />
                     Lihat Leaderboard
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
