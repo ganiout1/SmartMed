@@ -14,7 +14,7 @@ export function FAQSection() {
   return (
     <AnimatedSection
       id="faq"
-      className="scroll-mt-24 py-20 md:py-28"
+      className="scroll-mt-24 py-12 md:py-16"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader

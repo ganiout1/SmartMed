@@ -10,7 +10,7 @@ export function ProgramsSection() {
   return (
     <AnimatedSection
       id="program"
-      className="scroll-mt-24 bg-surface py-20 md:py-28"
+      className="scroll-mt-24 bg-white py-12 md:py-16"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -24,11 +24,11 @@ export function ProgramsSection() {
             <AnimatedDiv
               key={program.title}
               delay={index * 0.1}
-              className="group flex flex-col rounded-2xl border border-border bg-background p-7 transition-all hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+              className="group flex flex-col rounded-2xl border-2 border-border bg-white p-7 shadow-sm transition-all hover:-translate-y-1 hover:border-primary hover:shadow-xl hover:shadow-primary/20"
             >
               {/* Icon */}
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/15 text-accent transition-colors group-hover:bg-primary/25">
-                <program.icon size={24} />
+              <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-text-primary shadow-sm transition-transform group-hover:scale-110">
+                <program.icon size={28} />
               </div>
 
               {/* Title */}
@@ -46,7 +46,7 @@ export function ProgramsSection() {
                 {program.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-accent"
+                    className="rounded-full bg-primary/30 px-3 py-1 text-xs font-bold text-text-primary"
                   >
                     {tag}
                   </span>

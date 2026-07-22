@@ -8,7 +8,7 @@ export function WhySection() {
   return (
     <AnimatedSection
       id="keunggulan"
-      className="scroll-mt-24 py-20 md:py-28"
+      className="scroll-mt-24 py-12 md:py-16"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -22,7 +22,7 @@ export function WhySection() {
             <AnimatedDiv
               key={advantage.number}
               delay={index * 0.08}
-              className="group rounded-2xl border border-border bg-surface p-7 transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
+              className="group rounded-2xl border-2 border-transparent bg-white p-7 shadow-sm transition-all hover:border-primary hover:shadow-xl hover:shadow-primary/20"
             >
               <div className="flex items-start gap-4">
                 {/* Number */}
@@ -33,8 +33,8 @@ export function WhySection() {
                 <div className="flex-1">
                   {/* Icon + Title */}
                   <div className="flex items-center gap-2.5">
-                    <div className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15 text-accent">
-                      <advantage.icon size={16} />
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-text-primary shadow-sm">
+                      <advantage.icon size={20} />
                     </div>
                     <h3 className="text-base font-semibold text-text-primary">
                       {advantage.title}

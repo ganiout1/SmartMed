@@ -70,8 +70,8 @@
 :root {
   --radius: 0.75rem;
 
-  /* Map SmartMed palette to shadcn variables */
-  --background: #FFFBF5;
+  /* ── SmartMed Classic Theme (White & Gold) ── */
+  --background: #FFFFFF;
   --foreground: #2F2F2F;
 
   --card: #FFFFFF;
@@ -108,7 +108,7 @@
   --chart-5: #6B7280;
 
   /* Sidebar */
-  --sidebar: #FFFBF5;
+  --sidebar: #FFFFFF;
   --sidebar-foreground: #2F2F2F;
   --sidebar-primary: #FFDA99;
   --sidebar-primary-foreground: #2F2F2F;

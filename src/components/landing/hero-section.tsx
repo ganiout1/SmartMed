@@ -24,11 +24,11 @@ const itemVariants = {
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 lg:pt-40 lg:pb-32">
+    <section className="relative overflow-hidden bg-gradient-to-b from-primary via-primary/50 to-white pt-28 pb-8 md:pt-32 md:pb-12 lg:pt-36 lg:pb-16">
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-primary/20 blur-[120px]" />
-        <div className="absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full bg-primary/10 blur-[100px]" />
+        <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-white/40 blur-[120px]" />
+        <div className="absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full bg-white/40 blur-[100px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -40,7 +40,7 @@ export function HeroSection() {
         >
           {/* Badge */}
           <motion.div variants={itemVariants}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-accent backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 rounded-full border border-text-primary/10 bg-white px-4 py-1.5 text-sm font-bold text-text-primary shadow-sm">
               <Sparkles size={14} />
               Bimbingan Kedokteran Preklinik
             </span>
@@ -54,7 +54,7 @@ export function HeroSection() {
             Kuasai Ilmu Kedokteran{" "}
             <span className="relative">
               <span className="relative z-10">Preklinik</span>
-              <span className="absolute bottom-1 left-0 -z-0 h-3 w-full bg-primary/40 md:bottom-2 md:h-4" />
+              <span className="absolute bottom-1 left-0 -z-0 h-3 w-full bg-white md:bottom-2 md:h-4" />
             </span>{" "}
             dengan Bimbingan Terbaik
           </motion.h1>

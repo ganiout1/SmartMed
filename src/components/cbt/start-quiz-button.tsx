@@ -10,9 +10,10 @@ import { PlayCircle } from "lucide-react";
 interface StartQuizButtonProps {
   quizId: string;
   activeAttemptId?: string;
+  label?: string;
 }
 
-export function StartQuizButton({ quizId, activeAttemptId }: StartQuizButtonProps) {
+export function StartQuizButton({ quizId, activeAttemptId, label }: StartQuizButtonProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -37,12 +38,12 @@ export function StartQuizButton({ quizId, activeAttemptId }: StartQuizButtonProp
       ) : activeAttemptId ? (
         <>
           <PlayCircle className="mr-2 h-5 w-5" />
-          Lanjutkan Kuis
+          {label || "Lanjutkan Kuis"}
         </>
       ) : (
         <>
           <PlayCircle className="mr-2 h-5 w-5" />
-          Mulai Kuis Sekarang
+          {label || "Mulai Kuis Sekarang"}
         </>
       )}
     </Button>
