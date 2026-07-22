@@ -22,25 +22,7 @@ export default async function StudentDashboardPage({
 
   if (!user) return null;
 
-  // 1. Fetch Profile (for tier)
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("tier")
-    .eq("id", user.id)
-    .single();
-  const isPro = profile?.tier === "pro";
-
-  // 2. Fetch Enrollments
-  const { data: enrollments } = await supabase
-    .from("course_members")
-    .select("course_id")
-    .eq("student_id", user.id);
-    
-  const enrolledCourseIds = (enrollments || []).map(e => e.course_id);
-  const coursesCount = enrolledCourseIds.length;
-
-  // 3. Fetch all courses (for the list)
-  let query = supabase
+  let courseQuery = supabase
     .from("courses")
     .select(`
       id,
@@ -52,10 +34,27 @@ export default async function StudentDashboardPage({
     .order("title");
 
   if (searchQuery) {
-    query = query.ilike("title", `%${searchQuery}%`);
+    courseQuery = courseQuery.ilike("title", `%${searchQuery}%`);
   }
-  const { data: allCourses } = await query;
+
+  // Execute independent queries in parallel
+  const [
+    { data: profile },
+    { data: enrollments },
+    { data: allCourses },
+    { data: attempts }
+  ] = await Promise.all([
+    supabase.from("profiles").select("tier").eq("id", user.id).single(),
+    supabase.from("course_members").select("course_id").eq("student_id", user.id),
+    courseQuery,
+    supabase.from("quiz_attempts").select("quiz_id, score").eq("student_id", user.id).not("score", "is", null)
+  ]);
+
+  const isPro = profile?.tier === "pro";
+  const enrolledCourseIds = (enrollments || []).map(e => e.course_id);
+  const coursesCount = enrolledCourseIds.length;
   
+  // Dependent query: Total Quizzes Count (depends on enrolled courses)
   let totalQuizzesCount = 0;
   if (coursesCount > 0) {
     const { count } = await supabase
@@ -65,13 +64,6 @@ export default async function StudentDashboardPage({
       .eq("status", "published");
     totalQuizzesCount = count || 0;
   }
-
-  // 4. Kuis Selesai
-  const { data: attempts } = await supabase
-    .from("quiz_attempts")
-    .select("quiz_id, score")
-    .eq("student_id", user.id)
-    .not("score", "is", null);
 
   const completedQuizIds = new Set((attempts || []).map(a => a.quiz_id));
   const completedQuizzesCount = completedQuizIds.size;

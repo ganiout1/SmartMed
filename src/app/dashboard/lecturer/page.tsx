@@ -11,37 +11,20 @@ async function getLecturerStats() {
 
   // Note: Due to RLS, counting these directly only returns what the lecturer has access to!
   
-  // 1. Total Courses
-  const { count: coursesCount } = await supabase
-    .from("courses")
-    .select("*", { count: "exact", head: true });
-
-  // 2. Total Quizzes
-  const { count: quizzesCount } = await supabase
-    .from("quizzes")
-    .select("*", { count: "exact", head: true });
-
-  // 3. Total Questions
-  const { count: questionsCount } = await supabase
-    .from("questions")
-    .select("*", { count: "exact", head: true });
-
-  // 4. Total Students (Unique students in assigned courses)
-  const { count: studentsCount } = await supabase
-    .from("course_members")
-    .select("student_id", { count: "exact", head: true });
-
-  // 5. Total Quiz Attempts
-  const { count: attemptsCount } = await supabase
-    .from("quiz_attempts")
-    .select("*", { count: "exact", head: true });
+  const [courses, quizzes, questions, students, attempts] = await Promise.all([
+    supabase.from("courses").select("*", { count: "exact", head: true }),
+    supabase.from("quizzes").select("*", { count: "exact", head: true }),
+    supabase.from("questions").select("*", { count: "exact", head: true }),
+    supabase.from("course_members").select("student_id", { count: "exact", head: true }),
+    supabase.from("quiz_attempts").select("*", { count: "exact", head: true })
+  ]);
 
   return {
-    courses: coursesCount || 0,
-    quizzes: quizzesCount || 0,
-    questions: questionsCount || 0,
-    students: studentsCount || 0,
-    attempts: attemptsCount || 0,
+    courses: courses.count || 0,
+    quizzes: quizzes.count || 0,
+    questions: questions.count || 0,
+    students: students.count || 0,
+    attempts: attempts.count || 0,
   };
 }
 
