@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const TESTIMONIALS = [
   {
@@ -9,6 +10,7 @@ const TESTIMONIALS = [
     name: "Putu Gede Reinanta Widiarsana",
     from: "FK Universitas Mataram",
     to: "Nilai sempurna SOCA blok 5",
+    photo: "/testimonials/Reinanta.jpg",
   },
   {
     quote:
@@ -16,6 +18,7 @@ const TESTIMONIALS = [
     name: "Areta Salsabila Sukri",
     from: "FK Universitas Mataram",
     to: "Nilai sempurna SOCA",
+    photo: "/testimonials/Areta.jpg",
   },
   {
     quote:
@@ -23,6 +26,7 @@ const TESTIMONIALS = [
     name: "Pasha Mozza Suzetta",
     from: "FK Universitas Mataram",
     to: "Top 5 Anatomi blok 4, Nilai SOCA 93.3",
+    photo: "/testimonials/Mozza.jpg",
   },
   {
     quote:
@@ -30,6 +34,7 @@ const TESTIMONIALS = [
     name: "Ni Made Florena Saras Gayatri",
     from: "FK Universitas Mataram",
     to: "Top 2 Neuroanatomi, Nilai sempurna SOCA, One-Shoot blok 4",
+    photo: null,
   },
   {
     quote:
@@ -37,6 +42,7 @@ const TESTIMONIALS = [
     name: "I Gede Lio Suipayana",
     from: "FK Universitas Mataram",
     to: "Nilai sempurna SOCA",
+    photo: "/testimonials/Suipayana.jpg",
   },
 ];
 
@@ -140,14 +146,45 @@ export function TestimonialsSection() {
 
           {/* Author + nav */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-            <div>
-              <div style={{ fontWeight: 900, fontSize: "1rem", color: "#0A0A0A", letterSpacing: "-0.02em" }}>
-                {t.name}
-              </div>
-              <div style={{ fontSize: "0.82rem", color: "#888", marginTop: 3 }}>
-                <span>{t.from}</span>
-                <span style={{ margin: "0 6px", color: "#ccc" }}>→</span>
-                <span style={{ color: "#f5b340", fontWeight: 600 }}>{t.to}</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              {/* Avatar */}
+              {t.photo ? (
+                <Image
+                  src={t.photo}
+                  alt={t.name}
+                  width={52}
+                  height={52}
+                  style={{ borderRadius: "50%", objectFit: "cover", width: 52, height: 52, border: "2px solid #E5E7EB" }}
+                />
+              ) : (
+                <div
+                  style={{
+                    width: 52,
+                    height: 52,
+                    borderRadius: "50%",
+                    background: "#f5b340",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 800,
+                    fontSize: "1.1rem",
+                    color: "#0A0A0A",
+                    border: "2px solid #E5E7EB",
+                    flexShrink: 0,
+                  }}
+                >
+                  {t.name.split(" ").map(w => w[0]).slice(0, 2).join("")}
+                </div>
+              )}
+              <div>
+                <div style={{ fontWeight: 900, fontSize: "1rem", color: "#0A0A0A", letterSpacing: "-0.02em" }}>
+                  {t.name}
+                </div>
+                <div style={{ fontSize: "0.82rem", color: "#888", marginTop: 3 }}>
+                  <span>{t.from}</span>
+                  <span style={{ margin: "0 6px", color: "#ccc" }}>→</span>
+                  <span style={{ color: "#f5b340", fontWeight: 600 }}>{t.to}</span>
+                </div>
               </div>
             </div>
             {/* Arrow nav */}
