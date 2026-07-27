@@ -201,12 +201,12 @@ export function ExamInterface({
         <div className="flex-1 w-full min-w-0 flex flex-col order-1 lg:order-2">
           <Card className="flex-1 w-full flex flex-col border-primary/10 shadow-sm bg-background">
             <CardContent className="flex-1 w-full p-4 lg:p-6 text-left">
-              <div className="text-base md:text-lg mb-4 leading-relaxed whitespace-pre-wrap text-foreground w-full">
+              <div className="text-base md:text-lg mb-2 leading-relaxed whitespace-pre-wrap text-foreground w-full">
                 {currentQuestion.question_text}
               </div>
               
               {currentQuestion.question_image_url && (
-                <div className="mb-6 relative w-full max-w-2xl">
+                <div className="mb-4 relative w-full max-w-2xl">
                   {imageError[currentQuestion.id] ? (
                     <div className="flex flex-col items-center justify-center h-48 bg-muted/50 rounded-md border border-dashed">
                       <p className="text-sm text-muted-foreground mb-2">Gambar gagal dimuat</p>
@@ -222,7 +222,7 @@ export function ExamInterface({
                     <img
                       src={currentQuestion.question_image_url}
                       alt="Gambar Soal"
-                      className="max-h-64 w-auto rounded-md object-contain"
+                      className="max-h-40 w-auto rounded-md object-contain"
                       onError={() => setImageError(prev => ({ ...prev, [currentQuestion.id]: true }))}
                     />
                   )}
@@ -232,7 +232,7 @@ export function ExamInterface({
               <RadioGroup
                 value={answers[currentQuestion.id] || ""}
                 onValueChange={handleSelectOption}
-                className="space-y-4"
+                className="space-y-2"
               >
                 {[
                   { id: "A", text: currentQuestion.option_a },
@@ -248,7 +248,7 @@ export function ExamInterface({
                     />
                     <Label
                       htmlFor={`option-${opt.id}`}
-                      className={`flex-1 flex items-start gap-4 p-4 rounded-lg cursor-pointer transition-all ${
+                      className={`flex-1 flex items-start gap-3 py-2 px-3 rounded-lg cursor-pointer transition-all ${
                         answers[currentQuestion.id] === opt.id
                           ? "border border-primary bg-primary/5 shadow-sm"
                           : "hover:bg-muted/50 border border-transparent"
