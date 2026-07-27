@@ -177,33 +177,6 @@ export function HeroSection() {
               {ARROW_RIGHT}
             </a>
           </div>
-
-          {/* Stats bar */}
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 28,
-              paddingTop: 24,
-              borderTop: "1px solid #E5E7EB",
-            }}
-          >
-            {[
-              { value: "500+", label: "Alumni" },
-              { value: "95%", label: "Tingkat Kelulusan" },
-              { value: "KKM 80", label: "Standar Nilai" },
-              { value: "4.9★", label: "Rating Kepuasan" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <div style={{ fontWeight: 900, fontSize: "1.85rem", letterSpacing: "-0.03em", color: "#0A0A0A", lineHeight: 1 }}>
-                  {stat.value}
-                </div>
-                <div style={{ fontSize: "0.78rem", color: "#5A6272", marginTop: 5, fontWeight: 500 }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* RIGHT: Image circle */}
