@@ -181,15 +181,15 @@ export function HeroSection() {
 
         {/* RIGHT: Image circle */}
         <div
-          className="hidden lg:flex"
+          className="flex mt-8 lg:mt-0"
           style={{ justifyContent: "center", alignItems: "center", position: "relative" }}
         >
-          <div style={{ position: "relative", width: 380, height: 380, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ position: "relative", width: "clamp(280px, 80vw, 380px)", height: "clamp(280px, 80vw, 380px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
             {/* Circle image */}
             <div
               style={{
-                width: 360,
-                height: 360,
+                width: "clamp(260px, 75vw, 360px)",
+                height: "clamp(260px, 75vw, 360px)",
                 borderRadius: "50%",
                 overflow: "hidden",
                 background: "#F5F5F5",
@@ -204,7 +204,7 @@ export function HeroSection() {
                 alt="SmartMED"
                 width={260}
                 height={260}
-                style={{ objectFit: "contain", padding: 32 }}
+                style={{ objectFit: "contain", padding: "clamp(16px, 5vw, 32px)", width: "100%", height: "auto" }}
                 priority
               />
             </div>
