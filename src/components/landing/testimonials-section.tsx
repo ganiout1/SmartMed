@@ -14,21 +14,21 @@ const TESTIMONIALS = [
     quote:
       "Haloo kakk, sebelumnyaa mau ucapinnn makasii bangett sama semua kakak-kakak smartmedd udah ngebantuu aku buat blok 5, jujur waktu awal-awal masuk blok 5 itu udah takut, karena di blok 5 ini kan ada SOCA untuk yang pertama kalinyaa, tapi dengan ikut smartmed jadi merasa terbantu bangett karena mendekati hari ujian SOCA, kita ada kelas offline simulasi SOCA, jadi punya gambaran mekanisme dan skenario di SOCA nya nanti gimana. Terus dari yang sepengalamanku kemarin, untuk kasus SOCA nya mirip, maksudnya inti dari setiap jawabannya itu miripp. Buat kelas tutornya juga penjelasannya Okee bangettt, kakak-kakaknya juga fast resp kalo ada hak yang mau ditanya-tanya hehe. Mungkin ini aja kalo dari akuu, sekali lagi makasih banyakk kakak-kakak smartmed🤗🫰",
     name: "Areta Salsabila Sukri",
-    from: "Mahasiswi FK",
+    from: "FK Universitas Mataram",
     to: "Nilai sempurna SOCA",
   },
   {
     quote:
       "review dari aku itu yg JUJUR BGT itu aku sangat’ happy belajar sm smartmed, karna se ngebantu itu pahami materi kuliah dan tutorial juga. semua kakak’ smartmed itu expert semuaa, sangat baik dalam menjelaskan dan mudah dipahami🥺🥺🥺 intinya smartmed itu the best si",
     name: "Pasha Mozza Suzetta",
-    from: "Mahasiswi FK",
+    from: "FK Universitas Mataram",
     to: "Top 5 Anatomi blok 4, Nilai SOCA 93.3",
   },
   {
     quote:
       "Selama ikut bimbel di smartmed, bener bener membantu banget. Kakak kakaknya sangat helpful dan materi yang disampaikan juga mudah dipahami, setiap ada materi yang kurang dimengerti kakak kakaknya mau menjelaskan ulang sampe bener bener paham. Waktu persiapan ujian tramed juga membantu banget, apalagi smartmed menyediakan kelas offline buat tramed. Waktu SOCA juga membantu banget, kita diajarin materinya sampe simulasi ujiannya. Overall pengalaman belajar di sana sangat menyenangkan dan bermanfaat 🙌🙌",
     name: "Ni Made Florena Saras Gayatri",
-    from: "Mahasiswi FK",
+    from: "FK Universitas Mataram",
     to: "Top 2 Neuroanatomi, Nilai sempurna SOCA, One-Shoot blok 4",
   },
   {
