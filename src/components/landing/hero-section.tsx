@@ -187,9 +187,9 @@ export function HeroSection() {
           <Image
             src="/logo.png"
             alt="SmartMED"
-            width={760}
-            height={228}
-            style={{ objectFit: "contain", width: "100%", height: "auto", maxWidth: 760 }}
+            width={1520}
+            height={456}
+            style={{ objectFit: "contain", width: "100%", height: "auto", maxWidth: 1520 }}
             priority
           />
         </div>
