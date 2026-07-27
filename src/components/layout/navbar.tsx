@@ -46,7 +46,7 @@ export function Navbar() {
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         {/* Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Image src="/logo.png" alt="SmartMED" width={160} height={48} style={{ objectFit: "contain", height: 40, width: "auto" }} />
+          <Image src="/logo.png" alt="SmartMED" width={480} height={144} style={{ objectFit: "contain", height: 120, width: "auto" }} />
         </Link>
 
         {/* Desktop Nav */}
