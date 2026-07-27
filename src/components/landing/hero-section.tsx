@@ -23,12 +23,12 @@ export function HeroSection() {
       id="tentang"
       style={{
         background: "#FFFFFF",
-        minHeight: "auto",
+        minHeight: "100svh",
         display: "grid",
         placeItems: "center",
         paddingTop: 70,
         position: "relative",
-        overflow: "visible",
+        overflow: "hidden",
       }}
     >
       {/* Dot grid background */}
@@ -179,20 +179,78 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* RIGHT: Image logo */}
+        {/* RIGHT: Image circle */}
         <div
           className="flex mt-8 lg:mt-0"
           style={{ justifyContent: "center", alignItems: "center", position: "relative" }}
         >
-          <div style={{ position: "relative", width: "clamp(280px, 80vw, 480px)", height: "auto", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Image
-              src="/logo.png"
-              alt="SmartMED"
-              width={480}
-              height={144}
-              style={{ objectFit: "contain", width: "100%", height: "auto" }}
-              priority
-            />
+          <div style={{ position: "relative", width: "clamp(280px, 80vw, 380px)", height: "clamp(280px, 80vw, 380px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {/* Circle image */}
+            <div
+              style={{
+                width: "clamp(260px, 75vw, 360px)",
+                height: "clamp(260px, 75vw, 360px)",
+                borderRadius: "50%",
+                overflow: "hidden",
+                background: "#F5F5F5",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                border: "3px solid #E5E7EB",
+              }}
+            >
+              <Image
+                src="/logo.png"
+                alt="SmartMED"
+                width={260}
+                height={260}
+                style={{ objectFit: "contain", padding: "clamp(16px, 5vw, 32px)", width: "100%", height: "auto" }}
+                priority
+              />
+            </div>
+
+            {/* Floating badge top right */}
+            <div
+              style={{
+                position: "absolute",
+                top: 16,
+                right: -24,
+                background: "#FFFFFF",
+                border: "1.5px solid #E5E7EB",
+                borderRadius: 12,
+                padding: "10px 18px",
+                boxShadow: "0 6px 20px rgba(0,0,0,0.07)",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#f5b340", flexShrink: 0, display: "inline-block" }} />
+              <span style={{ fontWeight: 600, fontSize: "0.78rem", color: "#0A0A0A", whiteSpace: "nowrap" }}>
+                Kelas Privat & Grup
+              </span>
+            </div>
+
+            {/* Floating badge bottom left */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 28,
+                left: -28,
+                background: "#0F1F6B",
+                borderRadius: 12,
+                padding: "10px 18px",
+                boxShadow: "0 6px 20px rgba(15,31,107,0.25)",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#F5C518", flexShrink: 0, display: "inline-block" }} />
+              <span style={{ fontWeight: 600, fontSize: "0.78rem", color: "#fff", whiteSpace: "nowrap" }}>
+                SMART-Med CBT
+              </span>
+            </div>
           </div>
         </div>
       </div>
