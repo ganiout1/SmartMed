@@ -19,9 +19,9 @@ const PROGRAMS = [
   },
   {
     tag: "Gold",
-    tagBg: "#2563EB",
-    tagColor: "#fff",
-    accentColor: "#2563EB",
+    tagBg: "#f5b340",
+    tagColor: "#0A0A0A",
+    accentColor: "#f5b340",
     title: "Paket\nGold",
     description: "Program intensif persiapan ujian yang berfokus pada diskusi 2 arah antara pengajar dan siswa.",
     benefits: ["DST 1x/minggu", "Grup kecil", "Diskusi aktif", "Drill soal"],
@@ -65,7 +65,7 @@ export function ProgramsSection() {
                 fontSize: "0.7rem",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "#2563EB",
+                color: "#f5b340",
                 marginBottom: 12,
               }}
             >

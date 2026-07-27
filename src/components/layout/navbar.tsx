@@ -56,7 +56,7 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               style={{ fontWeight: 500, fontSize: "0.9rem", color: "#374151", transition: "color 0.2s", textDecoration: "none" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#2563EB")}
+              onMouseEnter={e => (e.currentTarget.style.color = "#f5b340")}
               onMouseLeave={e => (e.currentTarget.style.color = "#374151")}
             >
               {link.label}
@@ -84,8 +84,8 @@ export function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              background: "#2563EB",
-              color: "#fff",
+              background: "#f5b340",
+              color: "#0A0A0A",
               fontWeight: 600,
               fontSize: "0.85rem",
               padding: "11px 24px",
@@ -94,8 +94,8 @@ export function Navbar() {
               textDecoration: "none",
               display: "inline-block",
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = "#1D4ED8"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "#2563EB"; e.currentTarget.style.transform = "translateY(0)"; }}
+            onMouseEnter={e => { e.currentTarget.style.background = "#e0a030"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "#f5b340"; e.currentTarget.style.transform = "translateY(0)"; }}
           >
             Daftar Sekarang
           </a>
@@ -164,8 +164,8 @@ export function Navbar() {
             rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
             style={{
-              background: "#2563EB",
-              color: "#fff",
+              background: "#f5b340",
+              color: "#0A0A0A",
               fontWeight: 600,
               fontSize: "0.9rem",
               padding: 14,

@@ -64,7 +64,7 @@ export function HeroSection() {
           maxWidth: 380,
           aspectRatio: "1/1",
           borderRadius: "50%",
-          background: "#2563EB",
+          background: "#f5b340",
           opacity: 0.07,
           pointerEvents: "none",
         }}
@@ -90,7 +90,7 @@ export function HeroSection() {
         <div>
           {/* Pill badges */}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
-            <span className="lp-pill" style={{ background: "#2563EB", color: "#fff" }}>
+            <span className="lp-pill" style={{ background: "#f5b340", color: "#0A0A0A" }}>
               Bimbel Kedokteran
             </span>
             <span className="lp-pill" style={{ background: "#0F1F6B", color: "#fff" }}>
@@ -112,8 +112,8 @@ export function HeroSection() {
             Kuasai Ilmu<br />
             Kedokteran<br />
             Preklinik<br />
-            <span style={{ fontStyle: "italic", color: "#2563EB" }}>dengan Bimbingan</span><br />
-            <span style={{ fontStyle: "italic", color: "#2563EB" }}>Terbaik.</span>
+            <span style={{ fontStyle: "italic", color: "#f5b340" }}>dengan Bimbingan</span><br />
+            <span style={{ fontStyle: "italic", color: "#f5b340" }}>Terbaik.</span>
           </h1>
 
           {/* Subtitle */}
@@ -140,8 +140,8 @@ export function HeroSection() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                background: "#2563EB",
-                color: "#fff",
+                background: "#f5b340",
+                color: "#0A0A0A",
                 fontWeight: 600,
                 fontSize: "0.95rem",
                 padding: "15px 30px",
@@ -170,7 +170,7 @@ export function HeroSection() {
                 textDecoration: "none",
                 transition: "border-color 0.2s, color 0.2s",
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = "#2563EB"; e.currentTarget.style.color = "#2563EB"; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "#f5b340"; e.currentTarget.style.color = "#f5b340"; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "#E5E7EB"; e.currentTarget.style.color = "#374151"; }}
             >
               Lihat Program
@@ -225,7 +225,7 @@ export function HeroSection() {
                 gap: 8,
               }}
             >
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#2563EB", flexShrink: 0, display: "inline-block" }} />
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#f5b340", flexShrink: 0, display: "inline-block" }} />
               <span style={{ fontWeight: 600, fontSize: "0.78rem", color: "#0A0A0A", whiteSpace: "nowrap" }}>
                 Kelas Privat & Grup
               </span>

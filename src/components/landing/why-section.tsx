@@ -53,7 +53,7 @@ export function WhySection() {
               fontSize: "0.7rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#2563EB",
+              color: "#f5b340",
               marginBottom: 12,
             }}
           >

@@ -87,7 +87,7 @@ export function TestimonialsSection() {
                 fontSize: "0.7rem",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "#2563EB",
+                color: "#f5b340",
                 marginBottom: 12,
               }}
             >
@@ -150,7 +150,7 @@ export function TestimonialsSection() {
               <div style={{ fontSize: "0.82rem", color: "#888", marginTop: 3 }}>
                 <span>{t.from}</span>
                 <span style={{ margin: "0 6px", color: "#ccc" }}>→</span>
-                <span style={{ color: "#2563EB", fontWeight: 600 }}>{t.to}</span>
+                <span style={{ color: "#f5b340", fontWeight: 600 }}>{t.to}</span>
               </div>
             </div>
             {/* Arrow nav */}
@@ -171,8 +171,8 @@ export function TestimonialsSection() {
                   justifyContent: "center",
                   transition: "background 0.2s",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = "#2563EB")}
-                onMouseLeave={e => (e.currentTarget.style.background = "#0A0A0A")}
+                onMouseEnter={e => { e.currentTarget.style.background = "#f5b340"; e.currentTarget.style.color = "#0A0A0A"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "#0A0A0A"; e.currentTarget.style.color = "#fff"; }}
               >
                 {PREV_ICON}
               </button>
@@ -192,8 +192,8 @@ export function TestimonialsSection() {
                   justifyContent: "center",
                   transition: "background 0.2s",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = "#2563EB")}
-                onMouseLeave={e => (e.currentTarget.style.background = "#0A0A0A")}
+                onMouseEnter={e => { e.currentTarget.style.background = "#f5b340"; e.currentTarget.style.color = "#0A0A0A"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "#0A0A0A"; e.currentTarget.style.color = "#fff"; }}
               >
                 {NEXT_ICON}
               </button>
