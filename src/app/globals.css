@@ -151,10 +151,9 @@
 
 /* ── Landing Page: AbdiSmart-style global classes ── */
 @layer components {
-  /* Dot grid background pattern */
+  /* Dot grid background pattern - removed and changed to subtle solid for differentiation */
   .dot-grid {
-    background-image: radial-gradient(circle, #0A0A0A 1px, transparent 1px);
-    background-size: 28px 28px;
+    background-color: #F8FAFC; /* Slate-50 */
   }
 
   /* Pill badge */
@@ -166,7 +165,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 5px 14px;
-    border-radius: 999px;
+    border-radius: 6px;
   }
 
   /* Mark/highlight text */

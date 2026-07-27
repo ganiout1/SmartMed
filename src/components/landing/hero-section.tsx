@@ -64,7 +64,7 @@ export function HeroSection() {
           maxWidth: 380,
           aspectRatio: "1/1",
           borderRadius: "50%",
-          background: "#D32F2F",
+          background: "#2563EB",
           opacity: 0.07,
           pointerEvents: "none",
         }}
@@ -90,7 +90,7 @@ export function HeroSection() {
         <div>
           {/* Pill badges */}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
-            <span className="lp-pill" style={{ background: "#D32F2F", color: "#fff" }}>
+            <span className="lp-pill" style={{ background: "#2563EB", color: "#fff" }}>
               Bimbel Kedokteran
             </span>
             <span className="lp-pill" style={{ background: "#0F1F6B", color: "#fff" }}>
@@ -101,7 +101,7 @@ export function HeroSection() {
           {/* H1 */}
           <h1
             style={{
-              fontWeight: 900,
+              fontWeight: 800,
               fontSize: "clamp(3rem, 8vw, 5.8rem)",
               letterSpacing: "-0.04em",
               lineHeight: 0.94,
@@ -112,8 +112,8 @@ export function HeroSection() {
             Kuasai Ilmu<br />
             Kedokteran<br />
             Preklinik<br />
-            <span style={{ fontStyle: "italic", color: "#D32F2F" }}>dengan Bimbingan</span><br />
-            <span style={{ fontStyle: "italic", color: "#D32F2F" }}>Terbaik.</span>
+            <span style={{ fontStyle: "italic", color: "#2563EB" }}>dengan Bimbingan</span><br />
+            <span style={{ fontStyle: "italic", color: "#2563EB" }}>Terbaik.</span>
           </h1>
 
           {/* Subtitle */}
@@ -140,12 +140,12 @@ export function HeroSection() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                background: "#D32F2F",
+                background: "#2563EB",
                 color: "#fff",
                 fontWeight: 600,
                 fontSize: "0.95rem",
                 padding: "15px 30px",
-                borderRadius: 100,
+                borderRadius: 12,
                 textDecoration: "none",
                 transition: "transform 0.2s, box-shadow 0.2s",
               }}
@@ -166,11 +166,11 @@ export function HeroSection() {
                 fontWeight: 500,
                 fontSize: "0.95rem",
                 padding: "15px 26px",
-                borderRadius: 100,
+                borderRadius: 12,
                 textDecoration: "none",
                 transition: "border-color 0.2s, color 0.2s",
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = "#D32F2F"; e.currentTarget.style.color = "#D32F2F"; }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "#2563EB"; e.currentTarget.style.color = "#2563EB"; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "#E5E7EB"; e.currentTarget.style.color = "#374151"; }}
             >
               Lihat Program
@@ -225,7 +225,7 @@ export function HeroSection() {
                 gap: 8,
               }}
             >
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#D32F2F", flexShrink: 0, display: "inline-block" }} />
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#2563EB", flexShrink: 0, display: "inline-block" }} />
               <span style={{ fontWeight: 600, fontSize: "0.78rem", color: "#0A0A0A", whiteSpace: "nowrap" }}>
                 Kelas Privat & Grup
               </span>

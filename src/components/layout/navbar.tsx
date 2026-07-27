@@ -56,7 +56,7 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               style={{ fontWeight: 500, fontSize: "0.9rem", color: "#374151", transition: "color 0.2s", textDecoration: "none" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#D32F2F")}
+              onMouseEnter={e => (e.currentTarget.style.color = "#2563EB")}
               onMouseLeave={e => (e.currentTarget.style.color = "#374151")}
             >
               {link.label}
@@ -69,7 +69,7 @@ export function Navbar() {
               fontSize: "0.85rem",
               color: "#0F1F6B",
               padding: "11px 20px",
-              borderRadius: 100,
+              borderRadius: 12,
               border: "1.5px solid #0F1F6B",
               transition: "background 0.2s, color 0.2s",
               textDecoration: "none",
@@ -84,18 +84,18 @@ export function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              background: "#D32F2F",
+              background: "#2563EB",
               color: "#fff",
               fontWeight: 600,
               fontSize: "0.85rem",
               padding: "11px 24px",
-              borderRadius: 100,
+              borderRadius: 12,
               transition: "background 0.2s, transform 0.15s",
               textDecoration: "none",
               display: "inline-block",
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = "#B71C1C"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "#D32F2F"; e.currentTarget.style.transform = "translateY(0)"; }}
+            onMouseEnter={e => { e.currentTarget.style.background = "#1D4ED8"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "#2563EB"; e.currentTarget.style.transform = "translateY(0)"; }}
           >
             Daftar Sekarang
           </a>
@@ -149,7 +149,7 @@ export function Navbar() {
               fontSize: "0.9rem",
               color: "#0F1F6B",
               padding: 14,
-              borderRadius: 100,
+              borderRadius: 12,
               border: "1.5px solid #0F1F6B",
               textAlign: "center",
               textDecoration: "none",
@@ -164,12 +164,12 @@ export function Navbar() {
             rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
             style={{
-              background: "#D32F2F",
+              background: "#2563EB",
               color: "#fff",
               fontWeight: 600,
               fontSize: "0.9rem",
               padding: 14,
-              borderRadius: 100,
+              borderRadius: 12,
               textAlign: "center",
               textDecoration: "none",
               display: "block",

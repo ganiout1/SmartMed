@@ -87,7 +87,7 @@ export function TestimonialsSection() {
                 fontSize: "0.7rem",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "#D32F2F",
+                color: "#2563EB",
                 marginBottom: 12,
               }}
             >
@@ -114,7 +114,7 @@ export function TestimonialsSection() {
         <div
           style={{
             background: "#FFFFFF",
-            borderRadius: 24,
+            borderRadius: 12,
             border: "1px solid #E5E7EB",
             padding: "clamp(32px, 5vw, 60px)",
             position: "relative",
@@ -150,7 +150,7 @@ export function TestimonialsSection() {
               <div style={{ fontSize: "0.82rem", color: "#888", marginTop: 3 }}>
                 <span>{t.from}</span>
                 <span style={{ margin: "0 6px", color: "#ccc" }}>→</span>
-                <span style={{ color: "#D32F2F", fontWeight: 600 }}>{t.to}</span>
+                <span style={{ color: "#2563EB", fontWeight: 600 }}>{t.to}</span>
               </div>
             </div>
             {/* Arrow nav */}
@@ -171,7 +171,7 @@ export function TestimonialsSection() {
                   justifyContent: "center",
                   transition: "background 0.2s",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = "#D32F2F")}
+                onMouseEnter={e => (e.currentTarget.style.background = "#2563EB")}
                 onMouseLeave={e => (e.currentTarget.style.background = "#0A0A0A")}
               >
                 {PREV_ICON}
@@ -192,7 +192,7 @@ export function TestimonialsSection() {
                   justifyContent: "center",
                   transition: "background 0.2s",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = "#D32F2F")}
+                onMouseEnter={e => (e.currentTarget.style.background = "#2563EB")}
                 onMouseLeave={e => (e.currentTarget.style.background = "#0A0A0A")}
               >
                 {NEXT_ICON}

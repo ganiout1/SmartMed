@@ -12,8 +12,8 @@ export function CTASection() {
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px" }}>
         <div
           style={{
-            background: "#D32F2F",
-            borderRadius: 24,
+            background: "#0F1F6B",
+            borderRadius: 16,
             padding: "clamp(44px, 6vw, 80px) clamp(32px, 5vw, 72px)",
             display: "flex",
             flexWrap: "wrap",
@@ -86,7 +86,7 @@ export function CTASection() {
                 fontWeight: 700,
                 fontSize: "1rem",
                 padding: "18px 36px",
-                borderRadius: 100,
+                borderRadius: 12,
                 whiteSpace: "nowrap",
                 textDecoration: "none",
                 transition: "transform 0.2s, box-shadow 0.2s",

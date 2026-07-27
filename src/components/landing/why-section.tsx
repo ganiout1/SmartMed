@@ -53,7 +53,7 @@ export function WhySection() {
               fontSize: "0.7rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#D32F2F",
+              color: "#2563EB",
               marginBottom: 12,
             }}
           >
@@ -88,7 +88,7 @@ export function WhySection() {
               style={{
                 background: "#F7F7F7",
                 border: "1px solid #E5E7EB",
-                borderRadius: 20,
+                borderRadius: 12,
                 padding: "32px 28px",
                 position: "relative",
                 overflow: "hidden",
