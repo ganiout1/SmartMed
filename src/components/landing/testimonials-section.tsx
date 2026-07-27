@@ -117,120 +117,134 @@ export function TestimonialsSection() {
         <div
           style={{
             background: "#FFFFFF",
-            borderRadius: 12,
+            borderRadius: 16,
             border: "1px solid #E5E7EB",
-            padding: "clamp(32px, 5vw, 60px)",
-            position: "relative",
-            minHeight: 280,
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "row",
+            minHeight: 320,
           }}
+          className="flex-col md:flex-row"
         >
-          {/* Quote decoration */}
-          <div style={{ position: "absolute", top: 24, left: 32, opacity: 0.4, fontSize: "5rem", lineHeight: 1, fontFamily: "Georgia, serif", color: "#F5C518", userSelect: "none" }}>
-            &ldquo;
-          </div>
+          {/* Large photo */}
+          {t.photo ? (
+            <div
+              style={{
+                background: "#f5b340",
+                display: "flex",
+                alignItems: "flex-end",
+                justifyContent: "center",
+                flexShrink: 0,
+                overflow: "hidden",
+                position: "relative",
+              }}
+              className="w-full md:w-[280px] h-[300px] md:h-auto"
+            >
+              <Image
+                src={t.photo}
+                alt={t.name}
+                width={280}
+                height={360}
+                style={{ objectFit: "cover", width: "100%", height: "100%", objectPosition: "top center" }}
+              />
+            </div>
+          ) : (
+            <div
+              style={{
+                background: "linear-gradient(135deg, #f5b340 0%, #e0a030 100%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+              }}
+              className="w-full md:w-[280px] h-[200px] md:h-auto"
+            >
+              <span style={{ fontWeight: 900, fontSize: "4rem", color: "rgba(255,255,255,0.5)" }}>
+                {t.name.split(" ").map(w => w[0]).slice(0, 2).join("")}
+              </span>
+            </div>
+          )}
 
-          {/* Quote text */}
-          <p
-            style={{
-              fontSize: "clamp(1rem, 2.2vw, 1.3rem)",
-              fontWeight: 500,
-              color: "#374151",
-              lineHeight: 1.72,
-              marginBottom: 40,
-              paddingTop: 40,
-              fontStyle: "italic",
-            }}
-          >
-            {t.quote}
-          </p>
+          {/* Content */}
+          <div style={{ flex: 1, padding: "clamp(28px, 4vw, 48px)", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            {/* Quote decoration */}
+            <div>
+              <div style={{ fontSize: "4rem", lineHeight: 1, fontFamily: "Georgia, serif", color: "#f5b340", userSelect: "none", marginBottom: 8 }}>
+                &ldquo;
+              </div>
 
-          {/* Author + nav */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-              {/* Avatar */}
-              {t.photo ? (
-                <Image
-                  src={t.photo}
-                  alt={t.name}
-                  width={52}
-                  height={52}
-                  style={{ borderRadius: "50%", objectFit: "cover", width: 52, height: 52, border: "2px solid #E5E7EB" }}
-                />
-              ) : (
-                <div
-                  style={{
-                    width: 52,
-                    height: 52,
-                    borderRadius: "50%",
-                    background: "#f5b340",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: 800,
-                    fontSize: "1.1rem",
-                    color: "#0A0A0A",
-                    border: "2px solid #E5E7EB",
-                    flexShrink: 0,
-                  }}
-                >
-                  {t.name.split(" ").map(w => w[0]).slice(0, 2).join("")}
-                </div>
-              )}
+              {/* Quote text */}
+              <p
+                style={{
+                  fontSize: "clamp(0.9rem, 1.8vw, 1.1rem)",
+                  fontWeight: 500,
+                  color: "#374151",
+                  lineHeight: 1.72,
+                  marginBottom: 32,
+                  fontStyle: "italic",
+                }}
+              >
+                {t.quote}
+              </p>
+            </div>
+
+            {/* Author + nav */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
               <div>
-                <div style={{ fontWeight: 900, fontSize: "1rem", color: "#0A0A0A", letterSpacing: "-0.02em" }}>
+                <div style={{ fontWeight: 900, fontSize: "1.05rem", color: "#0A0A0A", letterSpacing: "-0.02em" }}>
                   {t.name}
                 </div>
-                <div style={{ fontSize: "0.82rem", color: "#888", marginTop: 3 }}>
+                <div style={{ fontSize: "0.82rem", color: "#888", marginTop: 4 }}>
                   <span>{t.from}</span>
                   <span style={{ margin: "0 6px", color: "#ccc" }}>→</span>
                   <span style={{ color: "#f5b340", fontWeight: 600 }}>{t.to}</span>
                 </div>
               </div>
-            </div>
-            {/* Arrow nav */}
-            <div style={{ display: "flex", gap: 8 }}>
-              <button
-                onClick={prev}
-                aria-label="Sebelumnya"
-                style={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: "50%",
-                  background: "#0A0A0A",
-                  color: "#fff",
-                  border: "none",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition: "background 0.2s",
-                }}
-                onMouseEnter={e => { e.currentTarget.style.background = "#f5b340"; e.currentTarget.style.color = "#0A0A0A"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "#0A0A0A"; e.currentTarget.style.color = "#fff"; }}
-              >
-                {PREV_ICON}
-              </button>
-              <button
-                onClick={next}
-                aria-label="Berikutnya"
-                style={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: "50%",
-                  background: "#0A0A0A",
-                  color: "#fff",
-                  border: "none",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition: "background 0.2s",
-                }}
-                onMouseEnter={e => { e.currentTarget.style.background = "#f5b340"; e.currentTarget.style.color = "#0A0A0A"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "#0A0A0A"; e.currentTarget.style.color = "#fff"; }}
-              >
-                {NEXT_ICON}
-              </button>
+              {/* Arrow nav */}
+              <div style={{ display: "flex", gap: 8 }}>
+                <button
+                  onClick={prev}
+                  aria-label="Sebelumnya"
+                  style={{
+                    width: 42,
+                    height: 42,
+                    borderRadius: "50%",
+                    background: "#0A0A0A",
+                    color: "#fff",
+                    border: "none",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    transition: "background 0.2s",
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "#f5b340"; e.currentTarget.style.color = "#0A0A0A"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "#0A0A0A"; e.currentTarget.style.color = "#fff"; }}
+                >
+                  {PREV_ICON}
+                </button>
+                <button
+                  onClick={next}
+                  aria-label="Berikutnya"
+                  style={{
+                    width: 42,
+                    height: 42,
+                    borderRadius: "50%",
+                    background: "#0A0A0A",
+                    color: "#fff",
+                    border: "none",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    transition: "background 0.2s",
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "#f5b340"; e.currentTarget.style.color = "#0A0A0A"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "#0A0A0A"; e.currentTarget.style.color = "#fff"; }}
+                >
+                  {NEXT_ICON}
+                </button>
+              </div>
             </div>
           </div>
         </div>
