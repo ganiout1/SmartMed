@@ -5,38 +5,38 @@ import { useState } from "react";
 const TESTIMONIALS = [
   {
     quote:
-      "SmartMED benar-benar mengubah cara saya belajar kedokteran. Materi yang terstruktur dan pengajar yang sabar membuat saya lebih percaya diri menghadapi ujian blok.",
-    name: "Anisa Rahmawati",
-    from: "Mahasiswi FK",
-    to: "Nilai Blok Meningkat Drastis",
-  },
-  {
-    quote:
-      "Simulasi CBT di SmartMED sangat membantu. Soal-soalnya berkualitas dan sangat mirip dengan ujian asli. Saya jadi terbiasa dengan format dan tekanan waktu ujian.",
-    name: "Farhan Pratama",
+      "Selama mengikuti bimbingan SOCA bersama SmartMed, saya mendapatkan pengalaman yang sangat berkesan. Materi yang disampaikan jelas, pembahasannya mudah dipahami, dan pastinya sangat membantu saya dalam mempersiapkan ujian soca. Terima kasih, SmartMed, atas bimbingan dan dukungannya. Semoga ke depannya SmartMed semakin sukses, terus berkembang, dan semakin banyak membantu mahasiswa meraih hasil yang terbaik.",
+    name: "Putu Gede Reinanta Widiarsana",
     from: "Mahasiswa FK",
-    to: "Peringkat 5 Besar Angkatan",
+    to: "Nilai sempurna SOCA blok 5",
   },
   {
     quote:
-      "Kelas intensif menjelang OSCE sangat bermanfaat. Latihan keterampilan klinis dengan bimbingan pengajar berpengalaman membuat saya siap menghadapi ujian praktik.",
-    name: "Siti Nurhaliza",
+      "Haloo kakk, sebelumnyaa mau ucapinnn makasii bangett sama semua kakak-kakak smartmedd udah ngebantuu aku buat blok 5, jujur waktu awal-awal masuk blok 5 itu udah takut, karena di blok 5 ini kan ada SOCA untuk yang pertama kalinyaa, tapi dengan ikut smartmed jadi merasa terbantu bangett karena mendekati hari ujian SOCA, kita ada kelas offline simulasi SOCA, jadi punya gambaran mekanisme dan skenario di SOCA nya nanti gimana. Terus dari yang sepengalamanku kemarin, untuk kasus SOCA nya mirip, maksudnya inti dari setiap jawabannya itu miripp. Buat kelas tutornya juga penjelasannya Okee bangettt, kakak-kakaknya juga fast resp kalo ada hak yang mau ditanya-tanya hehe. Mungkin ini aja kalo dari akuu, sekali lagi makasih banyakk kakak-kakak smartmed🤗🫰",
+    name: "Areta Salsabila Sukri",
     from: "Mahasiswi FK",
-    to: "Lulus OSCE dengan Predikat Istimewa",
+    to: "Nilai sempurna SOCA",
   },
   {
     quote:
-      "Bimbingan privat di SmartMED sangat fleksibel. Tutor saya memahami kelemahan saya dan membuat rencana belajar yang sesuai. Hasilnya, nilai saya meningkat drastis.",
-    name: "Muhammad Rizki",
+      "review dari aku itu yg JUJUR BGT itu aku sangat’ happy belajar sm smartmed, karna se ngebantu itu pahami materi kuliah dan tutorial juga. semua kakak’ smartmed itu expert semuaa, sangat baik dalam menjelaskan dan mudah dipahami🥺🥺🥺 intinya smartmed itu the best si",
+    name: "Pasha Mozza Suzetta",
+    from: "Mahasiswi FK",
+    to: "Top 5 Anatomi blok 4, Nilai SOCA 93.3",
+  },
+  {
+    quote:
+      "Selama ikut bimbel di smartmed, bener bener membantu banget. Kakak kakaknya sangat helpful dan materi yang disampaikan juga mudah dipahami, setiap ada materi yang kurang dimengerti kakak kakaknya mau menjelaskan ulang sampe bener bener paham. Waktu persiapan ujian tramed juga membantu banget, apalagi smartmed menyediakan kelas offline buat tramed. Waktu SOCA juga membantu banget, kita diajarin materinya sampe simulasi ujiannya. Overall pengalaman belajar di sana sangat menyenangkan dan bermanfaat 🙌🙌",
+    name: "Ni Made Florena Saras Gayatri",
+    from: "Mahasiswi FK",
+    to: "Top 2 Neuroanatomi, Nilai sempurna SOCA, One-Shoot blok 4",
+  },
+  {
+    quote:
+      "Selama saya mengikuti smartmed, blok yang dianggap susah menjadi lebih mudah karena pengajarnya bikin paham bukan hapal. Materi yang diajarkan Smartmed sangat ramah dengan maba karena mudah dipahami, Smartmed all the way!🥳",
+    name: "I Gede Lio Suipayana",
     from: "Mahasiswa FK",
-    to: "Peningkatan Nilai 30% dalam 2 Bulan",
-  },
-  {
-    quote:
-      "Yang saya suka dari SmartMED adalah kelasnya yang kecil. Saya bisa bertanya sepuasnya tanpa merasa canggung. Pengajarnya pun sangat responsif dan supportif.",
-    name: "Dian Permatasari",
-    from: "Mahasiswi FK",
-    to: "Lulus Semua Ujian Blok Semester 1–4",
+    to: "Nilai sempurna SOCA",
   },
 ];
 
