@@ -78,13 +78,12 @@ export function HeroSection() {
           margin: "0 auto",
           padding: "56px 28px",
           display: "grid",
-          gridTemplateColumns: "1fr",
           gap: 52,
           alignItems: "center",
           position: "relative",
           zIndex: 1,
         }}
-        className="lg:grid-cols-[1fr_420px]"
+        className="grid-cols-[1fr] lg:grid-cols-[1fr_420px]"
       >
         {/* LEFT: Text */}
         <div>
