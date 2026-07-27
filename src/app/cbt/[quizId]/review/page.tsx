@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle, XCircle, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 export default async function QuizReviewPage({
   params,
@@ -119,12 +118,11 @@ export default async function QuizReviewPage({
                   </div>
 
                   {q.question_image_url && (
-                    <div className="mb-6 relative w-full max-w-2xl h-64 md:h-80 rounded-md overflow-hidden bg-muted/20">
-                      <Image
+                    <div className="mb-6 relative w-full max-w-2xl">
+                      <img
                         src={q.question_image_url}
                         alt="Gambar Soal"
-                        fill
-                        className="object-contain"
+                        className="max-h-64 w-auto rounded-md object-contain"
                       />
                     </div>
                   )}
@@ -174,12 +172,11 @@ export default async function QuizReviewPage({
                           )}
                           
                           {q.explanation_image_url && (
-                            <div className="relative w-full max-w-lg h-64 border rounded-md overflow-hidden bg-white">
-                              <Image 
+                            <div className="relative w-full max-w-lg">
+                              <img 
                                 src={q.explanation_image_url} 
                                 alt="Gambar Pembahasan" 
-                                fill 
-                                className="object-contain"
+                                className="max-h-64 w-auto rounded-md object-contain border bg-white"
                               />
                             </div>
                           )}

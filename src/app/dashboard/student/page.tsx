@@ -47,7 +47,7 @@ export default async function StudentDashboardPage({
     supabase.from("profiles").select("tier").eq("id", user.id).single(),
     supabase.from("course_members").select("course_id").eq("student_id", user.id),
     courseQuery,
-    supabase.from("quiz_attempts").select("quiz_id, score").eq("student_id", user.id).not("score", "is", null)
+    supabase.from("quiz_attempts").select("quiz_id, score, completed_at").eq("student_id", user.id).not("score", "is", null).order("completed_at", { ascending: false })
   ]);
 
   const isPro = profile?.tier === "pro";
@@ -65,14 +65,25 @@ export default async function StudentDashboardPage({
     totalQuizzesCount = count || 0;
   }
 
-  const completedQuizIds = new Set((attempts || []).map(a => a.quiz_id));
-  const completedQuizzesCount = completedQuizIds.size;
+  // Group attempts by quiz_id — keep only the latest attempt per quiz
+  const latestAttemptPerQuiz = new Map<string, number>();
+  if (attempts) {
+    attempts.forEach((a: any) => {
+      // Already ordered by completed_at DESC, so first occurrence per quiz_id is the latest
+      if (!latestAttemptPerQuiz.has(a.quiz_id)) {
+        latestAttemptPerQuiz.set(a.quiz_id, a.score || 0);
+      }
+    });
+  }
+
+  const completedQuizzesCount = latestAttemptPerQuiz.size;
   const pendingQuizzesCount = Math.max(0, totalQuizzesCount - completedQuizzesCount);
 
   let averageScore = 0;
-  if (attempts && attempts.length > 0) {
-    const totalScore = attempts.reduce((sum, attempt) => sum + (attempt.score || 0), 0);
-    averageScore = Math.round(totalScore / attempts.length);
+  if (latestAttemptPerQuiz.size > 0) {
+    const scores = Array.from(latestAttemptPerQuiz.values());
+    const totalScore = scores.reduce((sum, score) => sum + score, 0);
+    averageScore = Math.round(totalScore / scores.length);
   }
 
   let avgColor = "";
@@ -201,6 +212,7 @@ export default async function StudentDashboardPage({
                         src={course.banner_url || "/default-banner.png"}
                         alt={course.title}
                         fill
+                        unoptimized
                         className="object-cover"
                       />
                     </div>
@@ -249,6 +261,7 @@ export default async function StudentDashboardPage({
                         src={course.banner_url || "/default-banner.png"}
                         alt={course.title}
                         fill
+                        unoptimized
                         className="object-cover grayscale"
                       />
                     </div>

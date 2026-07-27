@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { toast } from "sonner";
 import { Clock, ChevronLeft, ChevronRight, CheckCircle2, AlertTriangle, Send, Flag } from "lucide-react";
 
@@ -58,6 +57,7 @@ export function ExamInterface({
   const [answers, setAnswers] = useState<Record<string, string>>(initialAnswers);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [imageError, setImageError] = useState<Record<string, boolean>>({});
   
   const questionCount = questions.length;
   const answeredCount = Object.keys(answers).length;
@@ -200,19 +200,32 @@ export function ExamInterface({
         {/* MIDDLE COLUMN: Active Question Content */}
         <div className="flex-1 w-full min-w-0 flex flex-col order-1 lg:order-2">
           <Card className="flex-1 w-full flex flex-col border-primary/10 shadow-sm bg-background">
-            <CardContent className="flex-1 w-full p-6 lg:p-10 text-left">
-              <div className="text-lg md:text-xl mb-6 leading-relaxed whitespace-pre-wrap text-foreground w-full">
+            <CardContent className="flex-1 w-full p-4 lg:p-6 text-left">
+              <div className="text-base md:text-lg mb-4 leading-relaxed whitespace-pre-wrap text-foreground w-full">
                 {currentQuestion.question_text}
               </div>
               
               {currentQuestion.question_image_url && (
-                <div className="mb-8 relative w-full max-w-2xl h-64 md:h-80 rounded-md overflow-hidden">
-                  <Image
-                    src={currentQuestion.question_image_url}
-                    alt="Gambar Soal"
-                    fill
-                    className="object-contain"
-                  />
+                <div className="mb-6 relative w-full max-w-2xl">
+                  {imageError[currentQuestion.id] ? (
+                    <div className="flex flex-col items-center justify-center h-48 bg-muted/50 rounded-md border border-dashed">
+                      <p className="text-sm text-muted-foreground mb-2">Gambar gagal dimuat</p>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setImageError(prev => ({ ...prev, [currentQuestion.id]: false }))}
+                      >
+                        Coba Muat Ulang
+                      </Button>
+                    </div>
+                  ) : (
+                    <img
+                      src={currentQuestion.question_image_url}
+                      alt="Gambar Soal"
+                      className="max-h-64 w-auto rounded-md object-contain"
+                      onError={() => setImageError(prev => ({ ...prev, [currentQuestion.id]: true }))}
+                    />
+                  )}
                 </div>
               )}
 
@@ -248,7 +261,7 @@ export function ExamInterface({
                       }`}>
                         {opt.id}
                       </span>
-                      <span className="text-base leading-relaxed pt-0.5">{opt.text}</span>
+                      <span className="text-sm leading-relaxed pt-0.5">{opt.text}</span>
                     </Label>
                   </div>
                 ))}
