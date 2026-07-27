@@ -13,32 +13,33 @@ export function CTASection() {
         <div
           style={{
             background: "#0F1F6B",
-            borderRadius: 16,
-            padding: "clamp(44px, 6vw, 80px) clamp(32px, 5vw, 72px)",
+            borderRadius: 24,
+            padding: "clamp(60px, 8vw, 100px) clamp(24px, 5vw, 40px)",
             display: "flex",
-            flexWrap: "wrap",
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "space-between",
-            gap: 36,
+            justifyContent: "center",
+            textAlign: "center",
+            gap: 32,
             position: "relative",
             overflow: "hidden",
+            boxShadow: "0 24px 48px rgba(15, 31, 107, 0.2)",
           }}
         >
-          {/* Decorative circles */}
-          <div aria-hidden="true" style={{ position: "absolute", top: -80, right: 60, width: 260, height: 260, borderRadius: "50%", border: "50px solid rgba(255,255,255,0.07)", pointerEvents: "none" }} />
-          <div aria-hidden="true" style={{ position: "absolute", bottom: -100, right: -50, width: 320, height: 320, borderRadius: "50%", border: "50px solid rgba(255,255,255,0.05)", pointerEvents: "none" }} />
-          <div aria-hidden="true" style={{ position: "absolute", top: 24, left: "50%", width: 12, height: 12, borderRadius: "50%", background: "#F5C518", opacity: 0.6, pointerEvents: "none" }} />
-
+          {/* Decorative elements */}
+          <div aria-hidden="true" style={{ position: "absolute", top: -120, left: -60, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(245, 179, 64, 0.15) 0%, rgba(245, 179, 64, 0) 70%)", pointerEvents: "none" }} />
+          <div aria-hidden="true" style={{ position: "absolute", bottom: -100, right: -50, width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%)", pointerEvents: "none" }} />
+          
           {/* Text */}
-          <div style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
             <p
               style={{
                 fontWeight: 700,
-                fontSize: "0.7rem",
-                letterSpacing: "0.18em",
+                fontSize: "0.75rem",
+                letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.6)",
-                marginBottom: 14,
+                color: "#F5C518",
+                marginBottom: 16,
               }}
             >
               Mulai Perjalananmu
@@ -46,33 +47,23 @@ export function CTASection() {
             <h2
               style={{
                 fontWeight: 900,
-                fontSize: "clamp(2rem, 5vw, 3.6rem)",
+                fontSize: "clamp(2.4rem, 6vw, 4rem)",
                 letterSpacing: "-0.04em",
-                lineHeight: 0.94,
+                lineHeight: 1.1,
                 color: "#ffffff",
-                marginBottom: 14,
+                marginBottom: 20,
+                maxWidth: 700,
               }}
             >
-              Siap raih nilai terbaik<br />
-              <span
-                style={{
-                  background: "#F5C518",
-                  color: "#0A0A0A",
-                  padding: "2px 10px",
-                  borderRadius: 4,
-                  fontStyle: "italic",
-                }}
-              >
-                tahun ini?
-              </span>
+              Siap raih nilai terbaik <span style={{ color: "#F5B340" }}>tahun ini?</span>
             </h2>
-            <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.68, maxWidth: 380 }}>
+            <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6, maxWidth: 500 }}>
               Konsultasi gratis via WhatsApp. Kami bantu temukan program paling sesuai untukmu.
             </p>
           </div>
 
           {/* CTA */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, position: "relative", zIndex: 1 }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14, position: "relative", zIndex: 1 }}>
             <a
               href="https://wa.me/6287867141403"
               target="_blank"
@@ -80,24 +71,24 @@ export function CTASection() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: 10,
-                background: "#F5C518",
-                color: "#0A0A0A",
-                fontWeight: 700,
-                fontSize: "1rem",
-                padding: "18px 36px",
-                borderRadius: 12,
+                gap: 12,
+                background: "#ffffff",
+                color: "#0F1F6B",
+                fontWeight: 800,
+                fontSize: "1.1rem",
+                padding: "20px 44px",
+                borderRadius: 50,
                 whiteSpace: "nowrap",
                 textDecoration: "none",
                 transition: "transform 0.2s, box-shadow 0.2s",
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.2)"; }}
+              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.3)"; }}
               onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
             >
               {WA_ICON}
               Chat WhatsApp
             </a>
-            <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", paddingLeft: 4, textAlign: "center" }}>
+            <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.5)", fontWeight: 500 }}>
               +62 878-6714-1403
             </span>
           </div>

@@ -13,7 +13,7 @@ const IG_ICON = (
 
 export function Footer() {
   return (
-    <footer style={{ background: "#0A0A0A", color: "#FFFFFF", padding: "40px 0 28px" }}>
+    <footer style={{ background: "#0F1F6B", color: "#FFFFFF", padding: "40px 0 28px" }}>
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px" }}>
         {/* Top row */}
         <div
