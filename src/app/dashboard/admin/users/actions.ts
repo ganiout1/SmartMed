@@ -31,7 +31,13 @@ export async function createUser(formData: FormData) {
   }
 
   // The database trigger will automatically create the profile for this user
-  
+  // For students created by admin, default them to PRO tier
+  if (role === "student" && data?.user?.id) {
+    await supabaseAdmin
+      .from("profiles")
+      .update({ tier: "pro" })
+      .eq("id", data.user.id);
+  }
   if (role === "lecturer") {
     revalidatePath("/dashboard/admin/lecturers");
   } else {

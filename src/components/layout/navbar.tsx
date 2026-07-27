@@ -80,7 +80,7 @@ export function Navbar() {
             Masuk
           </Link>
           <a
-            href="https://smart-med-mauve.vercel.app/register"
+            href="https://wa.me/6287867141403"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -159,7 +159,7 @@ export function Navbar() {
             Masuk
           </Link>
           <a
-            href="https://smart-med-mauve.vercel.app/register"
+            href="https://wa.me/6287867141403"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
