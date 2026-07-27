@@ -84,6 +84,7 @@ export function HeroSection() {
           position: "relative",
           zIndex: 1,
         }}
+        className="lg:grid-cols-[1fr_420px]"
       >
         {/* LEFT: Text */}
         <div>
@@ -178,6 +179,21 @@ export function HeroSection() {
           </div>
         </div>
 
+
+        {/* RIGHT: Logo */}
+        <div
+          className="hidden lg:flex"
+          style={{ justifyContent: "center", alignItems: "center" }}
+        >
+          <Image
+            src="/logo.png"
+            alt="SmartMED"
+            width={380}
+            height={114}
+            style={{ objectFit: "contain", width: "100%", height: "auto", maxWidth: 380 }}
+            priority
+          />
+        </div>
 
       </div>
     </section>
