@@ -46,7 +46,7 @@ export function Navbar() {
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
-          <Image src="/logo.png" alt="SmartMED" width={480} height={144} className="object-contain h-[60px] md:h-[120px] w-auto" />
+          <Image src="/logo.png" alt="SmartMED" width={480} height={144} className="object-contain h-[150px] md:h-[120px] w-auto" />
         </Link>
 
         {/* Desktop Nav */}
