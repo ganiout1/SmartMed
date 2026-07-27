@@ -177,7 +177,9 @@ export function ContactSection() {
                 {c.icon}
               </div>
 
-
+              <div style={{ fontWeight: 600, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#5A6272", marginBottom: 6 }}>
+                {c.label}
+              </div>
               <h3 style={{ fontWeight: 900, fontSize: "1.6rem", letterSpacing: "-0.04em", color: "#0A0A0A", lineHeight: 1.05, marginBottom: 4 }}>
                 {c.title}
               </h3>

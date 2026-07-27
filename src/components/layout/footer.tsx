@@ -13,7 +13,7 @@ const IG_ICON = (
 
 export function Footer() {
   return (
-    <footer style={{ background: "#f5b340", color: "#0A0A0A", padding: "40px 0 28px" }}>
+    <footer style={{ background: "#0F1F6B", color: "#FFFFFF", padding: "40px 0 28px" }}>
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px" }}>
         {/* Top row */}
         <div
@@ -24,15 +24,15 @@ export function Footer() {
             justifyContent: "space-between",
             gap: 20,
             paddingBottom: 28,
-            borderBottom: "1px solid rgba(0,0,0,0.1)",
+            borderBottom: "1px solid rgba(255,255,255,0.07)",
           }}
         >
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <Image src="/logo.png" alt="SmartMED" width={120} height={36} style={{ objectFit: "contain", height: 36, width: "auto" }} />
+            <Image src="/logo.png" alt="SmartMED" width={120} height={36} style={{ objectFit: "contain", height: 36, width: "auto", filter: "brightness(0) invert(1)" }} />
             <div>
-              <div style={{ fontWeight: 900, fontSize: "0.95rem", letterSpacing: "-0.02em", color: "#0A0A0A" }}>SmartMED</div>
-              <div style={{ fontSize: "0.65rem", color: "rgba(0,0,0,0.6)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Bimbel Kedokteran</div>
+              <div style={{ fontWeight: 900, fontSize: "0.95rem", letterSpacing: "-0.02em", color: "#ffffff" }}>SmartMED</div>
+              <div style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Bimbel Kedokteran</div>
             </div>
           </div>
 
@@ -42,9 +42,9 @@ export function Footer() {
               href="https://instagram.com/smartmed_edu"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.82rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", transition: "color 0.2s" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#0A0A0A")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(0,0,0,0.6)")}
+              style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.82rem", color: "rgba(255,255,255,0.38)", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}
             >
               {IG_ICON}
               @smartmed_edu
@@ -53,17 +53,17 @@ export function Footer() {
               href="https://wa.me/6287867141403"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ fontSize: "0.82rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", transition: "color 0.2s" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#0A0A0A")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(0,0,0,0.6)")}
+              style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.38)", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}
             >
               +62 878-6714-1403
             </a>
             <a
               href="mailto:smartmededu30@gmail.com"
-              style={{ fontSize: "0.82rem", color: "rgba(0,0,0,0.6)", textDecoration: "none", transition: "color 0.2s" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#0A0A0A")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(0,0,0,0.6)")}
+              style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.38)", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}
             >
               smartmededu30@gmail.com
             </a>
@@ -71,7 +71,7 @@ export function Footer() {
         </div>
 
         {/* Bottom copyright */}
-        <div style={{ paddingTop: 20, fontSize: "0.72rem", color: "rgba(0,0,0,0.4)" }}>
+        <div style={{ paddingTop: 20, fontSize: "0.72rem", color: "rgba(255,255,255,0.18)" }}>
           © {new Date().getFullYear()} SmartMED. All rights reserved. · Bimbel Kedokteran Mataram, NTB.
         </div>
       </div>
