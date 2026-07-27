@@ -182,7 +182,7 @@ export function HeroSection() {
         {/* RIGHT: Logo */}
         <div
           className="hidden lg:flex"
-          style={{ justifyContent: "center", alignItems: "center" }}
+          style={{ justifyContent: "center", alignItems: "center", transform: "translate(60px, -60px)" }}
         >
           <Image
             src="/logo.png"
