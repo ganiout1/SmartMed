@@ -45,12 +45,12 @@ export function Navbar() {
     >
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         {/* Logo */}
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Image src="/logo.png" alt="SmartMED" width={480} height={144} style={{ objectFit: "contain", height: 120, width: "auto" }} />
+        <Link href="/" className="flex items-center shrink-0">
+          <Image src="/logo.png" alt="SmartMED" width={480} height={144} className="object-contain h-[60px] md:h-[120px] w-auto" />
         </Link>
 
         {/* Desktop Nav */}
-        <nav style={{ display: "flex", alignItems: "center", gap: 36 }} className="hidden md:flex">
+        <nav className="hidden md:flex items-center gap-9">
           {navLinks.map((link) => (
             <a
               key={link.href}
