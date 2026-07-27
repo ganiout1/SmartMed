@@ -64,6 +64,17 @@
   --color-warning: #F59E0B;
   --color-error: #EF4444;
   --color-info: #3B82F6;
+
+  /* ── Landing page AbdiSmart-style tokens ── */
+  --lp-red: #D32F2F;
+  --lp-navy: #0F1F6B;
+  --lp-yellow: #F5C518;
+  --lp-black: #0A0A0A;
+  --lp-white: #FFFFFF;
+  --lp-surface: #F7F7F7;
+  --lp-gray: #5A6272;
+  --lp-gray-dark: #374151;
+  --lp-border: #E5E7EB;
 }
 
 /* ── SmartMed Light Theme (default) ── */
@@ -136,4 +147,68 @@
     background-color: #FFDA99;
     color: #2F2F2F;
   }
+}
+
+/* ── Landing Page: AbdiSmart-style global classes ── */
+@layer components {
+  /* Dot grid background pattern */
+  .dot-grid {
+    background-image: radial-gradient(circle, #0A0A0A 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Pill badge */
+  .lp-pill {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 999px;
+  }
+
+  /* Mark/highlight text */
+  .lp-mark {
+    position: relative;
+    display: inline-block;
+  }
+  .lp-mark::after {
+    content: '';
+    position: absolute;
+    bottom: 0.05em;
+    left: -0.06em;
+    right: -0.06em;
+    height: 0.32em;
+    background: var(--lp-yellow);
+    z-index: -1;
+    border-radius: 2px;
+  }
+
+  /* Lift hover card effect */
+  .lp-lift {
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+  .lp-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+  }
+}
+
+/* ── Marquee animation ── */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee-scroll 28s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
 }

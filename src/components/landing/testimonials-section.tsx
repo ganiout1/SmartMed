@@ -1,137 +1,227 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { TESTIMONIALS } from "@/lib/constants";
-import { AnimatedSection } from "@/components/ui/animated-section";
-import { SectionHeader } from "@/components/ui/section-header";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
+
+const TESTIMONIALS = [
+  {
+    quote:
+      "SmartMED benar-benar mengubah cara saya belajar kedokteran. Materi yang terstruktur dan pengajar yang sabar membuat saya lebih percaya diri menghadapi ujian blok.",
+    name: "Anisa Rahmawati",
+    from: "Mahasiswi FK",
+    to: "Nilai Blok Meningkat Drastis",
+  },
+  {
+    quote:
+      "Simulasi CBT di SmartMED sangat membantu. Soal-soalnya berkualitas dan sangat mirip dengan ujian asli. Saya jadi terbiasa dengan format dan tekanan waktu ujian.",
+    name: "Farhan Pratama",
+    from: "Mahasiswa FK",
+    to: "Peringkat 5 Besar Angkatan",
+  },
+  {
+    quote:
+      "Kelas intensif menjelang OSCE sangat bermanfaat. Latihan keterampilan klinis dengan bimbingan pengajar berpengalaman membuat saya siap menghadapi ujian praktik.",
+    name: "Siti Nurhaliza",
+    from: "Mahasiswi FK",
+    to: "Lulus OSCE dengan Predikat Istimewa",
+  },
+  {
+    quote:
+      "Bimbingan privat di SmartMED sangat fleksibel. Tutor saya memahami kelemahan saya dan membuat rencana belajar yang sesuai. Hasilnya, nilai saya meningkat drastis.",
+    name: "Muhammad Rizki",
+    from: "Mahasiswa FK",
+    to: "Peningkatan Nilai 30% dalam 2 Bulan",
+  },
+  {
+    quote:
+      "Yang saya suka dari SmartMED adalah kelasnya yang kecil. Saya bisa bertanya sepuasnya tanpa merasa canggung. Pengajarnya pun sangat responsif dan supportif.",
+    name: "Dian Permatasari",
+    from: "Mahasiswi FK",
+    to: "Lulus Semua Ujian Blok Semester 1–4",
+  },
+];
+
+const QUOTE_ICON = (
+  <svg width={40} height={40} viewBox="0 0 40 40" fill="none">
+    <text x="0" y="36" fontFamily="Georgia, serif" fontSize="52" fill="#F5C518" opacity="0.35">&ldquo;</text>
+  </svg>
+);
+
+const PREV_ICON = (
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+    <path d="M19 12H5M12 5l-7 7 7 7" />
+  </svg>
+);
+
+const NEXT_ICON = (
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+    <path d="M5 12h14M12 5l7 7-7 7" />
+  </svg>
+);
 
 export function TestimonialsSection() {
-  const [current, setCurrent] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [idx, setIdx] = useState(0);
+  const total = TESTIMONIALS.length;
+  const t = TESTIMONIALS[idx];
 
-  const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % TESTIMONIALS.length);
-  }, []);
-
-  const prev = useCallback(() => {
-    setCurrent(
-      (prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length
-    );
-  }, []);
-
-  // Auto-play
-  useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(next, 5000);
-    return () => clearInterval(interval);
-  }, [isPaused, next]);
-
-  const testimonial = TESTIMONIALS[current];
+  const prev = () => setIdx((i) => (i - 1 + total) % total);
+  const next = () => setIdx((i) => (i + 1) % total);
 
   return (
-    <AnimatedSection
-      id="testimoni"
-      className="scroll-mt-24 bg-surface py-12 md:py-16"
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          badge="Testimoni"
-          title="Apa Kata Alumni Kami"
-          subtitle="Dengarkan pengalaman langsung dari mahasiswa kedokteran yang telah merasakan manfaat bimbingan SmartMed."
-        />
-
+    <section id="testimoni" style={{ background: "#F7F7F7", padding: "100px 0" }}>
+      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px" }}>
+        {/* Header */}
         <div
-          className="mx-auto max-w-3xl"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            gap: 24,
+            marginBottom: 56,
+          }}
         >
-          {/* Testimonial Card */}
-          <div className="relative overflow-hidden rounded-2xl border border-border bg-background p-8 md:p-12">
-            {/* Quote icon */}
-            <Quote
-              size={48}
-              className="absolute top-6 right-8 text-primary/20"
-            />
+          <div>
+            <p
+              style={{
+                fontWeight: 700,
+                fontSize: "0.7rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "#D32F2F",
+                marginBottom: 12,
+              }}
+            >
+              Kata Mereka
+            </p>
+            <h2
+              style={{
+                fontWeight: 900,
+                fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
+                letterSpacing: "-0.04em",
+                lineHeight: 0.95,
+                color: "#0A0A0A",
+              }}
+            >
+              Kisah <span className="lp-mark">sukses</span> alumni.
+            </h2>
+          </div>
+          <p style={{ fontSize: "0.92rem", color: "#5A6272", maxWidth: 280, lineHeight: 1.7 }}>
+            Ratusan mahasiswa telah merasakan manfaat bimbingan SmartMED.
+          </p>
+        </div>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+        {/* Testimonial card */}
+        <div
+          style={{
+            background: "#FFFFFF",
+            borderRadius: 24,
+            border: "1px solid #E5E7EB",
+            padding: "clamp(32px, 5vw, 60px)",
+            position: "relative",
+            minHeight: 280,
+          }}
+        >
+          {/* Quote decoration */}
+          <div style={{ position: "absolute", top: 24, left: 32, opacity: 0.4, fontSize: "5rem", lineHeight: 1, fontFamily: "Georgia, serif", color: "#F5C518", userSelect: "none" }}>
+            &ldquo;
+          </div>
+
+          {/* Quote text */}
+          <p
+            style={{
+              fontSize: "clamp(1rem, 2.2vw, 1.3rem)",
+              fontWeight: 500,
+              color: "#374151",
+              lineHeight: 1.72,
+              marginBottom: 40,
+              paddingTop: 40,
+              fontStyle: "italic",
+            }}
+          >
+            {t.quote}
+          </p>
+
+          {/* Author + nav */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+            <div>
+              <div style={{ fontWeight: 900, fontSize: "1rem", color: "#0A0A0A", letterSpacing: "-0.02em" }}>
+                {t.name}
+              </div>
+              <div style={{ fontSize: "0.82rem", color: "#888", marginTop: 3 }}>
+                <span>{t.from}</span>
+                <span style={{ margin: "0 6px", color: "#ccc" }}>→</span>
+                <span style={{ color: "#D32F2F", fontWeight: 600 }}>{t.to}</span>
+              </div>
+            </div>
+            {/* Arrow nav */}
+            <div style={{ display: "flex", gap: 8 }}>
+              <button
+                onClick={prev}
+                aria-label="Sebelumnya"
+                style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: "50%",
+                  background: "#0A0A0A",
+                  color: "#fff",
+                  border: "none",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = "#D32F2F")}
+                onMouseLeave={e => (e.currentTarget.style.background = "#0A0A0A")}
               >
-                <blockquote className="relative text-base leading-relaxed text-text-secondary md:text-lg">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </blockquote>
-
-                <div className="mt-8 flex items-center gap-4">
-                  {/* Avatar placeholder */}
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 font-semibold text-accent">
-                    {testimonial.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .slice(0, 2)
-                      .join("")}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-text-primary">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-sm text-text-secondary">
-                      {testimonial.university}
-                    </p>
-                    <p className="mt-0.5 text-xs font-medium text-accent">
-                      {testimonial.achievement}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Navigation */}
-            <div className="mt-8 flex items-center justify-between">
-              {/* Dots */}
-              <div className="flex gap-2">
-                {TESTIMONIALS.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrent(index)}
-                    className={cn(
-                      "h-2 rounded-full transition-all",
-                      index === current
-                        ? "w-6 bg-accent"
-                        : "w-2 bg-border hover:bg-primary/40"
-                    )}
-                    aria-label={`Testimoni ${index + 1}`}
-                  />
-                ))}
-              </div>
-
-              {/* Arrows */}
-              <div className="flex gap-2">
-                <button
-                  onClick={prev}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-white transition-colors hover:border-primary/40 hover:bg-primary/5"
-                  aria-label="Testimoni sebelumnya"
-                >
-                  <ChevronLeft size={18} className="text-text-primary" />
-                </button>
-                <button
-                  onClick={next}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-white transition-colors hover:border-primary/40 hover:bg-primary/5"
-                  aria-label="Testimoni berikutnya"
-                >
-                  <ChevronRight size={18} className="text-text-primary" />
-                </button>
-              </div>
+                {PREV_ICON}
+              </button>
+              <button
+                onClick={next}
+                aria-label="Berikutnya"
+                style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: "50%",
+                  background: "#0A0A0A",
+                  color: "#fff",
+                  border: "none",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = "#D32F2F")}
+                onMouseLeave={e => (e.currentTarget.style.background = "#0A0A0A")}
+              >
+                {NEXT_ICON}
+              </button>
             </div>
           </div>
         </div>
+
+        {/* Dot indicators */}
+        <div style={{ display: "flex", gap: 6, justifyContent: "center", marginTop: 20 }}>
+          {TESTIMONIALS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIdx(i)}
+              aria-label={`Testimoni ${i + 1}`}
+              style={{
+                width: i === idx ? 24 : 8,
+                height: 8,
+                borderRadius: 99,
+                background: i === idx ? "#0A0A0A" : "#D1D5DB",
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
+                transition: "width 0.3s, background 0.3s",
+              }}
+            />
+          ))}
+        </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 }

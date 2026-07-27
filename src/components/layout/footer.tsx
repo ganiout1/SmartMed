@@ -1,88 +1,78 @@
-import Link from "next/link";
-import {
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
-import Image from "next/image";
+"use client";
 
-import { FOOTER_LINKS, CONTACT_INFO } from "@/lib/constants";
+import Image from "next/image";
+import Link from "next/link";
+
+const IG_ICON = (
+  <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+    <rect x={2} y={2} width={20} height={20} rx={5} />
+    <circle cx={12} cy={12} r={4} />
+    <circle cx={17.5} cy={6.5} r={1} fill="currentColor" stroke="none" />
+  </svg>
+);
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="border-t border-border bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Grid */}
-        <div className="grid gap-10 py-12 md:py-16 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand Column */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="inline-flex items-center">
-              <div className="flex items-center">
-                <Image src="/logo.png" alt="SmartMED" width={300} height={90} className="object-contain object-left w-28 md:w-40 h-auto" />
-              </div>
-            </Link>
-            <p className="mt-4 text-sm leading-relaxed text-text-secondary max-w-xs">
-              Lembaga bimbingan belajar kedokteran preklinik terpercaya yang
-              membantu mahasiswa meraih prestasi akademik terbaik.
-            </p>
+    <footer style={{ background: "#0A0A0A", color: "#FFFFFF", padding: "40px 0 28px" }}>
+      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px" }}>
+        {/* Top row */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 20,
+            paddingBottom: 28,
+            borderBottom: "1px solid rgba(255,255,255,0.07)",
+          }}
+        >
+          {/* Logo */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <Image src="/logo.png" alt="SmartMED" width={120} height={36} style={{ objectFit: "contain", height: 36, width: "auto", filter: "brightness(0) invert(1)" }} />
+            <div>
+              <div style={{ fontWeight: 900, fontSize: "0.95rem", letterSpacing: "-0.02em", color: "#ffffff" }}>SmartMED</div>
+              <div style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Bimbel Kedokteran</div>
+            </div>
           </div>
 
-          {/* Link Columns */}
-          {FOOTER_LINKS.map((group) => (
-            <div key={group.title}>
-              <h3 className="text-sm font-semibold tracking-wide text-text-primary">
-                {group.title}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {group.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-text-secondary transition-colors hover:text-accent"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          {/* Contact Column */}
-          <div>
-            <h3 className="text-sm font-semibold tracking-wide text-text-primary">
-              Kontak
-            </h3>
-            <ul className="mt-4 space-y-3">
-              {CONTACT_INFO.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    target={item.href.startsWith("http") ? "_blank" : undefined}
-                    rel={
-                      item.href.startsWith("http")
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
-                    className="inline-flex items-center gap-2.5 text-sm text-text-secondary transition-colors hover:text-accent"
-                  >
-                    <item.icon size={15} className="shrink-0" />
-                    {item.value}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {/* Social & contact links */}
+          <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "center" }}>
+            <a
+              href="https://instagram.com/smartmed_edu"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.82rem", color: "rgba(255,255,255,0.38)", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}
+            >
+              {IG_ICON}
+              @smartmed_edu
+            </a>
+            <a
+              href="https://wa.me/6287867141403"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.38)", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}
+            >
+              +62 878-6714-1403
+            </a>
+            <a
+              href="mailto:smartmededu30@gmail.com"
+              style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.38)", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}
+            >
+              smartmededu30@gmail.com
+            </a>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-border py-6">
-          <p className="text-center text-xs text-text-secondary">
-            &copy; {currentYear} SmartMed. Seluruh hak cipta dilindungi
-            undang-undang.
-          </p>
+        {/* Bottom copyright */}
+        <div style={{ paddingTop: 20, fontSize: "0.72rem", color: "rgba(255,255,255,0.18)" }}>
+          © {new Date().getFullYear()} SmartMED. All rights reserved. · Bimbel Kedokteran Mataram, NTB.
         </div>
       </div>
     </footer>

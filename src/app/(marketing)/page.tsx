@@ -1,5 +1,5 @@
 import { HeroSection } from "@/components/landing/hero-section";
-import { AboutSection } from "@/components/landing/about-section";
+import { MarqueeSection } from "@/components/landing/marquee-section";
 import { ProgramsSection } from "@/components/landing/programs-section";
 import { WhySection } from "@/components/landing/why-section";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <AboutSection />
+      <MarqueeSection />
       <ProgramsSection />
       <WhySection />
       <TestimonialsSection />

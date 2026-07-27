@@ -1,103 +1,285 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, ChevronRight, Sparkles } from "lucide-react";
 
+const WA_LINK = "https://wa.me/6287867141403";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-};
+const WA_ICON = (
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  </svg>
+);
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] as const },
-  },
-};
+const ARROW_RIGHT = (
+  <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+    <path d="M5 12h14M12 5l7 7-7 7" />
+  </svg>
+);
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-primary via-primary/50 to-white pt-28 pb-8 md:pt-32 md:pb-12 lg:pt-36 lg:pb-16">
-      {/* Background decorations */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-white/40 blur-[120px]" />
-        <div className="absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full bg-white/40 blur-[100px]" />
-      </div>
+    <section
+      id="tentang"
+      style={{
+        background: "#FFFFFF",
+        minHeight: "100svh",
+        display: "grid",
+        placeItems: "center",
+        paddingTop: 70,
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Dot grid background */}
+      <div
+        aria-hidden="true"
+        className="dot-grid"
+        style={{ position: "absolute", inset: 0, opacity: 0.35, pointerEvents: "none" }}
+      />
+      {/* Yellow blob top right */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "-5%",
+          right: "-14%",
+          width: "56vw",
+          maxWidth: 680,
+          aspectRatio: "1/1",
+          borderRadius: "50%",
+          background: "#F5C518",
+          opacity: 0.2,
+          pointerEvents: "none",
+        }}
+      />
+      {/* Red blob bottom left */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: "-8%",
+          left: "-8%",
+          width: "34vw",
+          maxWidth: 380,
+          aspectRatio: "1/1",
+          borderRadius: "50%",
+          background: "#D32F2F",
+          opacity: 0.07,
+          pointerEvents: "none",
+        }}
+      />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="mx-auto max-w-4xl text-center"
-        >
-          {/* Badge */}
-          <motion.div variants={itemVariants}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-text-primary/10 bg-white px-4 py-1.5 text-sm font-bold text-text-primary shadow-sm">
-              <Sparkles size={14} />
-              Bimbingan Kedokteran Preklinik
+      {/* Main content grid */}
+      <div
+        style={{
+          maxWidth: 1120,
+          width: "100%",
+          margin: "0 auto",
+          padding: "56px 28px",
+          display: "grid",
+          gridTemplateColumns: "1fr",
+          gap: 52,
+          alignItems: "center",
+          position: "relative",
+          zIndex: 1,
+        }}
+        className="lg:grid-cols-[1fr_400px]"
+      >
+        {/* LEFT: Text */}
+        <div>
+          {/* Pill badges */}
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
+            <span className="lp-pill" style={{ background: "#D32F2F", color: "#fff" }}>
+              Bimbel Kedokteran
             </span>
-          </motion.div>
+            <span className="lp-pill" style={{ background: "#0F1F6B", color: "#fff" }}>
+              Pre-Klinik & OSCE & CBT
+            </span>
+          </div>
 
-          {/* Headline */}
-          <motion.h1
-            variants={itemVariants}
-            className="mt-8 text-4xl font-bold leading-[1.1] tracking-tight text-text-primary sm:text-5xl md:text-6xl lg:text-[4rem]"
+          {/* H1 */}
+          <h1
+            style={{
+              fontWeight: 900,
+              fontSize: "clamp(3rem, 8vw, 5.8rem)",
+              letterSpacing: "-0.04em",
+              lineHeight: 0.94,
+              color: "#0A0A0A",
+              marginBottom: 28,
+            }}
           >
-            Kuasai Ilmu Kedokteran{" "}
-            <span className="relative">
-              <span className="relative z-10">Preklinik</span>
-              <span className="absolute bottom-1 left-0 -z-0 h-3 w-full bg-white md:bottom-2 md:h-4" />
-            </span>{" "}
-            dengan Bimbingan Terbaik
-          </motion.h1>
+            Kuasai Ilmu<br />
+            Kedokteran<br />
+            Preklinik<br />
+            <span style={{ fontStyle: "italic", color: "#D32F2F" }}>dengan Bimbingan</span><br />
+            <span style={{ fontStyle: "italic", color: "#D32F2F" }}>Terbaik.</span>
+          </h1>
 
-          {/* Subtext */}
-          <motion.p
-            variants={itemVariants}
-            className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg md:text-xl"
+          {/* Subtitle */}
+          <p
+            style={{
+              fontSize: "1.05rem",
+              color: "#5A6272",
+              lineHeight: 1.72,
+              maxWidth: 460,
+              marginBottom: 40,
+              fontWeight: 400,
+            }}
           >
-            SmartMed membantu mahasiswa kedokteran meraih hasil terbaik dalam
-            ujian blok, OSCE, dan CBT melalui bimbingan terstruktur dari dokter
-            dan tenaga medis profesional.
-          </motion.p>
+            SmartMED membantu mahasiswa kedokteran meraih hasil terbaik dalam ujian blok, OSCE, dan CBT melalui bimbingan terstruktur untuk calon dan tenaga medis profesional.
+          </p>
 
-          {/* CTAs */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
-          >
-            <Link
+          {/* CTA Buttons */}
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 52 }}>
+            <a
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: "#D32F2F",
+                color: "#fff",
+                fontWeight: 600,
+                fontSize: "0.95rem",
+                padding: "15px 30px",
+                borderRadius: 100,
+                textDecoration: "none",
+                transition: "transform 0.2s, box-shadow 0.2s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(211,47,47,0.35)"; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+            >
+              {WA_ICON}
+              Konsultasi Gratis
+            </a>
+            <a
               href="#program"
-              className="group inline-flex items-center gap-2 rounded-2xl bg-text-primary px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-text-primary/20 transition-all hover:bg-text-primary/90 hover:shadow-xl hover:shadow-text-primary/25 active:scale-[0.98]"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                border: "2px solid #E5E7EB",
+                color: "#374151",
+                fontWeight: 500,
+                fontSize: "0.95rem",
+                padding: "15px 26px",
+                borderRadius: 100,
+                textDecoration: "none",
+                transition: "border-color 0.2s, color 0.2s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "#D32F2F"; e.currentTarget.style.color = "#D32F2F"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "#E5E7EB"; e.currentTarget.style.color = "#374151"; }}
             >
               Lihat Program
-              <ArrowRight
-                size={18}
-                className="transition-transform group-hover:translate-x-0.5"
-              />
-            </Link>
-            <Link
-              href="#kontak"
-              className="group inline-flex items-center gap-2 rounded-2xl border border-border bg-white px-7 py-3.5 text-base font-semibold text-text-primary transition-all hover:border-primary hover:bg-primary/5 active:scale-[0.98]"
+              {ARROW_RIGHT}
+            </a>
+          </div>
+
+          {/* Stats bar */}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 28,
+              paddingTop: 24,
+              borderTop: "1px solid #E5E7EB",
+            }}
+          >
+            {[
+              { value: "500+", label: "Alumni" },
+              { value: "95%", label: "Tingkat Kelulusan" },
+              { value: "KKM 80", label: "Standar Nilai" },
+              { value: "4.9★", label: "Rating Kepuasan" },
+            ].map((stat) => (
+              <div key={stat.label}>
+                <div style={{ fontWeight: 900, fontSize: "1.85rem", letterSpacing: "-0.03em", color: "#0A0A0A", lineHeight: 1 }}>
+                  {stat.value}
+                </div>
+                <div style={{ fontSize: "0.78rem", color: "#5A6272", marginTop: 5, fontWeight: 500 }}>
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT: Image circle */}
+        <div
+          className="hidden lg:flex"
+          style={{ justifyContent: "center", alignItems: "center", position: "relative" }}
+        >
+          <div style={{ position: "relative", width: 380, height: 380, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {/* Circle image */}
+            <div
+              style={{
+                width: 360,
+                height: 360,
+                borderRadius: "50%",
+                overflow: "hidden",
+                background: "#F5F5F5",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                border: "3px solid #E5E7EB",
+              }}
             >
-              Hubungi Kami
-              <ChevronRight
-                size={18}
-                className="transition-transform group-hover:translate-x-0.5"
+              <Image
+                src="/logo.png"
+                alt="SmartMED"
+                width={260}
+                height={260}
+                style={{ objectFit: "contain", padding: 32 }}
+                priority
               />
-            </Link>
-          </motion.div>
+            </div>
 
+            {/* Floating badge top right */}
+            <div
+              style={{
+                position: "absolute",
+                top: 16,
+                right: -24,
+                background: "#FFFFFF",
+                border: "1.5px solid #E5E7EB",
+                borderRadius: 12,
+                padding: "10px 18px",
+                boxShadow: "0 6px 20px rgba(0,0,0,0.07)",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#D32F2F", flexShrink: 0, display: "inline-block" }} />
+              <span style={{ fontWeight: 600, fontSize: "0.78rem", color: "#0A0A0A", whiteSpace: "nowrap" }}>
+                Kelas Privat & Grup
+              </span>
+            </div>
 
-        </motion.div>
+            {/* Floating badge bottom left */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 28,
+                left: -28,
+                background: "#0F1F6B",
+                borderRadius: 12,
+                padding: "10px 18px",
+                boxShadow: "0 6px 20px rgba(15,31,107,0.25)",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#F5C518", flexShrink: 0, display: "inline-block" }} />
+              <span style={{ fontWeight: 600, fontSize: "0.78rem", color: "#fff", whiteSpace: "nowrap" }}>
+                SMART-Med CBT
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
