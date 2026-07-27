@@ -7,7 +7,7 @@ const TESTIMONIALS = [
     quote:
       "Selama mengikuti bimbingan SOCA bersama SmartMed, saya mendapatkan pengalaman yang sangat berkesan. Materi yang disampaikan jelas, pembahasannya mudah dipahami, dan pastinya sangat membantu saya dalam mempersiapkan ujian soca. Terima kasih, SmartMed, atas bimbingan dan dukungannya. Semoga ke depannya SmartMed semakin sukses, terus berkembang, dan semakin banyak membantu mahasiswa meraih hasil yang terbaik.",
     name: "Putu Gede Reinanta Widiarsana",
-    from: "Mahasiswa FK",
+    from: "FK Universitas Mataram",
     to: "Nilai sempurna SOCA blok 5",
   },
   {
@@ -35,7 +35,7 @@ const TESTIMONIALS = [
     quote:
       "Selama saya mengikuti smartmed, blok yang dianggap susah menjadi lebih mudah karena pengajarnya bikin paham bukan hapal. Materi yang diajarkan Smartmed sangat ramah dengan maba karena mudah dipahami, Smartmed all the way!🥳",
     name: "I Gede Lio Suipayana",
-    from: "Mahasiswa FK",
+    from: "FK Universitas Mataram",
     to: "Nilai sempurna SOCA",
   },
 ];
@@ -91,7 +91,7 @@ export function TestimonialsSection() {
                 marginBottom: 12,
               }}
             >
-              Kata Mereka
+              Cerita Alumni
             </p>
             <h2
               style={{
@@ -102,12 +102,9 @@ export function TestimonialsSection() {
                 color: "#0A0A0A",
               }}
             >
-              Kisah <span className="lp-mark">sukses</span> alumni.
+              <span className="lp-mark" style={{ color: "#f5b340" }}>SmartMED</span> dimata mereka.
             </h2>
           </div>
-          <p style={{ fontSize: "0.92rem", color: "#5A6272", maxWidth: 280, lineHeight: 1.7 }}>
-            Ratusan mahasiswa telah merasakan manfaat bimbingan SmartMED.
-          </p>
         </div>
 
         {/* Testimonial card */}

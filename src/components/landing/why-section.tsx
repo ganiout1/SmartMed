@@ -57,7 +57,7 @@ export function WhySection() {
               marginBottom: 12,
             }}
           >
-            Kenapa SmartMED?
+            Keunggulan Nyata
           </p>
           <h2
             style={{
@@ -69,7 +69,7 @@ export function WhySection() {
               maxWidth: 600,
             }}
           >
-            Keunggulan yang <span className="lp-mark">nyata.</span>
+            Apa saja <span className="lp-mark" style={{ color: "#f5b340" }}>benefitnya?</span>
           </h2>
         </div>
 

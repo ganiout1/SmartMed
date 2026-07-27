@@ -94,7 +94,7 @@ export function HeroSection() {
               Bimbel Kedokteran
             </span>
             <span className="lp-pill" style={{ background: "#0F1F6B", color: "#fff" }}>
-              Pre-Klinik & OSCE & CBT
+              Pre-Klinik & CBT & SOCA
             </span>
           </div>
 
