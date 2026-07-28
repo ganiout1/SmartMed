@@ -25,12 +25,15 @@ export function HeroSection() {
         background: "#FFFFFF",
         minHeight: "100svh",
         width: "100%",
-        overflowX: "hidden",
-        display: "grid",
-        placeItems: "center",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
         paddingTop: 70,
         position: "relative",
+        overflowClip: "inline",
       }}
+      className="!overflow-x-clip"
     >
       {/* Dot grid background */}
       <div
