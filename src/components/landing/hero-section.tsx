@@ -31,7 +31,6 @@ export function HeroSection() {
         alignItems: "center",
         paddingTop: 70,
         position: "relative",
-        overflowClip: "inline",
       }}
       className="!overflow-x-clip"
     >
