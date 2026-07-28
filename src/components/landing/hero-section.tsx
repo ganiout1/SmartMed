@@ -182,14 +182,14 @@ export function HeroSection() {
         {/* RIGHT: Logo */}
         <div
           className="hidden lg:flex"
-          style={{ justifyContent: "center", alignItems: "center", transform: "translate(400px, -300px)", overflow: "visible" }}
+          style={{ justifyContent: "center", alignItems: "center", transform: "translate(250px, -300px)", overflow: "visible" }}
         >
           <Image
             src="/logo.png"
             alt="SmartMED"
             width={3040}
             height={912}
-            style={{ objectFit: "contain", width: 1520, height: "auto", flexShrink: 0 }}
+            style={{ objectFit: "contain", width:1520, height: "auto", flexShrink: 0 }}
             priority
           />
         </div>
