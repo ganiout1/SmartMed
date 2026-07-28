@@ -108,6 +108,23 @@ export function Navbar() {
             Daftar Sekarang
           </a>
         </nav>
+
+        {/* Mobile menu button */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-sm border border-gray-200 cursor-pointer pointer-events-auto"
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? (
+            <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth={2.5}>
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth={2.5}>
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            </svg>
+          )}
+        </button>
       </div>
 
       {/* Mobile menu */}
