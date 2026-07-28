@@ -181,7 +181,7 @@ export function HeroSection() {
 
         {/* RIGHT: Logo - absolute on mobile, grid column on desktop */}
         <div
-          className="absolute top-[-60px] right-[-5px] w-[168px] md:top-[-120px] md:right-[40px] md:w-[260px] lg:relative lg:top-auto lg:right-auto lg:w-auto lg:flex lg:justify-center lg:items-center lg:translate-x-[250px] lg:translate-y-[-300px]"
+          className="absolute top-[-60px] right-[-5px] w-[168px] md:top-[-120px] md:right-[15px] md:w-[260px] lg:relative lg:top-auto lg:right-auto lg:w-auto lg:flex lg:justify-center lg:items-center lg:translate-x-[250px] lg:translate-y-[-300px]"
           style={{ overflow: "visible", zIndex: 2 }}
         >
           <Image
