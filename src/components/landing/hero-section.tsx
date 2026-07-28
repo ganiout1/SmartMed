@@ -179,17 +179,17 @@ export function HeroSection() {
         </div>
 
 
-        {/* RIGHT: Logo */}
+        {/* RIGHT: Logo - absolute on mobile, grid column on desktop */}
         <div
-          className="flex justify-center items-center lg:translate-x-[250px] lg:translate-y-[-300px]"
-          style={{ overflow: "visible" }}
+          className="absolute top-[80px] right-[16px] w-[120px] lg:relative lg:top-auto lg:right-auto lg:w-auto lg:flex lg:justify-center lg:items-center lg:translate-x-[250px] lg:translate-y-[-300px]"
+          style={{ overflow: "visible", zIndex: 2 }}
         >
           <Image
             src="/logo.png"
             alt="SmartMED"
             width={3040}
             height={912}
-            className="w-[200px] lg:w-[1520px]"
+            className="w-[120px] lg:w-[1520px]"
             style={{ objectFit: "contain", height: "auto", flexShrink: 0 }}
             priority
           />
