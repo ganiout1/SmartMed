@@ -120,11 +120,9 @@ export function TestimonialsSection() {
             borderRadius: 16,
             border: "1px solid #E5E7EB",
             overflow: "hidden",
-            display: "flex",
-            flexDirection: "row",
             minHeight: 320,
           }}
-          className="flex-col md:flex-row"
+          className="flex flex-col md:flex-row"
         >
           {/* Large photo */}
           {t.photo ? (
