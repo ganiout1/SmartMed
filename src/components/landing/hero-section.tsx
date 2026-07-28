@@ -189,7 +189,7 @@ export function HeroSection() {
             alt="SmartMED"
             width={3040}
             height={912}
-            style={{ objectFit: "contain", width: "100%", height: "auto", maxWidth: 1520 }}
+            style={{ objectFit: "contain", width: 1520, height: "auto", flexShrink: 0 }}
             priority
           />
         </div>
