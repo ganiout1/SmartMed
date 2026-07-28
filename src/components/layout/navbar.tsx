@@ -17,9 +17,9 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    const handleOpenMenu = () => setMenuOpen(true);
-    window.addEventListener("open-mobile-menu", handleOpenMenu);
-    return () => window.removeEventListener("open-mobile-menu", handleOpenMenu);
+    const handleToggleMenu = () => setMenuOpen((prev) => !prev);
+    window.addEventListener("toggle-mobile-menu", handleToggleMenu);
+    return () => window.removeEventListener("toggle-mobile-menu", handleToggleMenu);
   }, []);
 
   useEffect(() => {
