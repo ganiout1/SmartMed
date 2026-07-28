@@ -37,22 +37,6 @@ export function HeroSection() {
         className="dot-grid"
         style={{ position: "absolute", inset: 0, opacity: 0.35, pointerEvents: "none" }}
       />
-      {/* Yellow blob top right */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "-5%",
-          right: "-14%",
-          width: "56vw",
-          maxWidth: 680,
-          aspectRatio: "1/1",
-          borderRadius: "50%",
-          background: "#F5C518",
-          opacity: 0.2,
-          pointerEvents: "none",
-        }}
-      />
       {/* Red blob bottom left */}
       <div
         aria-hidden="true"
@@ -184,6 +168,17 @@ export function HeroSection() {
           className="absolute top-[-60px] right-[-5px] w-[168px] md:top-[-160px] md:right-[-20px] md:w-[364px] lg:relative lg:top-auto lg:right-auto lg:w-auto lg:flex lg:justify-center lg:items-center lg:translate-x-[250px] lg:translate-y-[-300px]"
           style={{ overflow: "visible", zIndex: 2 }}
         >
+          {/* Yellow blob tied to the logo */}
+          <div
+            aria-hidden="true"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none w-[250px] md:w-[450px] lg:w-[680px]"
+            style={{
+              aspectRatio: "1/1",
+              background: "#F5C518",
+              opacity: 0.2,
+              zIndex: -1,
+            }}
+          />
           <Image
             src="/logo.png"
             alt="SmartMED"
