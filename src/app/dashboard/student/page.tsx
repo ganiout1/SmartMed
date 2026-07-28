@@ -65,25 +65,27 @@ export default async function StudentDashboardPage({
     totalQuizzesCount = count || 0;
   }
 
-  // Group attempts by quiz_id — keep only the latest attempt per quiz
-  const latestAttemptPerQuiz = new Map<string, number>();
+  // Group attempts by quiz_id — keep only the highest score per quiz
+  const bestScorePerQuiz = new Map<string, number>();
   if (attempts) {
     attempts.forEach((a: any) => {
-      // Already ordered by completed_at DESC, so first occurrence per quiz_id is the latest
-      if (!latestAttemptPerQuiz.has(a.quiz_id)) {
-        latestAttemptPerQuiz.set(a.quiz_id, a.score || 0);
+      const currentBest = bestScorePerQuiz.get(a.quiz_id);
+      const score = a.score || 0;
+      if (currentBest === undefined || score > currentBest) {
+        bestScorePerQuiz.set(a.quiz_id, score);
       }
     });
   }
 
-  const completedQuizzesCount = latestAttemptPerQuiz.size;
+  const completedQuizzesCount = bestScorePerQuiz.size;
   const pendingQuizzesCount = Math.max(0, totalQuizzesCount - completedQuizzesCount);
 
   let averageScore = 0;
-  if (latestAttemptPerQuiz.size > 0) {
-    const scores = Array.from(latestAttemptPerQuiz.values());
+  if (bestScorePerQuiz.size > 0) {
+    const scores = Array.from(bestScorePerQuiz.values());
     const totalScore = scores.reduce((sum, score) => sum + score, 0);
-    averageScore = Math.round(totalScore / scores.length);
+    // Keep 2 decimal places if needed, but rounding to integer is safer unless specified otherwise
+    averageScore = Number((totalScore / scores.length).toFixed(2));
   }
 
   let avgColor = "";
