@@ -181,7 +181,7 @@ export function HeroSection() {
 
         {/* RIGHT: Logo - absolute on mobile, grid column on desktop */}
         <div
-          className="absolute top-[-60px] right-[-5px] w-[168px] md:top-[-120px] md:right-[15px] md:w-[520px] lg:relative lg:top-auto lg:right-auto lg:w-auto lg:flex lg:justify-center lg:items-center lg:translate-x-[250px] lg:translate-y-[-300px]"
+          className="absolute top-[-60px] right-[-5px] w-[168px] md:top-[-120px] md:right-[15px] md:w-[364px] lg:relative lg:top-auto lg:right-auto lg:w-auto lg:flex lg:justify-center lg:items-center lg:translate-x-[250px] lg:translate-y-[-300px]"
           style={{ overflow: "visible", zIndex: 2 }}
         >
           <Image
@@ -189,7 +189,7 @@ export function HeroSection() {
             alt="SmartMED"
             width={3040}
             height={912}
-            className="w-[168px] md:w-[520px] lg:w-[1520px]"
+            className="w-[168px] md:w-[364px] lg:w-[1520px]"
             style={{ objectFit: "contain", height: "auto", flexShrink: 0 }}
             priority
           />
