@@ -46,7 +46,7 @@ export function Navbar() {
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0" style={{ textDecoration: "none" }}>
-          <span style={{ fontWeight: 900, fontSize: "1.3rem", color: "#0F1F6B", letterSpacing: "-0.02em" }}>Smart<span style={{ color: "#f5b340" }}>MED</span></span>
+          <span style={{ fontWeight: 900, fontSize: "1.3rem", color: "#0A0A0A", letterSpacing: "-0.02em" }}>Smart<span style={{ color: "#2E7D32" }}>MED</span></span>
         </Link>
 
         {/* Desktop Nav */}
