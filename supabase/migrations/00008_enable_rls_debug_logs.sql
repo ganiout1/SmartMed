@@ -1,0 +1,1 @@
+ALTER TABLE public.debug_logs ENABLE ROW LEVEL SECURITY;
