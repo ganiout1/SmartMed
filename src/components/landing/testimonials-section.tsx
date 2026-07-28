@@ -10,7 +10,6 @@ const TESTIMONIALS = [
     name: "Putu Gede Reinanta Widiarsana",
     from: "FK Universitas Mataram",
     to: "Nilai sempurna SOCA blok 5",
-    photo: "/testimonials/Reinanta.jpg",
   },
   {
     quote:
@@ -18,7 +17,6 @@ const TESTIMONIALS = [
     name: "Areta Salsabila Sukri",
     from: "FK Universitas Mataram",
     to: "Nilai sempurna SOCA",
-    photo: "/testimonials/Areta.jpg",
   },
   {
     quote:
@@ -26,7 +24,6 @@ const TESTIMONIALS = [
     name: "Pasha Mozza Suzetta",
     from: "FK Universitas Mataram",
     to: "Top 5 Anatomi blok 4, Nilai SOCA 93.3",
-    photo: "/testimonials/Mozza.jpg",
   },
   {
     quote:
@@ -34,7 +31,6 @@ const TESTIMONIALS = [
     name: "Ni Made Florena Saras Gayatri",
     from: "FK Universitas Mataram",
     to: "Top 2 Neuroanatomi, Nilai sempurna SOCA, One-Shoot blok 4",
-    photo: null,
   },
   {
     quote:
@@ -42,7 +38,6 @@ const TESTIMONIALS = [
     name: "I Gede Lio Suipayana",
     from: "FK Universitas Mataram",
     to: "Nilai sempurna SOCA",
-    photo: "/testimonials/Suipayana.jpg",
   },
 ];
 
@@ -124,45 +119,6 @@ export function TestimonialsSection() {
           }}
           className="flex flex-col md:flex-row"
         >
-          {/* Large photo */}
-          {t.photo ? (
-            <div
-              style={{
-                background: "#f5b340",
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "center",
-                flexShrink: 0,
-                overflow: "hidden",
-                position: "relative",
-              }}
-              className="w-full md:w-[280px] h-[300px] md:h-auto"
-            >
-              <Image
-                src={t.photo}
-                alt={t.name}
-                width={280}
-                height={360}
-                style={{ objectFit: "cover", width: "100%", height: "100%", objectPosition: "top center" }}
-              />
-            </div>
-          ) : (
-            <div
-              style={{
-                background: "linear-gradient(135deg, #f5b340 0%, #e0a030 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-              }}
-              className="w-full md:w-[280px] h-[200px] md:h-auto"
-            >
-              <span style={{ fontWeight: 900, fontSize: "4rem", color: "rgba(255,255,255,0.5)" }}>
-                {t.name.split(" ").map(w => w[0]).slice(0, 2).join("")}
-              </span>
-            </div>
-          )}
-
           {/* Content */}
           <div style={{ flex: 1, padding: "clamp(28px, 4vw, 48px)", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
             {/* Quote decoration */}
