@@ -3,6 +3,8 @@
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 
+const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2MB
+
 export async function createQuestion(quizId: string, formData: FormData) {
   const questionText = formData.get("questionText") as string;
   const optionA = formData.get("optionA") as string;
@@ -24,6 +26,9 @@ export async function createQuestion(quizId: string, formData: FormData) {
 
   // Handle Question Image Upload
   if (questionImage && questionImage.size > 0) {
+    if (questionImage.size > MAX_IMAGE_SIZE) {
+      return { error: "Ukuran gambar soal terlalu besar. Maksimal 2MB." };
+    }
     const fileExt = questionImage.name.split(".").pop();
     const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
     const filePath = `questions/${fileName}`;
@@ -45,6 +50,9 @@ export async function createQuestion(quizId: string, formData: FormData) {
 
   // Handle Image Upload if exists
   if (explanationImage && explanationImage.size > 0) {
+    if (explanationImage.size > MAX_IMAGE_SIZE) {
+      return { error: "Ukuran gambar pembahasan terlalu besar. Maksimal 2MB." };
+    }
     const fileExt = explanationImage.name.split(".").pop();
     const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
     const filePath = `explanations/${fileName}`;
@@ -111,6 +119,9 @@ export async function updateQuestion(quizId: string, questionId: string, formDat
   if (removeQuestionImage) {
     questionImageUrl = "";
   } else if (questionImage && questionImage.size > 0) {
+    if (questionImage.size > MAX_IMAGE_SIZE) {
+      return { error: "Ukuran gambar soal terlalu besar. Maksimal 2MB." };
+    }
     const fileExt = questionImage.name.split(".").pop();
     const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
     const filePath = `questions/${fileName}`;
@@ -133,6 +144,9 @@ export async function updateQuestion(quizId: string, questionId: string, formDat
   if (removeImage) {
     explanationImageUrl = "";
   } else if (explanationImage && explanationImage.size > 0) {
+    if (explanationImage.size > MAX_IMAGE_SIZE) {
+      return { error: "Ukuran gambar pembahasan terlalu besar. Maksimal 2MB." };
+    }
     const fileExt = explanationImage.name.split(".").pop();
     const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
     const filePath = `explanations/${fileName}`;

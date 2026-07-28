@@ -3,6 +3,8 @@
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 
+const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2MB
+
 export async function createCourse(formData: FormData) {
   const title = formData.get("title") as string;
   const description = formData.get("description") as string;
@@ -16,6 +18,9 @@ export async function createCourse(formData: FormData) {
   let banner_url = "/default-banner.png";
 
   if (bannerFile && bannerFile.size > 0) {
+    if (bannerFile.size > MAX_IMAGE_SIZE) {
+      return { error: "Ukuran gambar banner terlalu besar. Maksimal 2MB." };
+    }
     const fileExt = bannerFile.name.split('.').pop();
     const fileName = `${Math.random()}.${fileExt}`;
     const { data: uploadData, error: uploadError } = await supabase.storage
@@ -57,6 +62,9 @@ export async function updateCourse(id: string, formData: FormData) {
   let updatePayload: any = { title, description, updated_at: new Date().toISOString() };
 
   if (bannerFile && bannerFile.size > 0) {
+    if (bannerFile.size > MAX_IMAGE_SIZE) {
+      return { error: "Ukuran gambar banner terlalu besar. Maksimal 2MB." };
+    }
     const fileExt = bannerFile.name.split('.').pop();
     const fileName = `${Math.random()}.${fileExt}`;
     const { data: uploadData, error: uploadError } = await supabase.storage
