@@ -17,6 +17,12 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
+    const handleOpenMenu = () => setMenuOpen(true);
+    window.addEventListener("open-mobile-menu", handleOpenMenu);
+    return () => window.removeEventListener("open-mobile-menu", handleOpenMenu);
+  }, []);
+
+  useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
@@ -100,24 +106,6 @@ export function Navbar() {
             Daftar Sekarang
           </a>
         </nav>
-
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden"
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 8, color: "#0A0A0A" }}
-          aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
-        >
-          {menuOpen ? (
-            <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
-              <path d="M3 12h18M3 6h18M3 18h18" />
-            </svg>
-          )}
-        </button>
       </div>
 
       {/* Mobile menu */}

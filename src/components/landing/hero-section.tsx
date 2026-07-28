@@ -179,6 +179,18 @@ export function HeroSection() {
               zIndex: -1,
             }}
           />
+          
+          {/* Hamburger menu button for mobile (moved here from Navbar) */}
+          <button
+            onClick={() => window.dispatchEvent(new Event("open-mobile-menu"))}
+            className="md:hidden absolute top-[-10px] right-[20px] z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-sm border border-gray-200"
+            aria-label="Buka menu"
+          >
+            <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth={2.5}>
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            </svg>
+          </button>
+
           <Image
             src="/logo.png"
             alt="SmartMED"
