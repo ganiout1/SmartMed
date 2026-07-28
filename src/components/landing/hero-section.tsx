@@ -24,11 +24,12 @@ export function HeroSection() {
       style={{
         background: "#FFFFFF",
         minHeight: "100svh",
+        width: "100%",
+        overflowX: "hidden",
         display: "grid",
         placeItems: "center",
         paddingTop: 70,
         position: "relative",
-        overflow: "hidden",
       }}
     >
       {/* Dot grid background */}
