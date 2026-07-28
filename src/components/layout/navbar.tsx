@@ -48,7 +48,7 @@ export function Navbar() {
         backdropFilter: scrolled ? "blur(16px)" : "none",
         boxShadow: scrolled ? "0 1px 4px rgba(0,0,0,0.06)" : "none",
         borderBottom: scrolled ? "1px solid #E5E7EB" : "1px solid transparent",
-        pointerEvents: (!scrolled && !menuOpen) ? "none" : "auto",
+        pointerEvents: !scrolled ? "none" : "auto",
       }}
     >
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -112,6 +112,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       <div
+        className="pointer-events-auto"
         style={{
           overflow: "hidden",
           maxHeight: menuOpen ? 400 : 0,
