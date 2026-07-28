@@ -29,7 +29,7 @@ export function Footer() {
         >
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <Image src="/logo.png" alt="SmartMED" width={120} height={36} style={{ objectFit: "contain", height: 36, width: "auto", filter: "brightness(0) invert(1)" }} />
+            <Image src="/logo.png" alt="SmartMED" width={360} height={108} style={{ objectFit: "contain", height: 108, width: "auto", filter: "brightness(0) invert(1)" }} />
             <div>
               <div style={{ fontWeight: 900, fontSize: "0.95rem", letterSpacing: "-0.02em", color: "#ffffff" }}>SmartMED</div>
               <div style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Bimbel Kedokteran</div>
