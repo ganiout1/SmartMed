@@ -69,6 +69,21 @@ export async function resetPassword(formData: FormData) {
   return { success: "Tautan pengaturan ulang kata sandi telah dikirim ke email Anda." };
 }
 
+export async function updatePassword(formData: FormData) {
+  const supabase = await createClient();
+  const password = formData.get("password") as string;
+
+  const { error } = await supabase.auth.updateUser({
+    password: password,
+  });
+
+  if (error) {
+    return { error: "Gagal memperbarui kata sandi: " + error.message };
+  }
+
+  return { success: true };
+}
+
 export async function logout() {
   const supabase = await createClient();
   
