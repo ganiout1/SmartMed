@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   BookOpen,
+  User,
 } from "lucide-react";
 
 import {
@@ -30,6 +31,11 @@ const lecturerMenu = [
     title: "Kursus Saya",
     url: "/dashboard/lecturer/courses",
     icon: BookOpen,
+  },
+  {
+    title: "Profil",
+    url: "/dashboard/lecturer/profile",
+    icon: User,
   },
 ];
 
