@@ -19,7 +19,7 @@ export default async function LecturerCoursesPage() {
 
   if (!user) return null;
 
-  // Fetch courses assigned to the lecturer
+  // Fetch courses assigned to the lecturer explicitly using inner join
   const { data: courses } = await supabase
     .from("courses")
     .select(`
@@ -28,8 +28,10 @@ export default async function LecturerCoursesPage() {
       description,
       banner_url,
       course_members (count),
-      quizzes (count)
+      quizzes (count),
+      course_lecturers!inner(lecturer_id)
     `)
+    .eq("course_lecturers.lecturer_id", user.id)
     .order("title");
 
   const transformedCourses = (courses || []).map((c: any) => ({

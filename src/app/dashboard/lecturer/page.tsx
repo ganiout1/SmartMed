@@ -9,22 +9,40 @@ async function getLecturerStats() {
 
   if (!user) return { courses: 0, quizzes: 0, questions: 0, students: 0, attempts: 0 };
 
-  // Note: Due to RLS, counting these directly only returns what the lecturer has access to!
-  
-  const [courses, quizzes, questions, students, attempts] = await Promise.all([
-    supabase.from("courses").select("*", { count: "exact", head: true }),
-    supabase.from("quizzes").select("*", { count: "exact", head: true }),
-    supabase.from("questions").select("*", { count: "exact", head: true }),
-    supabase.from("course_members").select("student_id", { count: "exact", head: true }),
-    supabase.from("quiz_attempts").select("*", { count: "exact", head: true })
+  // Explicitly fetch courses assigned to this lecturer
+  const { data: assignments } = await supabase
+    .from("course_lecturers")
+    .select("course_id")
+    .eq("lecturer_id", user.id);
+
+  const courseIds = assignments?.map((a) => a.course_id) || [];
+
+  if (courseIds.length === 0) {
+    return { courses: 0, quizzes: 0, questions: 0, students: 0, attempts: 0 };
+  }
+
+  const [quizzes, questions, students] = await Promise.all([
+    supabase.from("quizzes").select("*", { count: "exact", head: true }).in("course_id", courseIds),
+    supabase.from("questions").select("*", { count: "exact", head: true }).in("course_id", courseIds),
+    supabase.from("course_members").select("student_id", { count: "exact", head: true }).in("course_id", courseIds)
   ]);
+  
+  // For quiz attempts, it's better to let RLS handle it, or we fetch the user's quizzes first.
+  const { data: myQuizzes } = await supabase.from("quizzes").select("id").in("course_id", courseIds);
+  const quizIds = myQuizzes?.map(q => q.id) || [];
+  
+  let attemptsCount = 0;
+  if (quizIds.length > 0) {
+    const { count } = await supabase.from("quiz_attempts").select("*", { count: "exact", head: true }).in("quiz_id", quizIds);
+    attemptsCount = count || 0;
+  }
 
   return {
-    courses: courses.count || 0,
+    courses: courseIds.length,
     quizzes: quizzes.count || 0,
     questions: questions.count || 0,
     students: students.count || 0,
-    attempts: attempts.count || 0,
+    attempts: attemptsCount,
   };
 }
 
