@@ -97,9 +97,9 @@ export default function LoginPage() {
       <CardFooter className="justify-center border-t border-border/40 pt-6 pb-2">
         <p className="text-sm text-text-secondary text-center">
           Belum memiliki akun?{" "}
-          <Link href="/register" className="font-semibold text-accent hover:underline">
+          <a href="https://wa.me/6287867141403" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent hover:underline">
             Daftar di sini
-          </Link>
+          </a>
         </p>
       </CardFooter>
     </Card>
