@@ -182,7 +182,7 @@ export default async function StudentRankingIndexPage() {
               {uniqueQuizzes.map((quiz: any) => (
                 <Card key={quiz.id} className="hover:border-primary/50 transition-colors shadow-sm">
                   <CardHeader className="pb-3">
-                    <CardDescription className="text-xs font-medium text-primary uppercase tracking-wider line-clamp-1">
+                    <CardDescription className="text-xs font-medium text-amber-600 uppercase tracking-wider line-clamp-1">
                       {quiz.courses?.title || "Unknown Course"}
                     </CardDescription>
                     <CardTitle className="text-lg leading-tight line-clamp-2">
