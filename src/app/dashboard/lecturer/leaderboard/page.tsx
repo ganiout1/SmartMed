@@ -15,8 +15,14 @@ export default async function LeaderboardPage() {
 
   if (!user) return redirect("/login");
 
+  // Initialize Admin Client to bypass RLS for a truly global leaderboard
+  const supabaseAdmin = createAdminClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+
   // 1. Get all quizzes (Global leaderboard)
-  const { data: quizzes } = await supabase
+  const { data: quizzes } = await supabaseAdmin
     .from("quizzes")
     .select("id, title");
 
@@ -36,11 +42,6 @@ export default async function LeaderboardPage() {
   }
 
   // 3. Get all quiz attempts with scores (using Admin Client to bypass RLS on profiles)
-  const supabaseAdmin = createAdminClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  );
-
   const { data: attempts } = await supabaseAdmin
     .from("quiz_attempts")
     .select(`
