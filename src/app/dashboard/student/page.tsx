@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { createClient as createAdminClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import Image from "next/image";
 import { BookOpen, FileQuestion, CheckCircle, Clock, TrendingUp, ArrowRight, Lock, Unlock, Search } from "lucide-react";
@@ -22,7 +23,13 @@ export default async function StudentDashboardPage({
 
   if (!user) return null;
 
-  let courseQuery = supabase
+  // Use admin client to fetch courses with quizzes so RLS doesn't block quiz counts for locked courses
+  const supabaseAdmin = createAdminClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+
+  let courseQuery = supabaseAdmin
     .from("courses")
     .select(`
       id,
