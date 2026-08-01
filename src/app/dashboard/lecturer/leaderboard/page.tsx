@@ -15,31 +15,10 @@ export default async function LeaderboardPage() {
 
   if (!user) return redirect("/login");
 
-  // 1. Get courses taught by this lecturer
-  const { data: assignments } = await supabase
-    .from("course_lecturers")
-    .select("course_id")
-    .eq("lecturer_id", user.id);
-
-  const courseIds = assignments?.map((a) => a.course_id) || [];
-
-  if (courseIds.length === 0) {
-    return (
-      <div className="space-y-6 max-w-7xl mx-auto">
-        <SectionHeader
-          title="Peringkat Mahasiswa"
-          subtitle="Daftar nilai rata-rata dan kuis yang dikerjakan mahasiswa."
-        />
-        <LeaderboardTable data={[]} />
-      </div>
-    );
-  }
-
-  // 2. Get quizzes for these courses
+  // 1. Get all quizzes (Global leaderboard)
   const { data: quizzes } = await supabase
     .from("quizzes")
-    .select("id, title")
-    .in("course_id", courseIds);
+    .select("id, title");
 
   const quizIds = quizzes?.map((q) => q.id) || [];
   const quizMap = new Map(quizzes?.map(q => [q.id, q.title]));
@@ -136,7 +115,7 @@ export default async function LeaderboardPage() {
     <div className="space-y-6 max-w-7xl mx-auto">
       <SectionHeader
         title="Peringkat Mahasiswa"
-        subtitle="Daftar nilai rata-rata tertinggi dari semua kuis yang dikerjakan mahasiswa di kelas Anda."
+        subtitle="Daftar nilai rata-rata tertinggi dari semua kuis yang dikerjakan mahasiswa di platform ini."
       />
       <LeaderboardTable data={leaderboardData} />
     </div>
