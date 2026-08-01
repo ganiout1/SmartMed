@@ -79,7 +79,8 @@ export async function updateSession(request: NextRequest) {
     }
 
     // Redirect logged-in users away from auth pages to their dashboard
-    if (isAuthRoute) {
+    // BUT allow /update-password so the password reset flow works
+    if (isAuthRoute && !request.nextUrl.pathname.startsWith("/update-password")) {
       return redirectWithCookies(`/dashboard/${role}`);
     }
     
