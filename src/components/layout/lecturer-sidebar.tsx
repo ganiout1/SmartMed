@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   BookOpen,
   User,
+  Trophy,
 } from "lucide-react";
 
 import {
@@ -36,6 +37,11 @@ const lecturerMenu = [
     title: "Profil",
     url: "/dashboard/lecturer/profile",
     icon: User,
+  },
+  {
+    title: "Peringkat Mahasiswa",
+    url: "/dashboard/lecturer/leaderboard",
+    icon: Trophy,
   },
 ];
 
