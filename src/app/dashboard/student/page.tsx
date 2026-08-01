@@ -29,7 +29,7 @@ export default async function StudentDashboardPage({
       title,
       description,
       banner_url,
-      quizzes (count)
+      quizzes (id, status)
     `)
     .order("title");
 
@@ -136,7 +136,7 @@ export default async function StudentDashboardPage({
       title: c.title,
       description: c.description,
       banner_url: c.banner_url,
-      quiz_count: c.quizzes[0]?.count || 0,
+      quiz_count: (c.quizzes || []).filter((q: any) => q.status === "published").length,
       isEnrolled: enrolledCourseIds.includes(c.id),
     };
   });
