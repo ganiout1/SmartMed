@@ -2,9 +2,30 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
+import { rateLimit, RATE_LIMITS } from "@/lib/rate-limit";
+
+/**
+ * Get client IP from server action context.
+ */
+async function getActionClientIp(): Promise<string> {
+  const headersList = await headers();
+  return (
+    headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    headersList.get("x-real-ip") ||
+    "unknown"
+  );
+}
 
 export async function login(formData: FormData) {
+  // Rate limit check
+  const ip = await getActionClientIp();
+  const result = rateLimit(`action:login:${ip}`, RATE_LIMITS.login);
+  if (!result.success) {
+    return { error: "Terlalu banyak percobaan login. Silakan coba lagi dalam 1 menit." };
+  }
+
   const supabase = await createClient();
 
   const data = {
@@ -23,6 +44,13 @@ export async function login(formData: FormData) {
 }
 
 export async function register(formData: FormData) {
+  // Rate limit check
+  const ip = await getActionClientIp();
+  const result = rateLimit(`action:signup:${ip}`, RATE_LIMITS.signup);
+  if (!result.success) {
+    return { error: "Terlalu banyak percobaan pendaftaran. Silakan coba lagi dalam 1 menit." };
+  }
+
   const supabase = await createClient();
 
   const email = formData.get("email") as string;
@@ -55,6 +83,13 @@ export async function register(formData: FormData) {
 }
 
 export async function resetPassword(formData: FormData) {
+  // Rate limit check
+  const ip = await getActionClientIp();
+  const result = rateLimit(`action:forgot:${ip}`, RATE_LIMITS.forgotPassword);
+  if (!result.success) {
+    return { error: "Terlalu banyak permintaan reset kata sandi. Silakan coba lagi dalam 1 menit." };
+  }
+
   const supabase = await createClient();
   const email = formData.get("email") as string;
 
@@ -92,3 +127,4 @@ export async function logout() {
   revalidatePath("/", "layout");
   redirect("/login");
 }
+
