@@ -45,8 +45,8 @@ const CHECK_ICON = (
 
 export function ProgramsSection() {
   return (
-    <section id="program" style={{ background: "#F7F7F7", padding: "100px 0" }}>
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px" }}>
+    <section id="program" style={{ background: "#F7F7F7" }} className="lp-section">
+      <div className="lp-container">
         {/* Header */}
         <div
           style={{
@@ -92,7 +92,7 @@ export function ProgramsSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(240px, 100%), 1fr))",
             gap: 14,
           }}
         >

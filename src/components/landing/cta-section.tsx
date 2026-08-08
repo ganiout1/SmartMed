@@ -8,8 +8,8 @@ const WA_ICON = (
 
 export function CTASection() {
   return (
-    <section style={{ background: "#F7F7F7", padding: "80px 0" }}>
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px" }}>
+    <section style={{ background: "#F7F7F7" }} className="lp-section">
+      <div className="lp-container">
         <div
           style={{
             background: "#0F1F6B",

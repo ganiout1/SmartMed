@@ -31,8 +31,8 @@ export function HeroSection() {
         alignItems: "center",
         paddingTop: 70,
         position: "relative",
+        overflowX: "clip",
       }}
-      className="!overflow-x-clip"
     >
       {/* Dot grid background */}
       <div
@@ -40,7 +40,7 @@ export function HeroSection() {
         className="dot-grid"
         style={{ position: "absolute", inset: 0, opacity: 0.35, pointerEvents: "none" }}
       />
-      {/* Red blob bottom left */}
+      {/* Yellow blob bottom left */}
       <div
         aria-hidden="true"
         style={{
@@ -63,14 +63,10 @@ export function HeroSection() {
           maxWidth: 1120,
           width: "100%",
           margin: "0 auto",
-          padding: "56px 28px",
-          display: "grid",
-          gap: 52,
-          alignItems: "center",
           position: "relative",
           zIndex: 1,
         }}
-        className="grid-cols-[1fr] lg:grid-cols-[1fr_420px]"
+        className="hero-grid"
       >
         {/* LEFT: Text */}
         <div>
@@ -86,38 +82,38 @@ export function HeroSection() {
 
           {/* H1 */}
           <h1
+            className="hero-heading"
             style={{
               fontWeight: 800,
-              fontSize: "clamp(3rem, 8vw, 5.8rem)",
               letterSpacing: "-0.04em",
               lineHeight: 0.94,
               color: "#0A0A0A",
               marginBottom: 28,
             }}
           >
-            Kuasai Ilmu<br />
-            Kedokteran<br />
-            Preklinik<br />
-            <span style={{ fontStyle: "italic", color: "#f5b340" }}>dengan Bimbingan</span><br />
-            <span style={{ fontStyle: "italic", color: "#f5b340" }}>Terbaik.</span>
+            Partner Belajar<br />
+            Mahasiswa<br />
+            Kedokteran.<br />
+            <span style={{ fontStyle: "italic", color: "#f5b340" }}>Target Lulus</span><br />
+            <span style={{ fontStyle: "italic", color: "#f5b340" }}>One Shot.</span>
           </h1>
 
           {/* Subtitle */}
           <p
+            className="hero-subtitle"
             style={{
-              fontSize: "1.05rem",
               color: "#5A6272",
               lineHeight: 1.72,
-              maxWidth: 460,
+              maxWidth: 520,
               marginBottom: 40,
               fontWeight: 400,
             }}
           >
-            SmartMED membantu mahasiswa kedokteran meraih hasil terbaik dalam ujian blok, OSCE, dan CBT melalui bimbingan terstruktur untuk calon dan tenaga medis profesional.
+            Bimbingan intensif dari asisten dosen dan lulusan top angkatan. Materi dibedah tuntas, soal dilatih, sampai kamu siap tempur dan lulus tanpa remedial dalam ujian blok, praktikum, dan SOCA.
           </p>
 
           {/* CTA Buttons */}
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 52 }}>
+          <div className="hero-cta" style={{ marginBottom: 52 }}>
             <a
               href={WA_LINK}
               target="_blank"
@@ -125,6 +121,7 @@ export function HeroSection() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: 8,
                 background: "#f5b340",
                 color: "#0A0A0A",
@@ -146,6 +143,7 @@ export function HeroSection() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: 6,
                 border: "2px solid #E5E7EB",
                 color: "#374151",
@@ -168,18 +166,24 @@ export function HeroSection() {
 
         {/* RIGHT: Logo - absolute on mobile, grid column on desktop */}
         <div
-          className="absolute top-[-60px] right-[-5px] w-[168px] md:top-[-160px] md:right-[-20px] md:w-[364px] lg:relative lg:top-auto lg:right-auto lg:w-auto lg:flex lg:justify-center lg:items-center lg:translate-x-[250px] lg:translate-y-[-300px]"
+          className="hero-logo-wrapper"
           style={{ overflow: "visible", zIndex: 2 }}
         >
           {/* Yellow blob tied to the logo */}
           <div
             aria-hidden="true"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none w-[250px] md:w-[450px] lg:w-[680px]"
+            className="hero-blob"
             style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              borderRadius: "50%",
               aspectRatio: "1/1",
               background: "#F5C518",
               opacity: 0.2,
               zIndex: -1,
+              pointerEvents: "none",
             }}
           />
 
@@ -188,7 +192,7 @@ export function HeroSection() {
             alt="SmartMED"
             width={3040}
             height={912}
-            className="w-[168px] md:w-[364px] lg:w-[1520px]"
+            className="hero-logo-img"
             style={{ objectFit: "contain", height: "auto", flexShrink: 0 }}
             priority
           />
@@ -198,3 +202,4 @@ export function HeroSection() {
     </section>
   );
 }
+

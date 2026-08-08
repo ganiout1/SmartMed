@@ -73,8 +73,8 @@ const CONTACTS = [
 
 export function ContactSection() {
   return (
-    <section id="kontak" style={{ background: "#FFFFFF", padding: "100px 0" }}>
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px" }}>
+    <section id="kontak" style={{ background: "#FFFFFF" }} className="lp-section">
+      <div className="lp-container">
         {/* Header */}
         <div
           style={{
@@ -120,7 +120,7 @@ export function ContactSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(240px, 100%), 1fr))",
             gap: 14,
           }}
         >
@@ -142,21 +142,9 @@ export function ContactSection() {
                 textDecoration: "none",
               }}
             >
-              {/* Watermark number */}
               <div
                 aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  bottom: "-0.1em",
-                  right: "-0.05em",
-                  fontWeight: 900,
-                  fontSize: "9rem",
-                  letterSpacing: "-0.05em",
-                  color: "rgba(0,0,0,0.04)",
-                  lineHeight: 1,
-                  userSelect: "none",
-                  pointerEvents: "none",
-                }}
+                className="lp-watermark"
               >
                 {c.num}
               </div>

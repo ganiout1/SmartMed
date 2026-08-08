@@ -43,8 +43,8 @@ const ADVANTAGES = [
 
 export function WhySection() {
   return (
-    <section id="keunggulan" style={{ background: "#FFFFFF", padding: "100px 0" }}>
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px" }}>
+    <section id="keunggulan" style={{ background: "#FFFFFF" }} className="lp-section">
+      <div className="lp-container">
         {/* Header */}
         <div style={{ marginBottom: 60 }}>
           <p
@@ -77,7 +77,7 @@ export function WhySection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(260px, 100%), 1fr))",
             gap: 14,
           }}
         >
@@ -94,21 +94,9 @@ export function WhySection() {
                 overflow: "hidden",
               }}
             >
-              {/* Big watermark number */}
               <div
                 aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  bottom: "-0.1em",
-                  right: "-0.05em",
-                  fontWeight: 900,
-                  fontSize: "9rem",
-                  letterSpacing: "-0.05em",
-                  color: "rgba(0,0,0,0.04)",
-                  lineHeight: 1,
-                  userSelect: "none",
-                  pointerEvents: "none",
-                }}
+                className="lp-watermark"
               >
                 {adv.num}
               </div>

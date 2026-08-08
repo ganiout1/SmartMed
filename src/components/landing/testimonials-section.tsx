@@ -68,8 +68,8 @@ export function TestimonialsSection() {
   const next = () => setIdx((i) => (i + 1) % total);
 
   return (
-    <section id="testimoni" style={{ background: "#F7F7F7", padding: "100px 0" }}>
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 28px" }}>
+    <section id="testimoni" style={{ background: "#F7F7F7" }} className="lp-section">
+      <div className="lp-container">
         {/* Header */}
         <div
           style={{
