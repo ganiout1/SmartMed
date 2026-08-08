@@ -260,6 +260,8 @@ html, body {
   top: -40px;
   right: -5px;
   width: 140px;
+  opacity: 0.15;
+  z-index: -1 !important;
 }
 
 .hero-blob {
@@ -329,6 +331,8 @@ html, body {
     justify-content: center;
     align-items: center;
     transform: translate(250px, -300px);
+    opacity: 1;
+    z-index: 2 !important;
   }
 
   .hero-blob {
@@ -373,9 +377,11 @@ html, body {
   }
 
   .hero-logo-wrapper {
-    top: -30px;
-    right: -5px;
-    width: 110px;
+    top: -20px;
+    right: -20px;
+    width: 130px;
+    opacity: 0.15;
+    z-index: -1 !important;
   }
 
   .hero-blob {
