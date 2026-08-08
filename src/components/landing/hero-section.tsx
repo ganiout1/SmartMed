@@ -71,7 +71,7 @@ export function HeroSection() {
         {/* LEFT: Text */}
         <div>
           {/* Pill badges */}
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
+          <div className="hero-pills">
             <span className="lp-pill" style={{ background: "#f5b340", color: "#0A0A0A" }}>
               Bimbel Kedokteran
             </span>

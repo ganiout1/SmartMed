@@ -240,6 +240,13 @@ html, body {
   grid-template-columns: 1fr;
 }
 
+.hero-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
 .hero-heading {
   font-size: clamp(2.2rem, 7vw, 5.8rem);
 }
@@ -260,8 +267,7 @@ html, body {
   top: -40px;
   right: -5px;
   width: 140px;
-  opacity: 0.15;
-  z-index: -1 !important;
+  z-index: 2;
 }
 
 .hero-blob {
@@ -331,8 +337,6 @@ html, body {
     justify-content: center;
     align-items: center;
     transform: translate(250px, -300px);
-    opacity: 1;
-    z-index: 2 !important;
   }
 
   .hero-blob {
@@ -380,8 +384,11 @@ html, body {
     top: -20px;
     right: -20px;
     width: 130px;
-    opacity: 0.15;
-    z-index: -1 !important;
+  }
+
+  .hero-pills {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .hero-blob {
