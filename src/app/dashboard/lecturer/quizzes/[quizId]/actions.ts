@@ -11,12 +11,13 @@ export async function createQuestion(quizId: string, formData: FormData) {
   const optionB = formData.get("optionB") as string;
   const optionC = formData.get("optionC") as string;
   const optionD = formData.get("optionD") as string;
+  const optionE = formData.get("optionE") as string;
   const correctOption = formData.get("correctOption") as string;
   const explanationText = formData.get("explanationText") as string;
   const explanationImage = formData.get("explanationImage") as File | null;
   const questionImage = formData.get("questionImage") as File | null;
 
-  if (!questionText || !optionA || !optionB || !optionC || !optionD || !correctOption) {
+  if (!questionText || !optionA || !optionB || !optionC || !optionD || !optionE || !correctOption) {
     return { error: "Semua isian wajib (kecuali pembahasan) harus diisi" };
   }
 
@@ -79,6 +80,7 @@ export async function createQuestion(quizId: string, formData: FormData) {
     option_b: optionB,
     option_c: optionC,
     option_d: optionD,
+    option_e: optionE,
     correct_option: correctOption,
     explanation_text: explanationText || null,
     explanation_image_url: explanationImageUrl,
@@ -99,6 +101,7 @@ export async function updateQuestion(quizId: string, questionId: string, formDat
   const optionB = formData.get("optionB") as string;
   const optionC = formData.get("optionC") as string;
   const optionD = formData.get("optionD") as string;
+  const optionE = formData.get("optionE") as string;
   const correctOption = formData.get("correctOption") as string;
   const explanationText = formData.get("explanationText") as string;
   const explanationImage = formData.get("explanationImage") as File | null;
@@ -108,7 +111,7 @@ export async function updateQuestion(quizId: string, questionId: string, formDat
   const removeQuestionImage = formData.get("removeQuestionImage") === "true";
   const existingQuestionImageUrl = formData.get("existingQuestionImageUrl") as string;
 
-  if (!questionText || !optionA || !optionB || !optionC || !optionD || !correctOption) {
+  if (!questionText || !optionA || !optionB || !optionC || !optionD || !optionE || !correctOption) {
     return { error: "Semua isian wajib (kecuali pembahasan) harus diisi" };
   }
 
@@ -174,6 +177,7 @@ export async function updateQuestion(quizId: string, questionId: string, formDat
       option_b: optionB,
       option_c: optionC,
       option_d: optionD,
+      option_e: optionE,
       correct_option: correctOption,
       explanation_text: explanationText || null,
       explanation_image_url: explanationImageUrl || null,

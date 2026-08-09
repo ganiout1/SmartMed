@@ -34,6 +34,7 @@ type QuestionData = {
   option_b: string;
   option_c: string;
   option_d: string;
+  option_e?: string | null;
   correct_option: string;
   explanation_text: string | null;
   explanation_image_url: string | null;
@@ -230,6 +231,11 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
                       <div className={`p-2 rounded border ${q.correct_option === 'D' ? 'bg-green-50/50 border-green-200' : ''}`}>
                         <span className="font-semibold mr-2">D.</span> {q.option_d}
                       </div>
+                      {q.option_e !== undefined && q.option_e !== null && (
+                        <div className={`p-2 rounded border ${q.correct_option === 'E' ? 'bg-green-50/50 border-green-200' : ''}`}>
+                          <span className="font-semibold mr-2">E.</span> {q.option_e}
+                        </div>
+                      )}
                     </div>
 
                     {(q.explanation_text || q.explanation_image_url) && (
@@ -325,6 +331,10 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
                 <Label>Pilihan D</Label>
                 <Input name="optionD" required />
               </div>
+              <div className="space-y-2 col-span-2 md:col-span-1">
+                <Label>Pilihan E</Label>
+                <Input name="optionE" required />
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -338,6 +348,7 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
                   <SelectItem value="B">Pilihan B</SelectItem>
                   <SelectItem value="C">Pilihan C</SelectItem>
                   <SelectItem value="D">Pilihan D</SelectItem>
+                  <SelectItem value="E">Pilihan E</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -439,6 +450,10 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
                 <Label>Pilihan D</Label>
                 <Input name="optionD" required defaultValue={selectedQuestion?.option_d} />
               </div>
+              <div className="space-y-2 col-span-2 md:col-span-1">
+                <Label>Pilihan E</Label>
+                <Input name="optionE" required defaultValue={selectedQuestion?.option_e || ""} />
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -452,6 +467,7 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
                   <SelectItem value="B">Pilihan B</SelectItem>
                   <SelectItem value="C">Pilihan C</SelectItem>
                   <SelectItem value="D">Pilihan D</SelectItem>
+                  <SelectItem value="E">Pilihan E</SelectItem>
                 </SelectContent>
               </Select>
             </div>

@@ -4,26 +4,35 @@ import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 
 export async function assignLecturer(formData: FormData) {
-  const courseId = formData.get("courseId") as string;
+  const courseIds = formData.getAll("courseIds") as string[];
   const lecturerId = formData.get("lecturerId") as string;
 
-  if (!courseId || !lecturerId) {
-    return { error: "Kursus dan dosen wajib dipilih" };
+  if (!courseIds || courseIds.length === 0 || !lecturerId) {
+    return { error: "Dosen dan minimal satu kursus wajib dipilih" };
   }
 
   const supabase = await createClient();
 
-  const { error } = await supabase.from("course_lecturers").insert({
-    course_id: courseId,
-    lecturer_id: lecturerId,
-  });
+  // Get existing assignments to prevent unique constraint errors
+  const { data: existing } = await supabase
+    .from("course_lecturers")
+    .select("course_id")
+    .eq("lecturer_id", lecturerId);
 
-  if (error) {
-    // Unique violation means already assigned
-    if (error.code === "23505") {
-      return { error: "Dosen sudah ditugaskan ke kursus ini" };
+  const existingCourseIds = existing?.map((e) => e.course_id) || [];
+  
+  const toInsert = courseIds
+    .filter(id => !existingCourseIds.includes(id))
+    .map(id => ({
+      course_id: id,
+      lecturer_id: lecturerId
+    }));
+
+  if (toInsert.length > 0) {
+    const { error } = await supabase.from("course_lecturers").insert(toInsert);
+    if (error) {
+      return { error: error.message };
     }
-    return { error: error.message };
   }
 
   revalidatePath("/dashboard/admin/assignments");

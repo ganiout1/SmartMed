@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, X } from "lucide-react";
 import { toast } from "sonner";
 import { assignLecturer, unassignLecturer } from "@/app/dashboard/admin/assignments/actions";
+import { Checkbox } from "@/components/ui/checkbox";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -98,6 +99,24 @@ export function AssignmentManagement({
     setLoading(false);
   };
 
+  const groupedAssignments = assignments.reduce((acc, curr) => {
+    if (!acc[curr.lecturer_id]) {
+      acc[curr.lecturer_id] = {
+        lecturer_id: curr.lecturer_id,
+        lecturer_name: curr.lecturer_name,
+        courses: [],
+      };
+    }
+    acc[curr.lecturer_id].courses.push({
+      course_id: curr.course_id,
+      course_title: curr.course_title,
+      created_at: curr.created_at,
+    });
+    return acc;
+  }, {} as Record<string, { lecturer_id: string; lecturer_name: string; courses: { course_id: string; course_title: string; created_at: string }[] }>);
+
+  const groupedArray = Object.values(groupedAssignments);
+
   return (
     <div className="space-y-4 bg-background p-6 rounded-lg border">
       <div className="flex justify-between items-center">
@@ -112,40 +131,47 @@ export function AssignmentManagement({
         <Table>
           <TableHeader className="bg-muted/50">
             <TableRow>
-              <TableHead>Nama Kursus</TableHead>
               <TableHead>Dosen Pengampu</TableHead>
-              <TableHead>Tanggal Assign</TableHead>
-              <TableHead className="text-right">Aksi</TableHead>
+              <TableHead>Kursus yang Ditugaskan</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {assignments.length === 0 ? (
+            {groupedArray.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={4} className="h-24 text-center">
+                <TableCell colSpan={2} className="h-24 text-center">
                   Belum ada dosen yang ditugaskan.
                 </TableCell>
               </TableRow>
             ) : (
-              assignments.map((assignment) => (
-                <TableRow key={`${assignment.course_id}-${assignment.lecturer_id}`}>
-                  <TableCell className="font-medium">{assignment.course_title}</TableCell>
-                  <TableCell>
-                    <Badge variant="secondary">{assignment.lecturer_name}</Badge>
+              groupedArray.map((group) => (
+                <TableRow key={group.lecturer_id}>
+                  <TableCell className="font-medium align-top py-4">
+                    {group.lecturer_name}
                   </TableCell>
-                  <TableCell>
-                    {new Date(assignment.created_at).toLocaleDateString("id-ID")}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button
-                      variant="destructive"
-                      size="icon"
-                      onClick={() => {
-                        setSelectedAssignment(assignment);
-                        setIsDeleteOpen(true);
-                      }}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+                  <TableCell className="py-4">
+                    <div className="flex flex-wrap gap-2">
+                      {group.courses.map((course) => (
+                        <div key={course.course_id} className="flex items-center gap-1 bg-secondary text-secondary-foreground px-2.5 py-1 rounded-md text-sm">
+                          <span>{course.course_title}</span>
+                          <button
+                            type="button"
+                            className="ml-1 text-muted-foreground hover:text-destructive transition-colors"
+                            onClick={() => {
+                              setSelectedAssignment({
+                                course_id: course.course_id,
+                                lecturer_id: group.lecturer_id,
+                                course_title: course.course_title,
+                                lecturer_name: group.lecturer_name,
+                                created_at: course.created_at,
+                              });
+                              setIsDeleteOpen(true);
+                            }}
+                          >
+                            <X className="h-3 w-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
                   </TableCell>
                 </TableRow>
               ))
@@ -180,19 +206,17 @@ export function AssignmentManagement({
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="courseId">Pilih Kursus</Label>
-              <Select name="courseId" required>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Kursus..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {courses.map((c) => (
-                    <SelectItem key={c.id} value={c.id}>
+              <Label>Pilih Kursus</Label>
+              <div className="border rounded-md p-4 h-[200px] overflow-y-auto space-y-4">
+                {courses.map((c) => (
+                  <div key={c.id} className="flex items-center space-x-2">
+                    <Checkbox id={`course-${c.id}`} name="courseIds" value={c.id} />
+                    <Label htmlFor={`course-${c.id}`} className="font-normal cursor-pointer leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                       {c.title}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                    </Label>
+                  </div>
+                ))}
+              </div>
             </div>
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setIsAddOpen(false)} disabled={loading}>
