@@ -31,6 +31,7 @@ interface Question {
   option_b: string;
   option_c: string;
   option_d: string;
+  option_e?: string | null;
   explanation_image_url?: string | null;
   question_image_url?: string | null;
 }
@@ -239,6 +240,7 @@ export function ExamInterface({
                   { id: "B", text: currentQuestion.option_b },
                   { id: "C", text: currentQuestion.option_c },
                   { id: "D", text: currentQuestion.option_d },
+                  ...(currentQuestion.option_e ? [{ id: "E", text: currentQuestion.option_e }] : []),
                 ].map((opt) => (
                   <div key={opt.id} className="flex items-center space-x-2 w-full">
                     <RadioGroupItem 

@@ -37,7 +37,7 @@ export default async function CBTAttemptPage({
   // 2. Fetch Questions
   const { data: questions } = await supabase
     .from("questions")
-    .select("id, question_text, option_a, option_b, option_c, option_d, explanation_image_url, question_image_url")
+    .select("id, question_text, option_a, option_b, option_c, option_d, option_e, explanation_image_url, question_image_url")
     .eq("quiz_id", quiz.id)
     .order("created_at", { ascending: true }); // By default order by creation
 
