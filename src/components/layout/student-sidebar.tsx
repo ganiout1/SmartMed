@@ -8,6 +8,7 @@ import {
   History,
   User,
   Trophy,
+  BarChart,
 } from "lucide-react";
 
 import {
@@ -42,6 +43,11 @@ const studentMenu = [
     title: "Profile",
     url: "/dashboard/student/profile",
     icon: User,
+  },
+  {
+    title: "Analisis",
+    url: "/dashboard/student/analysis",
+    icon: BarChart,
   },
 ];
 
