@@ -45,7 +45,7 @@ export default async function StudentHistoryDetailPage({
     .select(`
       id, selected_option, is_correct,
       questions (
-        id, question_text, option_a, option_b, option_c, option_d,
+        id, question_text, option_a, option_b, option_c, option_d, option_e,
         correct_option, explanation_text, explanation_image_url
       )
     `)
