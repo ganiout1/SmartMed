@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { Plus, Trash2, Edit2, Image as ImageIcon, X } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
+import imageCompression from "browser-image-compression";
 import { createQuestion, updateQuestion, deleteQuestion } from "@/app/dashboard/lecturer/quizzes/[quizId]/actions";
 
 import { Button } from "@/components/ui/button";
@@ -107,10 +108,34 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
     if (questionFileInputRef.current) questionFileInputRef.current.value = "";
   };
 
+  const compressImage = async (file: File): Promise<File> => {
+    const options = {
+      maxSizeMB: 0.2, // Compress to max ~200KB
+      maxWidthOrHeight: 1280,
+      useWebWorker: true,
+    };
+    try {
+      return await imageCompression(file, options);
+    } catch {
+      return file; // fallback to original if compression fails
+    }
+  };
+
+  const compressFormImages = async (formData: FormData, fieldNames: string[]) => {
+    for (const fieldName of fieldNames) {
+      const file = formData.get(fieldName) as File | null;
+      if (file && file.size > 0) {
+        const compressed = await compressImage(file);
+        formData.set(fieldName, compressed, compressed.name);
+      }
+    }
+  };
+
   const handleAddSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     const formData = new FormData(e.currentTarget);
+    await compressFormImages(formData, ["questionImage", "explanationImage"]);
     const result = await createQuestion(quizId, formData);
 
     if (result.error) {
@@ -129,6 +154,7 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
     if (!selectedQuestion) return;
     setLoading(true);
     const formData = new FormData(e.currentTarget);
+    await compressFormImages(formData, ["questionImage", "explanationImage"]);
     if (removeExistingImage) {
       formData.append("removeImage", "true");
     }
