@@ -107,24 +107,28 @@ export function HistoryAnswersFilter({ answers }: { answers: any[] }) {
                         return (
                           <div
                             key={opt.label}
-                            className={`p-3 rounded-md ${bgClass} flex items-start justify-between gap-2 min-w-0`}
+                            className={`p-3 rounded-md ${bgClass} flex flex-col items-start gap-2 min-w-0`}
                           >
-                            <div className="min-w-0 flex-1">
+                            <div className="min-w-0 w-full">
                               <span className="font-semibold mr-2">{opt.label}.</span>
                               <span className="break-all">{opt.text}</span>
                             </div>
-                            {isStudentChoice && (
-                              <Badge
-                                variant="outline"
-                                className={`shrink-0 ${isCorrectChoice ? "text-green-700" : "text-red-700"}`}
-                              >
-                                Jawaban Anda
-                              </Badge>
-                            )}
-                            {isCorrectChoice && isUnanswered && (
-                              <Badge variant="outline" className="shrink-0 text-amber-700">
-                                Tidak Dijawab
-                              </Badge>
+                            {(isStudentChoice || (isCorrectChoice && isUnanswered)) && (
+                              <div className="flex flex-wrap gap-2 mt-1">
+                                {isStudentChoice && (
+                                  <Badge
+                                    variant="outline"
+                                    className={`shrink-0 ${isCorrectChoice ? "text-green-700 bg-green-50" : "text-red-700 bg-red-50"}`}
+                                  >
+                                    Jawaban Anda
+                                  </Badge>
+                                )}
+                                {isCorrectChoice && isUnanswered && (
+                                  <Badge variant="outline" className="shrink-0 text-amber-700 bg-amber-50">
+                                    Tidak Dijawab
+                                  </Badge>
+                                )}
+                              </div>
                             )}
                           </div>
                         );
