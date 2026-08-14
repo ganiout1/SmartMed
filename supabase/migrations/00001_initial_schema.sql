@@ -66,7 +66,7 @@ CREATE TABLE public.questions (
     option_b TEXT NOT NULL,
     option_c TEXT NOT NULL,
     option_d TEXT NOT NULL,
-    correct_option CHAR(1) NOT NULL CHECK (correct_option IN ('A', 'B', 'C', 'D')),
+    correct_option CHAR(1) NOT NULL CHECK (correct_option IN ('A', 'B', 'C', 'D', 'E')),
     explanation_text TEXT,
     explanation_image_url TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
