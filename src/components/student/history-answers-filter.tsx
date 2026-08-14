@@ -107,22 +107,22 @@ export function HistoryAnswersFilter({ answers }: { answers: any[] }) {
                         return (
                           <div
                             key={opt.label}
-                            className={`p-3 rounded-md ${bgClass} flex items-center justify-between`}
+                            className={`p-3 rounded-md ${bgClass} flex items-start justify-between gap-2 min-w-0`}
                           >
-                            <div>
+                            <div className="min-w-0 flex-1">
                               <span className="font-semibold mr-2">{opt.label}.</span>
-                              {opt.text}
+                              <span className="break-words">{opt.text}</span>
                             </div>
                             {isStudentChoice && (
                               <Badge
                                 variant="outline"
-                                className={isCorrectChoice ? "text-green-700" : "text-red-700"}
+                                className={`shrink-0 ${isCorrectChoice ? "text-green-700" : "text-red-700"}`}
                               >
                                 Jawaban Anda
                               </Badge>
                             )}
                             {isCorrectChoice && isUnanswered && (
-                              <Badge variant="outline" className="text-amber-700">
+                              <Badge variant="outline" className="shrink-0 text-amber-700">
                                 Tidak Dijawab
                               </Badge>
                             )}

@@ -134,23 +134,23 @@ export default async function QuizReviewPage({
                       const isThisSelected = selectedOption === opt;
                       const isThisCorrect = q.correct_option === opt;
 
-                      let boxClass = "p-3 rounded-md border flex items-center justify-between";
+                      let boxClass = "p-3 rounded-md border flex items-start justify-between gap-2 min-w-0";
                       if (isThisCorrect) {
-                        boxClass += " bg-green-50 border-green-300 font-medium text-green-900"; // Always highlight correct answer
+                        boxClass += " bg-green-50 border-green-300 font-medium text-green-900";
                       } else if (isThisSelected && !isThisCorrect) {
-                        boxClass += " bg-red-50 border-red-300 text-red-900"; // Highlight wrong selected answer
+                        boxClass += " bg-red-50 border-red-300 text-red-900";
                       } else {
                         boxClass += " bg-background text-muted-foreground";
                       }
 
                       return (
                         <div key={opt} className={boxClass}>
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold">{opt}.</span>
-                            <span>{String(optionText)}</span>
+                          <div className="min-w-0 flex-1">
+                            <span className="font-bold">{opt}.</span>{" "}
+                            <span className="break-words">{String(optionText)}</span>
                           </div>
-                          {isThisCorrect && <CheckCircle className="w-4 h-4 text-green-600" />}
-                          {isThisSelected && !isThisCorrect && <XCircle className="w-4 h-4 text-red-600" />}
+                          {isThisCorrect && <CheckCircle className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />}
+                          {isThisSelected && !isThisCorrect && <XCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />}
                         </div>
                       );
                     })}
