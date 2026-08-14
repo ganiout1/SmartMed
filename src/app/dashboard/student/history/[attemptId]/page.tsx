@@ -44,7 +44,7 @@ export default async function StudentHistoryDetailPage({
 
   const { data: questions } = await supabase
     .from("questions")
-    .select("id, question_text, option_a, option_b, option_c, option_d, option_e, correct_option, explanation_text, explanation_image_url")
+    .select("id, question_text, option_a, option_b, option_c, option_d, option_e, correct_option, explanation_text, explanation_image_url, question_image_url")
     .eq("quiz_id", quizId)
     .order("created_at", { ascending: true });
 
