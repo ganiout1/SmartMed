@@ -95,6 +95,7 @@ export function HistoryAnswersFilter({ answers }: { answers: any[] }) {
                       ].map((opt) => {
                         const isStudentChoice = answer.selected_option === opt.label;
                         const isCorrectChoice = q.correct_option === opt.label;
+                        const isUnanswered = !answer.selected_option;
 
                         let bgClass = "border";
                         if (isCorrectChoice) {
@@ -118,6 +119,11 @@ export function HistoryAnswersFilter({ answers }: { answers: any[] }) {
                                 className={isCorrectChoice ? "text-green-700" : "text-red-700"}
                               >
                                 Jawaban Anda
+                              </Badge>
+                            )}
+                            {isCorrectChoice && isUnanswered && (
+                              <Badge variant="outline" className="text-amber-700">
+                                Tidak Dijawab
                               </Badge>
                             )}
                           </div>

@@ -87,7 +87,7 @@ CREATE TABLE public.answers (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     attempt_id UUID REFERENCES public.quiz_attempts(id) ON DELETE CASCADE NOT NULL,
     question_id UUID REFERENCES public.questions(id) ON DELETE CASCADE NOT NULL,
-    selected_option CHAR(1) CHECK (selected_option IN ('A', 'B', 'C', 'D')),
+    selected_option CHAR(1) CHECK (selected_option IN ('A', 'B', 'C', 'D', 'E')),
     is_correct BOOLEAN,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     UNIQUE (attempt_id, question_id)

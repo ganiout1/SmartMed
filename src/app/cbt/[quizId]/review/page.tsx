@@ -129,7 +129,7 @@ export default async function QuizReviewPage({
 
                   {/* Options */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pl-6 mb-6">
-                    {['A', 'B', 'C', 'D'].map((opt) => {
+                    {['A', 'B', 'C', 'D', ...(q.option_e ? ['E'] : [])].map((opt) => {
                       const optionText = q[`option_${opt.toLowerCase()}` as keyof typeof q];
                       const isThisSelected = selectedOption === opt;
                       const isThisCorrect = q.correct_option === opt;

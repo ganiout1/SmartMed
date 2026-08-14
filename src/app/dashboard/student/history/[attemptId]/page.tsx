@@ -39,18 +39,30 @@ export default async function StudentHistoryDetailPage({
   const quiz = attempt.quizzes as any;
   const isPassed = attempt.score !== null && attempt.score >= quiz.passing_score;
 
-  // 2. Fetch Answers and join with Questions
-  const { data: answers } = await supabase
+  // 2. Fetch ALL questions for this quiz, then match with student answers
+  const quizId = quiz.id;
+
+  const { data: questions } = await supabase
+    .from("questions")
+    .select("id, question_text, option_a, option_b, option_c, option_d, option_e, correct_option, explanation_text, explanation_image_url")
+    .eq("quiz_id", quizId)
+    .order("created_at", { ascending: true });
+
+  const { data: rawAnswers } = await supabase
     .from("answers")
-    .select(`
-      id, selected_option, is_correct,
-      questions (
-        id, question_text, option_a, option_b, option_c, option_d, option_e,
-        correct_option, explanation_text, explanation_image_url
-      )
-    `)
-    .eq("attempt_id", attemptId)
-    .order("created_at", { ascending: true }); // Simplification for display order
+    .select("id, question_id, selected_option, is_correct")
+    .eq("attempt_id", attemptId);
+
+  // Merge: every question gets an entry, even if the student didn't answer it
+  const answers = (questions || []).map((q) => {
+    const studentAnswer = (rawAnswers || []).find((a) => a.question_id === q.id);
+    return {
+      id: studentAnswer?.id || q.id,
+      selected_option: studentAnswer?.selected_option || null,
+      is_correct: studentAnswer?.is_correct ?? false,
+      questions: q,
+    };
+  });
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
