@@ -147,7 +147,7 @@ export default async function QuizReviewPage({
                         <div key={opt} className={boxClass}>
                           <div className="min-w-0 flex-1">
                             <span className="font-bold">{opt}.</span>{" "}
-                            <span className="break-words">{String(optionText)}</span>
+                            <span className="break-all">{String(optionText)}</span>
                           </div>
                           {isThisCorrect && <CheckCircle className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />}
                           {isThisSelected && !isThisCorrect && <XCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />}

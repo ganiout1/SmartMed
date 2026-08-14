@@ -111,7 +111,7 @@ export function HistoryAnswersFilter({ answers }: { answers: any[] }) {
                           >
                             <div className="min-w-0 flex-1">
                               <span className="font-semibold mr-2">{opt.label}.</span>
-                              <span className="break-words">{opt.text}</span>
+                              <span className="break-all">{opt.text}</span>
                             </div>
                             {isStudentChoice && (
                               <Badge

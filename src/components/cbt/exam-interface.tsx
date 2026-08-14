@@ -250,7 +250,7 @@ export function ExamInterface({
                     />
                     <Label
                       htmlFor={`option-${opt.id}`}
-                      className={`flex-1 flex items-start gap-3 py-2 px-3 rounded-lg cursor-pointer transition-all min-w-0 ${
+                      className={`flex-1 flex items-start gap-3 py-2 px-3 rounded-lg cursor-pointer transition-all min-w-0 overflow-hidden ${
                         answers[currentQuestion.id] === opt.id
                           ? "border border-primary bg-primary/5 shadow-sm"
                           : "hover:bg-muted/50 border border-transparent"
@@ -263,7 +263,7 @@ export function ExamInterface({
                       }`}>
                         {opt.id}
                       </span>
-                      <span className="text-sm leading-relaxed pt-0.5 break-words min-w-0">{opt.text}</span>
+                      <span className="text-sm leading-relaxed pt-0.5 break-all min-w-0">{opt.text}</span>
                     </Label>
                   </div>
                 ))}

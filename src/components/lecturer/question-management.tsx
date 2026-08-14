@@ -245,21 +245,21 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
                     )}
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pl-6">
-                      <div className={`p-2 rounded border min-w-0 ${q.correct_option === 'A' ? 'bg-green-50/50 border-green-200' : ''}`}>
-                        <span className="font-semibold mr-2">A.</span> <span className="break-words">{q.option_a}</span>
+                      <div className={`p-2 rounded border min-w-0 overflow-hidden ${q.correct_option === 'A' ? 'bg-green-50/50 border-green-200' : ''}`}>
+                        <span className="font-semibold mr-2">A.</span> <span className="break-all">{q.option_a}</span>
                       </div>
-                      <div className={`p-2 rounded border min-w-0 ${q.correct_option === 'B' ? 'bg-green-50/50 border-green-200' : ''}`}>
-                        <span className="font-semibold mr-2">B.</span> <span className="break-words">{q.option_b}</span>
+                      <div className={`p-2 rounded border min-w-0 overflow-hidden ${q.correct_option === 'B' ? 'bg-green-50/50 border-green-200' : ''}`}>
+                        <span className="font-semibold mr-2">B.</span> <span className="break-all">{q.option_b}</span>
                       </div>
-                      <div className={`p-2 rounded border min-w-0 ${q.correct_option === 'C' ? 'bg-green-50/50 border-green-200' : ''}`}>
-                        <span className="font-semibold mr-2">C.</span> <span className="break-words">{q.option_c}</span>
+                      <div className={`p-2 rounded border min-w-0 overflow-hidden ${q.correct_option === 'C' ? 'bg-green-50/50 border-green-200' : ''}`}>
+                        <span className="font-semibold mr-2">C.</span> <span className="break-all">{q.option_c}</span>
                       </div>
-                      <div className={`p-2 rounded border min-w-0 ${q.correct_option === 'D' ? 'bg-green-50/50 border-green-200' : ''}`}>
-                        <span className="font-semibold mr-2">D.</span> <span className="break-words">{q.option_d}</span>
+                      <div className={`p-2 rounded border min-w-0 overflow-hidden ${q.correct_option === 'D' ? 'bg-green-50/50 border-green-200' : ''}`}>
+                        <span className="font-semibold mr-2">D.</span> <span className="break-all">{q.option_d}</span>
                       </div>
                       {q.option_e !== undefined && q.option_e !== null && (
-                        <div className={`p-2 rounded border min-w-0 ${q.correct_option === 'E' ? 'bg-green-50/50 border-green-200' : ''}`}>
-                          <span className="font-semibold mr-2">E.</span> <span className="break-words">{q.option_e}</span>
+                        <div className={`p-2 rounded border min-w-0 overflow-hidden ${q.correct_option === 'E' ? 'bg-green-50/50 border-green-200' : ''}`}>
+                          <span className="font-semibold mr-2">E.</span> <span className="break-all">{q.option_e}</span>
                         </div>
                       )}
                     </div>
