@@ -68,9 +68,7 @@ export default function RegisterPage() {
           <div className="flex flex-col items-center gap-4 py-6 text-center">
             <CheckCircle2 className="h-12 w-12 text-green-500" />
             <p className="text-sm font-medium text-green-700">{success}</p>
-            <Button asChild className="mt-2 w-full bg-text-primary text-white hover:bg-[#F5C97A] hover:text-text-primary">
-              <Link href="/login">Masuk ke Akun</Link>
-            </Button>
+            <Button nativeButton={false} render={<Link href="/login">Masuk ke Akun</Link>} className="mt-2 w-full bg-text-primary text-white hover:bg-[#F5C97A] hover:text-text-primary" />
           </div>
         ) : (
           <form action={handleSubmit} className="space-y-5">
