@@ -67,29 +67,50 @@ export default async function QuizLeaderboardPage({
       id,
       score,
       student_id,
+      created_at,
       completed_at,
       profiles:student_id (full_name)
     `)
     .eq("quiz_id", quizId)
-    .not("completed_at", "is", null)
-    .order("score", { ascending: false })
-    .order("completed_at", { ascending: true }); // Faster completion breaks ties
+    .not("completed_at", "is", null);
 
-  // Group by student to keep only their highest score if they attempted multiple times
-  const bestAttemptsMap = new Map();
-  if (attempts) {
-    attempts.forEach((a: any) => {
-      const existing = bestAttemptsMap.get(a.student_id);
-      if (!existing) {
+  // Compute duration in seconds for each attempt
+  const attemptsWithDuration = (attempts || []).map((a: any) => {
+    const startMs = new Date(a.created_at).getTime();
+    const endMs = new Date(a.completed_at).getTime();
+    const durationSeconds = Math.max(0, Math.round((endMs - startMs) / 1000));
+    return { ...a, durationSeconds };
+  });
+
+  // Group by student — keep the attempt with highest score; if tied, keep the fastest
+  const bestAttemptsMap = new Map<string, any>();
+  for (const a of attemptsWithDuration) {
+    const existing = bestAttemptsMap.get(a.student_id);
+    if (!existing) {
+      bestAttemptsMap.set(a.student_id, a);
+    } else {
+      const betterScore = (a.score ?? 0) > (existing.score ?? 0);
+      const sameScopeFaster =
+        (a.score ?? 0) === (existing.score ?? 0) &&
+        a.durationSeconds < existing.durationSeconds;
+      if (betterScore || sameScopeFaster) {
         bestAttemptsMap.set(a.student_id, a);
-      } else {
-        // Since it's ordered by score desc, the first one encountered is the highest
-        // We do nothing if it already exists
       }
-    });
+    }
   }
 
-  const leaderboard = Array.from(bestAttemptsMap.values());
+  // Sort: highest score first, then shortest duration first
+  const leaderboard = Array.from(bestAttemptsMap.values()).sort((a, b) => {
+    if ((b.score ?? 0) !== (a.score ?? 0)) return (b.score ?? 0) - (a.score ?? 0);
+    return a.durationSeconds - b.durationSeconds;
+  });
+
+  function formatDuration(totalSeconds: number): string {
+    const h = Math.floor(totalSeconds / 3600);
+    const m = Math.floor((totalSeconds % 3600) / 60);
+    const s = totalSeconds % 60;
+    return [h, m, s].map((v) => String(v).padStart(2, "0")).join(":");
+  }
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto pb-10">
@@ -112,7 +133,7 @@ export default async function QuizLeaderboardPage({
             <TableRow>
               <TableHead className="w-[100px] text-center font-bold">Peringkat</TableHead>
               <TableHead className="font-bold">Nama Mahasiswa</TableHead>
-              <TableHead className="text-center font-bold">Waktu Selesai</TableHead>
+              <TableHead className="text-center font-bold">Durasi Pengerjaan</TableHead>
               <TableHead className="text-right font-bold pr-6">Nilai Akhir</TableHead>
             </TableRow>
           </TableHeader>
@@ -150,8 +171,8 @@ export default async function QuizLeaderboardPage({
                         <Badge variant="outline" className="ml-2 border-primary text-primary text-[10px]">Anda</Badge>
                       )}
                     </TableCell>
-                    <TableCell className="text-center text-muted-foreground text-sm">
-                      {entry.completed_at ? new Intl.DateTimeFormat('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date(entry.completed_at)).replace(/\./g, ':') : "-"}
+                    <TableCell className="text-center text-muted-foreground font-mono text-sm">
+                      {formatDuration(entry.durationSeconds)}
                     </TableCell>
                     <TableCell className="text-right pr-6">
                       <span className="font-bold text-lg">{entry.score}</span>
