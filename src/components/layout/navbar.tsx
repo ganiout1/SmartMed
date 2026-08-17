@@ -88,9 +88,7 @@ export function Navbar() {
             Masuk
           </Link>
           <a
-            href="https://wa.me/6287867141403"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/register"
             style={{
               background: "#f5b340",
               color: "#0A0A0A",
@@ -167,9 +165,7 @@ export function Navbar() {
             Masuk
           </Link>
           <a
-            href="https://wa.me/6287867141403"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/register"
             onClick={() => setMenuOpen(false)}
             style={{
               background: "#f5b340",
