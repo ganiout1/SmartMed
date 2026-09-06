@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Plus, Search, Edit2, Trash2, Settings, ArrowRight } from "lucide-react";
+import { Plus, Search, Edit2, Trash2, Settings, ArrowRight, ArrowRightLeft } from "lucide-react";
 import { toast } from "sonner";
 import { createQuiz, updateQuiz, deleteQuiz } from "@/app/dashboard/lecturer/courses/[courseId]/actions";
+import { moveQuizToCourse } from "@/app/dashboard/admin/quizzes/actions";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,17 +40,25 @@ type QuizData = {
   max_attempts?: number | null;
 };
 
+type CourseOption = {
+  id: string;
+  title: string;
+};
+
 interface QuizManagementProps {
   courseId: string;
   quizzes: QuizData[];
+  allCourses?: CourseOption[];
 }
 
-export function QuizManagement({ courseId, quizzes }: QuizManagementProps) {
+export function QuizManagement({ courseId, quizzes, allCourses }: QuizManagementProps) {
   const [search, setSearch] = useState("");
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isMoveOpen, setIsMoveOpen] = useState(false);
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
+  const [selectedTargetCourse, setSelectedTargetCourse] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
   const filteredQuizzes = quizzes.filter(
@@ -97,6 +106,21 @@ export function QuizManagement({ courseId, quizzes }: QuizManagementProps) {
     } else {
       toast.success("Kuis berhasil dihapus");
       setIsDeleteOpen(false);
+    }
+    setLoading(false);
+  };
+
+  const handleMoveSubmit = async () => {
+    if (!selectedQuiz || !selectedTargetCourse) return;
+    setLoading(true);
+    const result = await moveQuizToCourse(selectedQuiz.id, selectedTargetCourse);
+
+    if (result.error) {
+      toast.error(result.error);
+    } else {
+      toast.success(result.message || "Kuis berhasil dipindahkan");
+      setIsMoveOpen(false);
+      setSelectedTargetCourse("");
     }
     setLoading(false);
   };
@@ -184,6 +208,20 @@ export function QuizManagement({ courseId, quizzes }: QuizManagementProps) {
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
+                    {allCourses && allCourses.length > 1 && (
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => {
+                          setSelectedQuiz(quiz);
+                          setSelectedTargetCourse("");
+                          setIsMoveOpen(true);
+                        }}
+                        title="Pindah ke Kursus Lain"
+                      >
+                        <ArrowRightLeft className="h-4 w-4" />
+                      </Button>
+                    )}
                   </TableCell>
                 </TableRow>
               ))
@@ -292,6 +330,41 @@ export function QuizManagement({ courseId, quizzes }: QuizManagementProps) {
             </Button>
             <Button variant="destructive" onClick={handleDeleteSubmit} disabled={loading}>
               {loading ? "Menghapus..." : "Ya, Hapus"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* MOVE DIALOG */}
+      <Dialog open={isMoveOpen} onOpenChange={setIsMoveOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Pindahkan Kuis</DialogTitle>
+            <DialogDescription>
+              Pindahkan kuis <b>{selectedQuiz?.title}</b> ke kursus lain.
+              Semua soal, hasil ujian, dan data terkait akan ikut berpindah.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-2 py-2">
+            <Label htmlFor="target-course">Kursus Tujuan</Label>
+            <select
+              id="target-course"
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              value={selectedTargetCourse}
+              onChange={(e) => setSelectedTargetCourse(e.target.value)}
+            >
+              <option value="">-- Pilih kursus tujuan --</option>
+              {(allCourses || []).filter(c => c.id !== courseId).map((c) => (
+                <option key={c.id} value={c.id}>{c.title}</option>
+              ))}
+            </select>
+          </div>
+          <DialogFooter>
+            <Button type="button" variant="outline" onClick={() => setIsMoveOpen(false)} disabled={loading}>
+              Batal
+            </Button>
+            <Button onClick={handleMoveSubmit} disabled={loading || !selectedTargetCourse}>
+              {loading ? "Memindahkan..." : "Pindahkan"}
             </Button>
           </DialogFooter>
         </DialogContent>

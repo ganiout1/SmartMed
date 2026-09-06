@@ -65,6 +65,17 @@ export default async function CourseDetailPage({
     max_attempts: q.max_attempts,
   }));
 
+  // 4. Fetch all courses for "Move Quiz" feature
+  const { data: allCoursesData } = await supabase
+    .from("courses")
+    .select("id, title")
+    .order("title", { ascending: true });
+
+  const allCourses = (allCoursesData || []).map((c: any) => ({
+    id: c.id,
+    title: c.title,
+  }));
+
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       <SectionHeader
@@ -73,7 +84,7 @@ export default async function CourseDetailPage({
         align="left"
       />
 
-      <QuizManagement courseId={courseId} quizzes={transformedQuizzes} />
+      <QuizManagement courseId={courseId} quizzes={transformedQuizzes} allCourses={allCourses} />
     </div>
   );
 }
