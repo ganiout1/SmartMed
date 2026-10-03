@@ -85,7 +85,7 @@ export function HistoryAnswersFilter({ answers }: { answers: any[] }) {
                       <div className="flex-1">
                         <p className="whitespace-pre-wrap">{q.question_text}</p>
                         {q.question_image_url && (
-                          <div className="relative h-64 w-full max-w-lg mt-4 mb-2 rounded-md overflow-hidden border bg-background">
+                          <div className="relative h-[28rem] w-full max-w-lg mt-4 mb-2 rounded-md overflow-hidden border bg-background">
                             <Image
                               src={q.question_image_url}
                               alt="Gambar Soal"

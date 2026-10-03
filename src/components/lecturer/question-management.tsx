@@ -234,7 +234,7 @@ export function QuestionManagement({ quizId, questions }: QuestionManagementProp
                     </div>
 
                     {q.question_image_url && (
-                      <div className="relative h-48 w-full max-w-sm mt-2">
+                      <div className="relative h-[28rem] w-full max-w-sm mt-2">
                         <Image 
                           src={q.question_image_url} 
                           alt="Gambar Soal" 

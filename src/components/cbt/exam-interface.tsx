@@ -223,7 +223,7 @@ export function ExamInterface({
                     <img
                       src={currentQuestion.question_image_url}
                       alt="Gambar Soal"
-                      className="max-h-40 w-auto rounded-md object-contain"
+                      className="max-h-[28rem] w-auto rounded-md object-contain"
                       onError={() => setImageError(prev => ({ ...prev, [currentQuestion.id]: true }))}
                     />
                   )}

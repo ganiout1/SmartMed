@@ -122,7 +122,7 @@ export default async function QuizReviewPage({
                       <img
                         src={q.question_image_url}
                         alt="Gambar Soal"
-                        className="max-h-64 w-auto rounded-md object-contain"
+                        className="max-h-[28rem] w-auto rounded-md object-contain"
                       />
                     </div>
                   )}
